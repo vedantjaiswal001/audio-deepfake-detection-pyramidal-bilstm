@@ -1,0 +1,1985 @@
+2025-10-31 11:24:11 - INFO - ================================================================================
+2025-10-31 11:24:11 - INFO - PYRAMIDAL BiLSTM AUDIO DEEPFAKE DETECTION SYSTEM - PYTORCH
+2025-10-31 11:24:11 - INFO - ================================================================================
+2025-10-31 11:24:11 - INFO - Log file created: logs/pyramidal_bilstm_pytorch_training_20251031_112411.log
+2025-10-31 11:24:11 - INFO - Python version: 3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:09:02) [GCC 11.2.0]
+2025-10-31 11:24:11 - INFO - PyTorch version: 2.6.0+cu124
+2025-10-31 11:24:11 - INFO - NumPy version: 2.1.2
+2025-10-31 11:24:11 - INFO - Librosa version: 0.11.0
+2025-10-31 11:24:11 - INFO - CUDA available: True
+2025-10-31 11:24:11 - INFO - Using CUDA device: cuda:2 (GPU 2)
+2025-10-31 11:24:11 - INFO - CUDA device name: Tesla V100-SXM2-32GB
+2025-10-31 11:24:11 - INFO - CUDA device count: 8
+2025-10-31 11:24:11 - INFO - GPU Memory: 31.73 GB
+2025-10-31 11:24:11 - INFO - ================================================================================
+2025-10-31 11:24:12 - INFO - Optuna available for hyperparameter optimization
+2025-10-31 11:24:13 - INFO - Using device: cuda:2 (GPU 2)
+2025-10-31 11:24:13 - INFO - GPU Name: Tesla V100-SXM2-32GB
+2025-10-31 11:24:13 - INFO - GPU Memory: 31.73 GB
+2025-10-31 11:24:13 - INFO - Device: cuda:2
+2025-10-31 11:24:13 - INFO - 🎲 Random seed set to 42 for all devices including GPU 2
+2025-10-31 11:24:13 - INFO - ================================================================================
+2025-10-31 11:24:13 - INFO - LOADING DATASET WITH COMPREHENSIVE AUGMENTATION PIPELINE
+2025-10-31 11:24:13 - INFO - ================================================================================
+2025-10-31 11:24:13 - INFO - TRAINING: Audio-level + Spectral-level augmentation
+2025-10-31 11:24:13 - INFO - VAL/TEST: Clean data (no augmentation)
+2025-10-31 11:24:13 - INFO - ================================================================================
+2025-10-31 11:24:13 - INFO - Loading data from for-rerecorded/training
+2025-10-31 11:24:13 - INFO -   Augmentation: FULL AUGMENTATION (Audio + Spectral)
+2025-10-31 11:24:13 - INFO -   Audio-level: Speed (±10%), Pitch (±1 semitone), Noise (10-20dB SNR)
+2025-10-31 11:24:13 - INFO -   Spectral-level: Time masking (15 frames), Frequency masking (10 bins)
+2025-10-31 11:25:37 - INFO -   real: 5104 files loaded
+2025-10-31 11:27:04 - INFO -   fake: 5104 files loaded
+2025-10-31 11:27:04 - INFO - Total: 10208 samples with full augmentation (audio + spectral)
+2025-10-31 11:27:04 - INFO - Loading data from for-rerecorded/validation
+2025-10-31 11:27:04 - INFO -   Augmentation: NO AUGMENTATION
+2025-10-31 11:27:09 - INFO -   real: 1101 files loaded
+2025-10-31 11:27:14 - INFO -   fake: 1143 files loaded
+2025-10-31 11:27:14 - INFO - Total: 2244 samples with no augmentation
+2025-10-31 11:27:14 - INFO - Loading data from for-rerecorded/testing
+2025-10-31 11:27:14 - INFO -   Augmentation: NO AUGMENTATION
+2025-10-31 11:27:16 - INFO -   real: 408 files loaded
+2025-10-31 11:27:18 - INFO -   fake: 408 files loaded
+2025-10-31 11:27:18 - INFO - Total: 816 samples with no augmentation
+2025-10-31 11:27:18 - INFO - Global maximum sequence length: 139
+2025-10-31 11:27:18 - INFO - Training max: 139
+2025-10-31 11:27:18 - INFO - Validation max: 126
+2025-10-31 11:27:18 - INFO - Testing max: 126
+2025-10-31 11:27:22 - INFO - 
+==========================================================================================
+2025-10-31 11:27:22 - INFO - ULTRA-ENHANCED PYRAMIDAL BiLSTM WITH COMPREHENSIVE AUGMENTATION - PYTORCH
+2025-10-31 11:27:22 - INFO - Testing 2 pyramid layers + attention + multi-level data augmentation
+2025-10-31 11:27:22 - INFO - ==========================================================================================
+2025-10-31 11:27:22 - INFO - PYTORCH IMPLEMENTATION WITH MAJOR IMPROVEMENTS:
+2025-10-31 11:27:22 - INFO - ✓ PyTorch-native pyramid downsampling
+2025-10-31 11:27:22 - INFO - ✓ Log-Mel spectrograms (80 bins)
+2025-10-31 11:27:22 - INFO - ✓ Proper sequence masking for variable-length sequences
+2025-10-31 11:27:22 - INFO - ✓ AttentionPooling using ALL temporal information
+2025-10-31 11:27:22 - INFO - ✓ AdamW optimizer with OneCycle learning rate schedule
+2025-10-31 11:27:22 - INFO - ✓ ENHANCED REGULARIZATION PIPELINE:
+2025-10-31 11:27:22 - INFO -   • Dropout in LSTM and Dense layers
+2025-10-31 11:27:22 - INFO -   • LayerNormalization after BiLSTM and Dense layers
+2025-10-31 11:27:22 - INFO -   • Progressive dropout rates (0.3 → 0.5)
+2025-10-31 11:27:22 - INFO -   • Weight decay via AdamW optimizer
+2025-10-31 11:27:22 - INFO -   • Gradient clipping (max_norm=1.0)
+2025-10-31 11:27:22 - INFO - ✓ COMPREHENSIVE DATA AUGMENTATION PIPELINE:
+2025-10-31 11:27:22 - INFO -   • Audio-level: Speed perturbation (±10%), Pitch shift (±1 semitone)
+2025-10-31 11:27:22 - INFO -   • Audio-level: Colored noise addition (white/pink, 10-20dB SNR)
+2025-10-31 11:27:22 - INFO -   • Spectral-level: SpecAugment (time + frequency masking)
+2025-10-31 11:27:22 - INFO - ✓ Training robustness: ~80% samples get some form of augmentation
+2025-10-31 11:27:22 - INFO - ==========================================================================================
+2025-10-31 11:27:22 - INFO - 
+==========================================================================================
+2025-10-31 11:27:22 - INFO - APPROACH 1: SINGLE TRAIN/VALIDATION/TEST SPLIT - PYTORCH
+2025-10-31 11:27:22 - INFO - ==========================================================================================
+2025-10-31 11:27:22 - INFO - 
+============================================================
+2025-10-31 11:27:22 - INFO - TRAINING MODEL WITH 2 PYRAMID LAYER(S)
+2025-10-31 11:27:22 - INFO - ============================================================
+2025-10-31 11:27:23 - INFO - 
+============================================================
+2025-10-31 11:27:23 - INFO - MODEL SUMMARY: Pyramidal BiLSTM (2 layers)
+2025-10-31 11:27:23 - INFO - ============================================================
+2025-10-31 11:27:23 - INFO - PyramidalBiLSTM(
+  (first_bilstm): LSTM(80, 128, batch_first=True, bidirectional=True)
+  (first_dropout): Dropout(p=0.3, inplace=False)
+  (first_layernorm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+  (pyramid_layers): ModuleList(
+    (0-1): 2 x PyramidalDownsample()
+  )
+  (pyramid_bilstms): ModuleList(
+    (0-1): 2 x LSTM(512, 128, batch_first=True, bidirectional=True)
+  )
+  (pyramid_dropouts): ModuleList(
+    (0): Dropout(p=0.35, inplace=False)
+    (1): Dropout(p=0.4, inplace=False)
+  )
+  (pyramid_layernorms): ModuleList(
+    (0-1): 2 x LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+  )
+  (attention_pooling): AttentionPooling(
+    (attention_dense): Linear(in_features=256, out_features=128, bias=True)
+    (attention_score): Linear(in_features=128, out_features=1, bias=True)
+  )
+  (attention_dropout): Dropout(p=0.4, inplace=False)
+  (dense1): Linear(in_features=256, out_features=64, bias=True)
+  (dense1_layernorm): LayerNorm((64,), eps=1e-05, elementwise_affine=True)
+  (dense1_dropout): Dropout(p=0.5, inplace=False)
+  (output): Linear(in_features=64, out_features=1, bias=True)
+)
+2025-10-31 11:27:23 - INFO - 
+Model Parameters:
+2025-10-31 11:27:23 - INFO -   Total parameters: 1,581,058
+2025-10-31 11:27:23 - INFO -   Trainable parameters: 1,581,058
+2025-10-31 11:27:23 - INFO -   Non-trainable parameters: 0
+2025-10-31 11:27:23 - INFO - ============================================================
+2025-10-31 11:27:23 - INFO - 
+================================================================================
+2025-10-31 11:27:23 - INFO - ENHANCED TRAINING PIPELINE - PYTORCH
+2025-10-31 11:27:23 - INFO - ================================================================================
+2025-10-31 11:27:23 - INFO - Optimizer: AdamW (weight_decay=1e-05, lr=0.0001)
+2025-10-31 11:27:23 - INFO - Learning Rate: OneCycle (Base: 0.0001, Peak: 0.0005, Min: 1.0000000000000002e-06)
+2025-10-31 11:27:23 - INFO - Schedule: Warmup (5 epochs) → Peak (15 epochs) → Cosine Annealing
+2025-10-31 11:27:23 - INFO - Max Epochs: 100 (with early stopping, patience=7)
+2025-10-31 11:27:23 - INFO - Batch Size: 8
+2025-10-31 11:27:23 - INFO - Device: cuda:2
+2025-10-31 11:27:23 - INFO - 
+💾 CHECKPOINT STRATEGY:
+2025-10-31 11:27:23 - INFO -   • Best model: Saved when validation loss improves
+2025-10-31 11:27:23 - INFO -   • Last epoch: Saved at training completion
+2025-10-31 11:27:23 - INFO -   • Evaluation: Uses best model weights
+2025-10-31 11:27:23 - INFO - ================================================================================
+2025-10-31 11:27:34 - INFO - Epoch 1/100 - Train Loss: 0.6802, Train Acc: 0.5947 - Val Loss: 0.5544, Val Acc: 0.7304 - LR: 1.80e-04
+2025-10-31 11:27:35 - INFO - 💾 Best model saved: best_model_2layers_1761906443.pt
+2025-10-31 11:27:45 - INFO - Epoch 2/100 - Train Loss: 0.5777, Train Acc: 0.6950 - Val Loss: 0.4240, Val Acc: 0.8164 - LR: 2.60e-04
+2025-10-31 11:27:45 - INFO - 💾 Best model saved: best_model_2layers_1761906443.pt
+2025-10-31 11:27:56 - INFO - Epoch 3/100 - Train Loss: 0.5363, Train Acc: 0.7377 - Val Loss: 0.4094, Val Acc: 0.8182 - LR: 3.40e-04
+2025-10-31 11:27:56 - INFO - 💾 Best model saved: best_model_2layers_1761906443.pt
+2025-10-31 11:28:07 - INFO - Epoch 4/100 - Train Loss: 0.4988, Train Acc: 0.7622 - Val Loss: 0.3161, Val Acc: 0.8663 - LR: 4.20e-04
+2025-10-31 11:28:07 - INFO - 💾 Best model saved: best_model_2layers_1761906443.pt
+2025-10-31 11:28:18 - INFO - Epoch 5/100 - Train Loss: 0.4882, Train Acc: 0.7785 - Val Loss: 0.4127, Val Acc: 0.8200 - LR: 5.00e-04
+2025-10-31 11:28:29 - INFO - Epoch 6/100 - Train Loss: 0.4573, Train Acc: 0.7981 - Val Loss: 0.4530, Val Acc: 0.8115 - LR: 5.00e-04
+2025-10-31 11:28:40 - INFO - Epoch 7/100 - Train Loss: 0.4249, Train Acc: 0.8210 - Val Loss: 0.3266, Val Acc: 0.8824 - LR: 5.00e-04
+2025-10-31 11:28:50 - INFO - Epoch 8/100 - Train Loss: 0.3988, Train Acc: 0.8356 - Val Loss: 0.4667, Val Acc: 0.8307 - LR: 1.00e-04
+2025-10-31 11:29:01 - INFO - Epoch 9/100 - Train Loss: 0.3039, Train Acc: 0.8858 - Val Loss: 0.3337, Val Acc: 0.8890 - LR: 5.00e-04
+2025-10-31 11:29:12 - INFO - Epoch 10/100 - Train Loss: 0.3604, Train Acc: 0.8568 - Val Loss: 0.3445, Val Acc: 0.8783 - LR: 5.00e-04
+2025-10-31 11:29:23 - INFO - Epoch 11/100 - Train Loss: 0.3402, Train Acc: 0.8669 - Val Loss: 0.2953, Val Acc: 0.8966 - LR: 5.00e-04
+2025-10-31 11:29:23 - INFO - 💾 Best model saved: best_model_2layers_1761906443.pt
+2025-10-31 11:29:34 - INFO - Epoch 12/100 - Train Loss: 0.3117, Train Acc: 0.8851 - Val Loss: 0.3035, Val Acc: 0.9060 - LR: 5.00e-04
+2025-10-31 11:29:45 - INFO - Epoch 13/100 - Train Loss: 0.2852, Train Acc: 0.8920 - Val Loss: 0.3616, Val Acc: 0.8886 - LR: 5.00e-04
+2025-10-31 11:29:56 - INFO - Epoch 14/100 - Train Loss: 0.2624, Train Acc: 0.9070 - Val Loss: 0.2116, Val Acc: 0.9291 - LR: 5.00e-04
+2025-10-31 11:29:56 - INFO - 💾 Best model saved: best_model_2layers_1761906443.pt
+2025-10-31 11:30:07 - INFO - Epoch 15/100 - Train Loss: 0.2522, Train Acc: 0.9141 - Val Loss: 0.3387, Val Acc: 0.9069 - LR: 5.00e-04
+2025-10-31 11:30:18 - INFO - Epoch 16/100 - Train Loss: 0.2295, Train Acc: 0.9224 - Val Loss: 0.3624, Val Acc: 0.9064 - LR: 5.00e-04
+2025-10-31 11:30:29 - INFO - Epoch 17/100 - Train Loss: 0.2212, Train Acc: 0.9281 - Val Loss: 0.2719, Val Acc: 0.9242 - LR: 5.00e-04
+2025-10-31 11:30:41 - INFO - Epoch 18/100 - Train Loss: 0.2088, Train Acc: 0.9326 - Val Loss: 0.2863, Val Acc: 0.9225 - LR: 1.00e-04
+2025-10-31 11:30:52 - INFO - Epoch 19/100 - Train Loss: 0.1304, Train Acc: 0.9619 - Val Loss: 0.4116, Val Acc: 0.9037 - LR: 5.00e-04
+2025-10-31 11:31:02 - INFO - Epoch 20/100 - Train Loss: 0.1807, Train Acc: 0.9465 - Val Loss: 0.3371, Val Acc: 0.9153 - LR: 5.00e-04
+2025-10-31 11:31:14 - INFO - Epoch 21/100 - Train Loss: 0.1817, Train Acc: 0.9436 - Val Loss: 0.3134, Val Acc: 0.9216 - LR: 5.00e-04
+2025-10-31 11:31:14 - INFO - 
+⚠️  Early stopping triggered after 21 epochs
+2025-10-31 11:31:14 - INFO - 💾 Last epoch checkpoint saved: last_epoch_model_2layers_1761906443.pt
+2025-10-31 11:31:14 - INFO - 
+============================================================
+2025-10-31 11:31:14 - INFO - TRAINING COMPLETED
+2025-10-31 11:31:14 - INFO - ============================================================
+2025-10-31 11:31:14 - INFO - Epochs trained: 21
+2025-10-31 11:31:14 - INFO - Best validation loss: 0.2116
+2025-10-31 11:31:14 - INFO - Best validation accuracy: 0.9291
+2025-10-31 11:31:14 - INFO - 
+📁 SAVED CHECKPOINTS:
+2025-10-31 11:31:14 - INFO -   Best model: best_model_2layers_1761906443.pt
+2025-10-31 11:31:14 - INFO -   Last epoch: last_epoch_model_2layers_1761906443.pt
+2025-10-31 11:31:14 - INFO - ============================================================
+2025-10-31 11:31:14 - INFO - Loading best model from checkpoint for evaluation...
+2025-10-31 11:31:14 - INFO - 
+Generating predictions for comprehensive evaluation...
+2025-10-31 11:31:15 - INFO - 
+================================================================================
+2025-10-31 11:31:15 - INFO - COMPREHENSIVE EVALUATION METRICS - TEST SET
+2025-10-31 11:31:15 - INFO - ================================================================================
+2025-10-31 11:31:15 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-10-31 11:31:15 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-10-31 11:31:19 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-10-31 11:31:19 - INFO -   Accuracy: 0.7279
+2025-10-31 11:31:19 - INFO -   Balanced Accuracy: 0.7279
+2025-10-31 11:31:19 - INFO -   AUC-ROC: 0.8122 [0.7824, 0.8394]
+2025-10-31 11:31:19 - INFO -   AUC-PR: 0.8361 [0.8037, 0.8643]
+2025-10-31 11:31:19 - INFO -   F1-Score: 0.7048 [0.6657, 0.7391]
+2025-10-31 11:31:19 - INFO -   EER: 0.2831 @ threshold=0.1112
+2025-10-31 11:31:19 - INFO - 
+PER-CLASS METRICS:
+2025-10-31 11:31:19 - INFO -   Precision (Fake Detection): 0.7703
+2025-10-31 11:31:19 - INFO -   Recall/Sensitivity (Fake Detection): 0.6495
+2025-10-31 11:31:19 - INFO -   Specificity (Real Detection): 0.8064
+2025-10-31 11:31:19 - INFO - 
+CONFUSION MATRIX:
+2025-10-31 11:31:19 - INFO -   True Negatives (Real→Real): 329
+2025-10-31 11:31:19 - INFO -   False Positives (Real→Fake): 79
+2025-10-31 11:31:19 - INFO -   False Negatives (Fake→Real): 143
+2025-10-31 11:31:19 - INFO -   True Positives (Fake→Fake): 265
+2025-10-31 11:31:19 - INFO - 
+CALIBRATION ANALYSIS:
+2025-10-31 11:31:19 - INFO -   Brier Score: 0.2297 (lower is better)
+2025-10-31 11:31:19 - INFO -   Expected Calibration Error (ECE): 0.2013
+2025-10-31 11:31:19 - INFO -   Maximum Calibration Error (MCE): 0.3413
+2025-10-31 11:31:19 - INFO - 
+================================================================================
+2025-10-31 11:31:19 - INFO - COMPREHENSIVE EVALUATION METRICS - VALIDATION SET
+2025-10-31 11:31:19 - INFO - ================================================================================
+2025-10-31 11:31:19 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-10-31 11:31:19 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-10-31 11:31:24 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-10-31 11:31:24 - INFO -   Accuracy: 0.9291
+2025-10-31 11:31:24 - INFO -   Balanced Accuracy: 0.9290
+2025-10-31 11:31:24 - INFO -   AUC-ROC: 0.9770 [0.9713, 0.9823]
+2025-10-31 11:31:24 - INFO -   AUC-PR: 0.9745 [0.9671, 0.9811]
+2025-10-31 11:31:24 - INFO -   F1-Score: 0.9307 [0.9198, 0.9406]
+2025-10-31 11:31:24 - INFO -   EER: 0.0713 @ threshold=0.5744
+2025-10-31 11:31:24 - INFO - 
+PER-CLASS METRICS:
+2025-10-31 11:31:24 - INFO -   Precision (Fake Detection): 0.9271
+2025-10-31 11:31:24 - INFO -   Recall/Sensitivity (Fake Detection): 0.9344
+2025-10-31 11:31:24 - INFO -   Specificity (Real Detection): 0.9237
+2025-10-31 11:31:24 - INFO - 
+CONFUSION MATRIX:
+2025-10-31 11:31:24 - INFO -   True Negatives (Real→Real): 1017
+2025-10-31 11:31:24 - INFO -   False Positives (Real→Fake): 84
+2025-10-31 11:31:24 - INFO -   False Negatives (Fake→Real): 75
+2025-10-31 11:31:24 - INFO -   True Positives (Fake→Fake): 1068
+2025-10-31 11:31:24 - INFO - 
+CALIBRATION ANALYSIS:
+2025-10-31 11:31:24 - INFO -   Brier Score: 0.0573 (lower is better)
+2025-10-31 11:31:24 - INFO -   Expected Calibration Error (ECE): 0.0304
+2025-10-31 11:31:24 - INFO -   Maximum Calibration Error (MCE): 0.3983
+2025-10-31 11:31:24 - INFO - 
+======================================================================
+2025-10-31 11:31:24 - INFO - COMPREHENSIVE RESULTS FOR 2 PYRAMID LAYER(S)
+2025-10-31 11:31:24 - INFO - ======================================================================
+2025-10-31 11:31:24 - INFO - TRAINING SUMMARY:
+2025-10-31 11:31:24 - INFO -   Total Parameters: 1,581,058
+2025-10-31 11:31:24 - INFO -   Epochs Trained: 21
+2025-10-31 11:31:24 - INFO -   Best Epoch: 14 (1-indexed)
+2025-10-31 11:31:24 - INFO -   Best Validation Loss: 0.2116
+2025-10-31 11:31:24 - INFO -   Model Checkpoint: best_model_2layers_1761906443.pt
+2025-10-31 11:31:24 - INFO - 
+📁 CHECKPOINTS SAVED:
+2025-10-31 11:31:24 - INFO -   Best model: best_model_2layers_1761906443.pt
+2025-10-31 11:31:24 - INFO -   Last epoch: last_epoch_model_2layers_1761906443.pt
+2025-10-31 11:31:24 - INFO - 
+FINAL PERFORMANCE SUMMARY (using best model):
+2025-10-31 11:31:24 - INFO -   Test AUC-ROC: 0.8122 [0.7824, 0.8394]
+2025-10-31 11:31:24 - INFO -   Test AUC-PR: 0.8361 [0.8037, 0.8643]
+2025-10-31 11:31:24 - INFO -   Test F1-Score: 0.7048 [0.6657, 0.7391]
+2025-10-31 11:31:24 - INFO -   Test Balanced Accuracy: 0.7279
+2025-10-31 11:31:24 - INFO -   Test EER: 0.2831 @ threshold=0.1112
+2025-10-31 11:31:24 - INFO - 
+STANDARD CLASSIFICATION REPORT (Test Set):
+2025-10-31 11:31:24 - INFO -               precision    recall  f1-score   support
+
+        Real       0.70      0.81      0.75       408
+        Fake       0.77      0.65      0.70       408
+
+    accuracy                           0.73       816
+   macro avg       0.73      0.73      0.73       816
+weighted avg       0.73      0.73      0.73       816
+
+2025-10-31 11:31:24 - INFO - 
+================================================================================
+2025-10-31 11:31:24 - INFO - EXPERIMENT RESULTS: Single Split Validation - PyTorch
+2025-10-31 11:31:24 - INFO - ================================================================================
+2025-10-31 11:31:24 - INFO -   pyramid_layers: 2.0000
+2025-10-31 11:31:24 - INFO -   total_params: 1581058.0000
+2025-10-31 11:31:24 - INFO -   epochs_trained: 21.0000
+2025-10-31 11:31:24 - INFO -   best_epoch: 14
+2025-10-31 11:31:24 - INFO -   best_val_loss: 0.2116
+2025-10-31 11:31:24 - INFO -   best_val_acc: 0.9291
+2025-10-31 11:31:24 - INFO -   test_metrics: {'accuracy': np.float64(0.7279411764705882), 'balanced_accuracy': np.float64(0.7279411764705883), 'auc_roc': 0.812247693194925, 'auc_roc_ci': {'mean': np.float64(0.8118887562871104), 'std': np.float64(0.014563532360493733), 'ci_lower': np.float64(0.7823599910445472), 'ci_upper': np.float64(0.8394133191619535), 'confidence': 0.95}, 'auc_pr': 0.8361217547179094, 'auc_pr_ci': {'mean': np.float64(0.8356288601394681), 'std': np.float64(0.015690208162478524), 'ci_lower': np.float64(0.8036593568852044), 'ci_upper': np.float64(0.8642575702689508), 'confidence': 0.95}, 'f1_score': 0.7047872340425532, 'f1_ci': {'mean': np.float64(0.7039217712278182), 'std': np.float64(0.019175476541004686), 'ci_lower': np.float64(0.6657330298567412), 'ci_upper': np.float64(0.7390729303602286), 'confidence': 0.95}, 'precision': 0.7703488372093024, 'recall': 0.6495098039215687, 'specificity': np.float64(0.8063725490196079), 'eer': np.float64(0.28308823529411764), 'eer_threshold': np.float32(0.111185335), 'confusion_matrix': array([[329,  79],
+       [143, 265]]), 'calibration': {'brier_score': 0.22969654477626014, 'ece': np.float64(0.20133201821990243), 'mce': np.float64(0.34125439257457335)}, 'bootstrap_confidence': 0.95}
+2025-10-31 11:31:24 - INFO -   val_metrics: {'accuracy': np.float64(0.929144385026738), 'balanced_accuracy': np.float64(0.9290444620852911), 'auc_roc': 0.9770216052693687, 'auc_roc_ci': {'mean': np.float64(0.9769776976652058), 'std': np.float64(0.0027116814731383354), 'ci_lower': np.float64(0.9713321831881213), 'ci_upper': np.float64(0.9822862862673427), 'confidence': 0.95}, 'auc_pr': 0.9744504525072188, 'auc_pr_ci': {'mean': np.float64(0.974441393212117), 'std': np.float64(0.0035768818678485353), 'ci_lower': np.float64(0.9671312424755688), 'ci_upper': np.float64(0.9810899075493174), 'confidence': 0.95}, 'f1_score': 0.930718954248366, 'f1_ci': {'mean': np.float64(0.9307480078276049), 'std': np.float64(0.005451790773239506), 'ci_lower': np.float64(0.9198356758747727), 'ci_upper': np.float64(0.9406198220727329), 'confidence': 0.95}, 'precision': 0.9270833333333334, 'recall': 0.9343832020997376, 'specificity': np.float64(0.9237057220708447), 'eer': np.float64(0.07130954679711357), 'eer_threshold': np.float32(0.57443154), 'confusion_matrix': array([[1017,   84],
+       [  75, 1068]]), 'calibration': {'brier_score': 0.05734330864797618, 'ece': np.float64(0.03037945878170696), 'mce': np.float64(0.3983309504232908)}, 'bootstrap_confidence': 0.95}
+2025-10-31 11:31:24 - INFO -   checkpoint_path: best_model_2layers_1761906443.pt
+2025-10-31 11:31:24 - INFO -   best_checkpoint_path: best_model_2layers_1761906443.pt
+2025-10-31 11:31:24 - INFO -   last_checkpoint_path: last_epoch_model_2layers_1761906443.pt
+2025-10-31 11:31:24 - INFO -   history: {'train_loss': [0.6801795577601205, 0.5777149162719429, 0.5362766114907298, 0.49877632256352045, 0.48816535750923673, 0.4573013206803733, 0.4248750562951856, 0.39882512025383293, 0.3038753542587815, 0.360360948853545, 0.3402321763595035, 0.31174909142955415, 0.28515701311557234, 0.26236422294473455, 0.2521509232388541, 0.22954296692111018, 0.2212276908763915, 0.20884799208896393, 0.13041548747102202, 0.18067052160733857, 0.18166787957033248], 'val_loss': [0.554431258091527, 0.4240408077331363, 0.4093775942841953, 0.3160724537364089, 0.41270210689561254, 0.4530484203826935, 0.32655756457072954, 0.46670361562447754, 0.33373854080889104, 0.34450688922973666, 0.29525507565541276, 0.30354087601238183, 0.36158618611182336, 0.21161368944136005, 0.33868270014776264, 0.36240642532746103, 0.2718627787445823, 0.28634719847188517, 0.41157100618104725, 0.3370846370019271, 0.3133589341554213], 'train_acc': [0.5947296238244514, 0.6950431034482759, 0.7376567398119123, 0.7622452978056427, 0.778507053291536, 0.7980995297805643, 0.8210227272727273, 0.8356191222570533, 0.8857758620689655, 0.8567789968652038, 0.8668691222570533, 0.8850901253918495, 0.8920454545454546, 0.9070336990595611, 0.9140869905956113, 0.9224137931034483, 0.9280956112852664, 0.932601880877743, 0.9618926332288401, 0.9465125391849529, 0.9435736677115988], 'val_acc': [0.7303921568627451, 0.8163992869875223, 0.8181818181818182, 0.8663101604278075, 0.8199643493761141, 0.8114973262032086, 0.8823529411764706, 0.8306595365418895, 0.8890374331550802, 0.8783422459893048, 0.8966131907308378, 0.9059714795008913, 0.8885918003565062, 0.929144385026738, 0.9068627450980392, 0.9064171122994652, 0.9242424242424242, 0.9224598930481284, 0.9037433155080213, 0.9153297682709447, 0.9215686274509803]}
+2025-10-31 11:31:24 - INFO -   evaluation_type: comprehensive_with_bootstrap
+2025-10-31 11:31:24 - INFO - ================================================================================
+2025-10-31 11:31:24 - INFO - 
+
+====================================================================================================
+2025-10-31 11:31:24 - INFO - FINAL COMPREHENSIVE RESULTS - PYTORCH IMPLEMENTATION
+2025-10-31 11:31:24 - INFO - ====================================================================================================
+2025-10-31 11:31:24 - INFO - 
+PYTORCH SINGLE SPLIT RESULTS:
+2025-10-31 11:31:24 - INFO -   Test AUC-ROC: 0.8122 [0.7824, 0.8394]
+2025-10-31 11:31:24 - INFO -   Test F1-Score: 0.7048 [0.6657, 0.7391]
+2025-10-31 11:31:24 - INFO -   Validation AUC-ROC: 0.9770
+2025-10-31 11:31:24 - INFO -   Parameters: 1,581,058
+2025-10-31 11:31:24 - INFO -   Framework: PyTorch 2.6.0+cu124
+2025-10-31 11:31:24 - INFO -   Device: cuda:2
+2025-10-31 11:31:24 - INFO - 
+==========================================================================================
+2025-10-31 11:31:24 - INFO - APPROACH 2: STRATIFIED 5-FOLD CROSS-VALIDATION - PYTORCH
+2025-10-31 11:31:24 - INFO - ==========================================================================================
+2025-10-31 11:31:24 - INFO - Data Preparation for K-Fold CV:
+2025-10-31 11:31:24 - INFO -   Combined CV Data: 12452 samples
+2025-10-31 11:31:24 - INFO -   Hold-out Test Data: 816 samples
+2025-10-31 11:31:24 - INFO -   Class Distribution in CV: Real=6205, Fake=6247
+2025-10-31 11:31:24 - INFO - 
+==========================================================================================
+2025-10-31 11:31:24 - INFO - STRATIFIED 5-FOLD CROSS-VALIDATION ANALYSIS - PYTORCH
+2025-10-31 11:31:24 - INFO - ==========================================================================================
+2025-10-31 11:31:24 - INFO - Model Configuration: 2 Pyramid Layers
+2025-10-31 11:31:24 - INFO - Dataset: 12452 samples for CV, 816 samples for final test
+2025-10-31 11:31:24 - INFO - Class Distribution in CV Data: Real=6205, Fake=6247
+2025-10-31 11:31:24 - INFO - Random Seed: 42
+2025-10-31 11:31:24 - INFO - ==========================================================================================
+2025-10-31 11:31:24 - INFO - 
+================================================================================
+2025-10-31 11:31:24 - INFO - TRAINING FOLD 1/5
+2025-10-31 11:31:24 - INFO - ================================================================================
+2025-10-31 11:31:24 - INFO - Fold 1 Data Split:
+2025-10-31 11:31:24 - INFO -   Training: 9961 samples (Real=4964, Fake=4997)
+2025-10-31 11:31:24 - INFO -   Validation: 2491 samples (Real=1241, Fake=1250)
+2025-10-31 11:31:24 - INFO -   Fold max sequence length: 139
+2025-10-31 11:31:27 - INFO - 
+============================================================
+2025-10-31 11:31:27 - INFO - TRAINING MODEL WITH 2 PYRAMID LAYER(S)
+2025-10-31 11:31:27 - INFO - ============================================================
+2025-10-31 11:31:27 - INFO - 
+============================================================
+2025-10-31 11:31:27 - INFO - MODEL SUMMARY: Pyramidal BiLSTM (2 layers)
+2025-10-31 11:31:27 - INFO - ============================================================
+2025-10-31 11:31:27 - INFO - PyramidalBiLSTM(
+  (first_bilstm): LSTM(80, 128, batch_first=True, bidirectional=True)
+  (first_dropout): Dropout(p=0.3, inplace=False)
+  (first_layernorm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+  (pyramid_layers): ModuleList(
+    (0-1): 2 x PyramidalDownsample()
+  )
+  (pyramid_bilstms): ModuleList(
+    (0-1): 2 x LSTM(512, 128, batch_first=True, bidirectional=True)
+  )
+  (pyramid_dropouts): ModuleList(
+    (0): Dropout(p=0.35, inplace=False)
+    (1): Dropout(p=0.4, inplace=False)
+  )
+  (pyramid_layernorms): ModuleList(
+    (0-1): 2 x LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+  )
+  (attention_pooling): AttentionPooling(
+    (attention_dense): Linear(in_features=256, out_features=128, bias=True)
+    (attention_score): Linear(in_features=128, out_features=1, bias=True)
+  )
+  (attention_dropout): Dropout(p=0.4, inplace=False)
+  (dense1): Linear(in_features=256, out_features=64, bias=True)
+  (dense1_layernorm): LayerNorm((64,), eps=1e-05, elementwise_affine=True)
+  (dense1_dropout): Dropout(p=0.5, inplace=False)
+  (output): Linear(in_features=64, out_features=1, bias=True)
+)
+2025-10-31 11:31:27 - INFO - 
+Model Parameters:
+2025-10-31 11:31:27 - INFO -   Total parameters: 1,581,058
+2025-10-31 11:31:27 - INFO -   Trainable parameters: 1,581,058
+2025-10-31 11:31:27 - INFO -   Non-trainable parameters: 0
+2025-10-31 11:31:27 - INFO - ============================================================
+2025-10-31 11:31:27 - INFO - 
+================================================================================
+2025-10-31 11:31:27 - INFO - ENHANCED TRAINING PIPELINE - PYTORCH
+2025-10-31 11:31:27 - INFO - ================================================================================
+2025-10-31 11:31:27 - INFO - Optimizer: AdamW (weight_decay=1e-05, lr=0.0001)
+2025-10-31 11:31:27 - INFO - Learning Rate: OneCycle (Base: 0.0001, Peak: 0.0005, Min: 1.0000000000000002e-06)
+2025-10-31 11:31:27 - INFO - Schedule: Warmup (5 epochs) → Peak (15 epochs) → Cosine Annealing
+2025-10-31 11:31:27 - INFO - Max Epochs: 100 (with early stopping, patience=7)
+2025-10-31 11:31:27 - INFO - Batch Size: 8
+2025-10-31 11:31:27 - INFO - Device: cuda:2
+2025-10-31 11:31:27 - INFO - 
+💾 CHECKPOINT STRATEGY:
+2025-10-31 11:31:27 - INFO -   • Best model: Saved when validation loss improves
+2025-10-31 11:31:27 - INFO -   • Last epoch: Saved at training completion
+2025-10-31 11:31:27 - INFO -   • Evaluation: Uses best model weights
+2025-10-31 11:31:27 - INFO - ================================================================================
+2025-10-31 11:31:37 - INFO - 
+ERROR in Fold 1: Target size (torch.Size([1])) must be the same as input size (torch.Size([]))
+2025-10-31 11:31:37 - INFO - Continuing with remaining folds...
+2025-10-31 11:31:37 - INFO - 
+================================================================================
+2025-10-31 11:31:37 - INFO - TRAINING FOLD 2/5
+2025-10-31 11:31:37 - INFO - ================================================================================
+2025-10-31 11:31:37 - INFO - Fold 2 Data Split:
+2025-10-31 11:31:37 - INFO -   Training: 9961 samples (Real=4964, Fake=4997)
+2025-10-31 11:31:37 - INFO -   Validation: 2491 samples (Real=1241, Fake=1250)
+2025-10-31 11:31:37 - INFO -   Fold max sequence length: 139
+2025-10-31 11:31:40 - INFO - 
+============================================================
+2025-10-31 11:31:40 - INFO - TRAINING MODEL WITH 2 PYRAMID LAYER(S)
+2025-10-31 11:31:40 - INFO - ============================================================
+2025-10-31 11:31:40 - INFO - 
+============================================================
+2025-10-31 11:31:40 - INFO - MODEL SUMMARY: Pyramidal BiLSTM (2 layers)
+2025-10-31 11:31:40 - INFO - ============================================================
+2025-10-31 11:31:40 - INFO - PyramidalBiLSTM(
+  (first_bilstm): LSTM(80, 128, batch_first=True, bidirectional=True)
+  (first_dropout): Dropout(p=0.3, inplace=False)
+  (first_layernorm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+  (pyramid_layers): ModuleList(
+    (0-1): 2 x PyramidalDownsample()
+  )
+  (pyramid_bilstms): ModuleList(
+    (0-1): 2 x LSTM(512, 128, batch_first=True, bidirectional=True)
+  )
+  (pyramid_dropouts): ModuleList(
+    (0): Dropout(p=0.35, inplace=False)
+    (1): Dropout(p=0.4, inplace=False)
+  )
+  (pyramid_layernorms): ModuleList(
+    (0-1): 2 x LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+  )
+  (attention_pooling): AttentionPooling(
+    (attention_dense): Linear(in_features=256, out_features=128, bias=True)
+    (attention_score): Linear(in_features=128, out_features=1, bias=True)
+  )
+  (attention_dropout): Dropout(p=0.4, inplace=False)
+  (dense1): Linear(in_features=256, out_features=64, bias=True)
+  (dense1_layernorm): LayerNorm((64,), eps=1e-05, elementwise_affine=True)
+  (dense1_dropout): Dropout(p=0.5, inplace=False)
+  (output): Linear(in_features=64, out_features=1, bias=True)
+)
+2025-10-31 11:31:40 - INFO - 
+Model Parameters:
+2025-10-31 11:31:40 - INFO -   Total parameters: 1,581,058
+2025-10-31 11:31:40 - INFO -   Trainable parameters: 1,581,058
+2025-10-31 11:31:40 - INFO -   Non-trainable parameters: 0
+2025-10-31 11:31:40 - INFO - ============================================================
+2025-10-31 11:31:40 - INFO - 
+================================================================================
+2025-10-31 11:31:40 - INFO - ENHANCED TRAINING PIPELINE - PYTORCH
+2025-10-31 11:31:40 - INFO - ================================================================================
+2025-10-31 11:31:40 - INFO - Optimizer: AdamW (weight_decay=1e-05, lr=0.0001)
+2025-10-31 11:31:40 - INFO - Learning Rate: OneCycle (Base: 0.0001, Peak: 0.0005, Min: 1.0000000000000002e-06)
+2025-10-31 11:31:40 - INFO - Schedule: Warmup (5 epochs) → Peak (15 epochs) → Cosine Annealing
+2025-10-31 11:31:40 - INFO - Max Epochs: 100 (with early stopping, patience=7)
+2025-10-31 11:31:40 - INFO - Batch Size: 8
+2025-10-31 11:31:40 - INFO - Device: cuda:2
+2025-10-31 11:31:40 - INFO - 
+💾 CHECKPOINT STRATEGY:
+2025-10-31 11:31:40 - INFO -   • Best model: Saved when validation loss improves
+2025-10-31 11:31:40 - INFO -   • Last epoch: Saved at training completion
+2025-10-31 11:31:40 - INFO -   • Evaluation: Uses best model weights
+2025-10-31 11:31:40 - INFO - ================================================================================
+2025-10-31 11:31:50 - INFO - 
+ERROR in Fold 2: Target size (torch.Size([1])) must be the same as input size (torch.Size([]))
+2025-10-31 11:31:50 - INFO - Continuing with remaining folds...
+2025-10-31 11:31:50 - INFO - 
+================================================================================
+2025-10-31 11:31:50 - INFO - TRAINING FOLD 3/5
+2025-10-31 11:31:50 - INFO - ================================================================================
+2025-10-31 11:31:50 - INFO - Fold 3 Data Split:
+2025-10-31 11:31:50 - INFO -   Training: 9962 samples (Real=4964, Fake=4998)
+2025-10-31 11:31:50 - INFO -   Validation: 2490 samples (Real=1241, Fake=1249)
+2025-10-31 11:31:50 - INFO -   Fold max sequence length: 139
+2025-10-31 11:31:53 - INFO - 
+============================================================
+2025-10-31 11:31:53 - INFO - TRAINING MODEL WITH 2 PYRAMID LAYER(S)
+2025-10-31 11:31:53 - INFO - ============================================================
+2025-10-31 11:31:53 - INFO - 
+============================================================
+2025-10-31 11:31:53 - INFO - MODEL SUMMARY: Pyramidal BiLSTM (2 layers)
+2025-10-31 11:31:53 - INFO - ============================================================
+2025-10-31 11:31:53 - INFO - PyramidalBiLSTM(
+  (first_bilstm): LSTM(80, 128, batch_first=True, bidirectional=True)
+  (first_dropout): Dropout(p=0.3, inplace=False)
+  (first_layernorm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+  (pyramid_layers): ModuleList(
+    (0-1): 2 x PyramidalDownsample()
+  )
+  (pyramid_bilstms): ModuleList(
+    (0-1): 2 x LSTM(512, 128, batch_first=True, bidirectional=True)
+  )
+  (pyramid_dropouts): ModuleList(
+    (0): Dropout(p=0.35, inplace=False)
+    (1): Dropout(p=0.4, inplace=False)
+  )
+  (pyramid_layernorms): ModuleList(
+    (0-1): 2 x LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+  )
+  (attention_pooling): AttentionPooling(
+    (attention_dense): Linear(in_features=256, out_features=128, bias=True)
+    (attention_score): Linear(in_features=128, out_features=1, bias=True)
+  )
+  (attention_dropout): Dropout(p=0.4, inplace=False)
+  (dense1): Linear(in_features=256, out_features=64, bias=True)
+  (dense1_layernorm): LayerNorm((64,), eps=1e-05, elementwise_affine=True)
+  (dense1_dropout): Dropout(p=0.5, inplace=False)
+  (output): Linear(in_features=64, out_features=1, bias=True)
+)
+2025-10-31 11:31:53 - INFO - 
+Model Parameters:
+2025-10-31 11:31:53 - INFO -   Total parameters: 1,581,058
+2025-10-31 11:31:53 - INFO -   Trainable parameters: 1,581,058
+2025-10-31 11:31:53 - INFO -   Non-trainable parameters: 0
+2025-10-31 11:31:53 - INFO - ============================================================
+2025-10-31 11:31:53 - INFO - 
+================================================================================
+2025-10-31 11:31:53 - INFO - ENHANCED TRAINING PIPELINE - PYTORCH
+2025-10-31 11:31:53 - INFO - ================================================================================
+2025-10-31 11:31:53 - INFO - Optimizer: AdamW (weight_decay=1e-05, lr=0.0001)
+2025-10-31 11:31:53 - INFO - Learning Rate: OneCycle (Base: 0.0001, Peak: 0.0005, Min: 1.0000000000000002e-06)
+2025-10-31 11:31:53 - INFO - Schedule: Warmup (5 epochs) → Peak (15 epochs) → Cosine Annealing
+2025-10-31 11:31:53 - INFO - Max Epochs: 100 (with early stopping, patience=7)
+2025-10-31 11:31:53 - INFO - Batch Size: 8
+2025-10-31 11:31:53 - INFO - Device: cuda:2
+2025-10-31 11:31:53 - INFO - 
+💾 CHECKPOINT STRATEGY:
+2025-10-31 11:31:53 - INFO -   • Best model: Saved when validation loss improves
+2025-10-31 11:31:53 - INFO -   • Last epoch: Saved at training completion
+2025-10-31 11:31:53 - INFO -   • Evaluation: Uses best model weights
+2025-10-31 11:31:53 - INFO - ================================================================================
+2025-10-31 11:32:04 - INFO - Epoch 1/100 - Train Loss: 0.6466, Train Acc: 0.6340 - Val Loss: 0.5788, Val Acc: 0.6980 - LR: 1.80e-04
+2025-10-31 11:32:04 - INFO - 💾 Best model saved: best_model_2layers_1761906713.pt
+2025-10-31 11:32:15 - INFO - Epoch 2/100 - Train Loss: 0.5504, Train Acc: 0.7213 - Val Loss: 0.5335, Val Acc: 0.7422 - LR: 2.60e-04
+2025-10-31 11:32:15 - INFO - 💾 Best model saved: best_model_2layers_1761906713.pt
+2025-10-31 11:32:26 - INFO - Epoch 3/100 - Train Loss: 0.5119, Train Acc: 0.7494 - Val Loss: 0.4732, Val Acc: 0.7819 - LR: 3.40e-04
+2025-10-31 11:32:26 - INFO - 💾 Best model saved: best_model_2layers_1761906713.pt
+2025-10-31 11:32:37 - INFO - Epoch 4/100 - Train Loss: 0.4799, Train Acc: 0.7811 - Val Loss: 0.4896, Val Acc: 0.7691 - LR: 4.20e-04
+2025-10-31 11:32:48 - INFO - Epoch 5/100 - Train Loss: 0.4473, Train Acc: 0.8021 - Val Loss: 0.4715, Val Acc: 0.7940 - LR: 5.00e-04
+2025-10-31 11:32:48 - INFO - 💾 Best model saved: best_model_2layers_1761906713.pt
+2025-10-31 11:32:59 - INFO - Epoch 6/100 - Train Loss: 0.4334, Train Acc: 0.8086 - Val Loss: 0.4877, Val Acc: 0.8024 - LR: 5.00e-04
+2025-10-31 11:33:11 - INFO - Epoch 7/100 - Train Loss: 0.4051, Train Acc: 0.8292 - Val Loss: 0.4312, Val Acc: 0.8124 - LR: 5.00e-04
+2025-10-31 11:33:11 - INFO - 💾 Best model saved: best_model_2layers_1761906713.pt
+2025-10-31 11:33:22 - INFO - Epoch 8/100 - Train Loss: 0.3676, Train Acc: 0.8528 - Val Loss: 0.4227, Val Acc: 0.8313 - LR: 5.00e-04
+2025-10-31 11:33:22 - INFO - 💾 Best model saved: best_model_2layers_1761906713.pt
+2025-10-31 11:33:33 - INFO - Epoch 9/100 - Train Loss: 0.3385, Train Acc: 0.8676 - Val Loss: 0.4351, Val Acc: 0.8361 - LR: 5.00e-04
+2025-10-31 11:33:44 - INFO - Epoch 10/100 - Train Loss: 0.3195, Train Acc: 0.8813 - Val Loss: 0.3930, Val Acc: 0.8482 - LR: 5.00e-04
+2025-10-31 11:33:44 - INFO - 💾 Best model saved: best_model_2layers_1761906713.pt
+2025-10-31 11:33:55 - INFO - Epoch 11/100 - Train Loss: 0.2967, Train Acc: 0.8916 - Val Loss: 0.4620, Val Acc: 0.8406 - LR: 5.00e-04
+2025-10-31 11:34:06 - INFO - Epoch 12/100 - Train Loss: 0.2683, Train Acc: 0.9086 - Val Loss: 0.5113, Val Acc: 0.8414 - LR: 5.00e-04
+2025-10-31 11:34:17 - INFO - Epoch 13/100 - Train Loss: 0.2565, Train Acc: 0.9120 - Val Loss: 0.5180, Val Acc: 0.8281 - LR: 5.00e-04
+2025-10-31 11:34:27 - INFO - Epoch 14/100 - Train Loss: 0.2317, Train Acc: 0.9221 - Val Loss: 0.4972, Val Acc: 0.8470 - LR: 1.00e-04
+2025-10-31 11:34:38 - INFO - Epoch 15/100 - Train Loss: 0.1367, Train Acc: 0.9555 - Val Loss: 0.5298, Val Acc: 0.8695 - LR: 5.00e-04
+2025-10-31 11:34:49 - INFO - Epoch 16/100 - Train Loss: 0.2013, Train Acc: 0.9352 - Val Loss: 0.5399, Val Acc: 0.8514 - LR: 5.00e-04
+2025-10-31 11:35:00 - INFO - Epoch 17/100 - Train Loss: 0.2042, Train Acc: 0.9333 - Val Loss: 0.5527, Val Acc: 0.8410 - LR: 5.00e-04
+2025-10-31 11:35:00 - INFO - 
+⚠️  Early stopping triggered after 17 epochs
+2025-10-31 11:35:00 - INFO - 💾 Last epoch checkpoint saved: last_epoch_model_2layers_1761906713.pt
+2025-10-31 11:35:00 - INFO - 
+============================================================
+2025-10-31 11:35:00 - INFO - TRAINING COMPLETED
+2025-10-31 11:35:00 - INFO - ============================================================
+2025-10-31 11:35:00 - INFO - Epochs trained: 17
+2025-10-31 11:35:00 - INFO - Best validation loss: 0.3930
+2025-10-31 11:35:00 - INFO - Best validation accuracy: 0.8695
+2025-10-31 11:35:00 - INFO - 
+📁 SAVED CHECKPOINTS:
+2025-10-31 11:35:00 - INFO -   Best model: best_model_2layers_1761906713.pt
+2025-10-31 11:35:00 - INFO -   Last epoch: last_epoch_model_2layers_1761906713.pt
+2025-10-31 11:35:00 - INFO - ============================================================
+2025-10-31 11:35:00 - INFO - Loading best model from checkpoint for evaluation...
+2025-10-31 11:35:00 - INFO - 
+Generating predictions for comprehensive evaluation...
+2025-10-31 11:35:02 - INFO - 
+================================================================================
+2025-10-31 11:35:02 - INFO - COMPREHENSIVE EVALUATION METRICS - TEST SET
+2025-10-31 11:35:02 - INFO - ================================================================================
+2025-10-31 11:35:02 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-10-31 11:35:02 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-10-31 11:35:07 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-10-31 11:35:07 - INFO -   Accuracy: 0.8482
+2025-10-31 11:35:07 - INFO -   Balanced Accuracy: 0.8482
+2025-10-31 11:35:07 - INFO -   AUC-ROC: 0.9246 [0.9144, 0.9336]
+2025-10-31 11:35:07 - INFO -   AUC-PR: 0.9203 [0.9059, 0.9322]
+2025-10-31 11:35:07 - INFO -   F1-Score: 0.8489 [0.8350, 0.8637]
+2025-10-31 11:35:07 - INFO -   EER: 0.1530 @ threshold=0.5188
+2025-10-31 11:35:07 - INFO - 
+PER-CLASS METRICS:
+2025-10-31 11:35:07 - INFO -   Precision (Fake Detection): 0.8476
+2025-10-31 11:35:07 - INFO -   Recall/Sensitivity (Fake Detection): 0.8503
+2025-10-31 11:35:07 - INFO -   Specificity (Real Detection): 0.8461
+2025-10-31 11:35:07 - INFO - 
+CONFUSION MATRIX:
+2025-10-31 11:35:07 - INFO -   True Negatives (Real→Real): 1050
+2025-10-31 11:35:07 - INFO -   False Positives (Real→Fake): 191
+2025-10-31 11:35:07 - INFO -   False Negatives (Fake→Real): 187
+2025-10-31 11:35:07 - INFO -   True Positives (Fake→Fake): 1062
+2025-10-31 11:35:07 - INFO - 
+CALIBRATION ANALYSIS:
+2025-10-31 11:35:07 - INFO -   Brier Score: 0.1175 (lower is better)
+2025-10-31 11:35:07 - INFO -   Expected Calibration Error (ECE): 0.0657
+2025-10-31 11:35:07 - INFO -   Maximum Calibration Error (MCE): 0.1779
+2025-10-31 11:35:07 - INFO - 
+================================================================================
+2025-10-31 11:35:07 - INFO - COMPREHENSIVE EVALUATION METRICS - VALIDATION SET
+2025-10-31 11:35:07 - INFO - ================================================================================
+2025-10-31 11:35:07 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-10-31 11:35:07 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-10-31 11:35:11 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-10-31 11:35:11 - INFO -   Accuracy: 0.8482
+2025-10-31 11:35:11 - INFO -   Balanced Accuracy: 0.8482
+2025-10-31 11:35:11 - INFO -   AUC-ROC: 0.9246 [0.9144, 0.9336]
+2025-10-31 11:35:11 - INFO -   AUC-PR: 0.9203 [0.9059, 0.9322]
+2025-10-31 11:35:11 - INFO -   F1-Score: 0.8489 [0.8350, 0.8637]
+2025-10-31 11:35:11 - INFO -   EER: 0.1530 @ threshold=0.5188
+2025-10-31 11:35:11 - INFO - 
+PER-CLASS METRICS:
+2025-10-31 11:35:11 - INFO -   Precision (Fake Detection): 0.8476
+2025-10-31 11:35:11 - INFO -   Recall/Sensitivity (Fake Detection): 0.8503
+2025-10-31 11:35:11 - INFO -   Specificity (Real Detection): 0.8461
+2025-10-31 11:35:11 - INFO - 
+CONFUSION MATRIX:
+2025-10-31 11:35:11 - INFO -   True Negatives (Real→Real): 1050
+2025-10-31 11:35:11 - INFO -   False Positives (Real→Fake): 191
+2025-10-31 11:35:11 - INFO -   False Negatives (Fake→Real): 187
+2025-10-31 11:35:11 - INFO -   True Positives (Fake→Fake): 1062
+2025-10-31 11:35:11 - INFO - 
+CALIBRATION ANALYSIS:
+2025-10-31 11:35:11 - INFO -   Brier Score: 0.1175 (lower is better)
+2025-10-31 11:35:11 - INFO -   Expected Calibration Error (ECE): 0.0657
+2025-10-31 11:35:11 - INFO -   Maximum Calibration Error (MCE): 0.1779
+2025-10-31 11:35:11 - INFO - 
+======================================================================
+2025-10-31 11:35:11 - INFO - COMPREHENSIVE RESULTS FOR 2 PYRAMID LAYER(S)
+2025-10-31 11:35:11 - INFO - ======================================================================
+2025-10-31 11:35:11 - INFO - TRAINING SUMMARY:
+2025-10-31 11:35:11 - INFO -   Total Parameters: 1,581,058
+2025-10-31 11:35:11 - INFO -   Epochs Trained: 17
+2025-10-31 11:35:11 - INFO -   Best Epoch: 10 (1-indexed)
+2025-10-31 11:35:11 - INFO -   Best Validation Loss: 0.3930
+2025-10-31 11:35:11 - INFO -   Model Checkpoint: best_model_2layers_1761906713.pt
+2025-10-31 11:35:11 - INFO - 
+📁 CHECKPOINTS SAVED:
+2025-10-31 11:35:11 - INFO -   Best model: best_model_2layers_1761906713.pt
+2025-10-31 11:35:11 - INFO -   Last epoch: last_epoch_model_2layers_1761906713.pt
+2025-10-31 11:35:11 - INFO - 
+FINAL PERFORMANCE SUMMARY (using best model):
+2025-10-31 11:35:11 - INFO -   Test AUC-ROC: 0.9246 [0.9144, 0.9336]
+2025-10-31 11:35:11 - INFO -   Test AUC-PR: 0.9203 [0.9059, 0.9322]
+2025-10-31 11:35:11 - INFO -   Test F1-Score: 0.8489 [0.8350, 0.8637]
+2025-10-31 11:35:11 - INFO -   Test Balanced Accuracy: 0.8482
+2025-10-31 11:35:11 - INFO -   Test EER: 0.1530 @ threshold=0.5188
+2025-10-31 11:35:11 - INFO - 
+STANDARD CLASSIFICATION REPORT (Test Set):
+2025-10-31 11:35:11 - INFO -               precision    recall  f1-score   support
+
+        Real       0.85      0.85      0.85      1241
+        Fake       0.85      0.85      0.85      1249
+
+    accuracy                           0.85      2490
+   macro avg       0.85      0.85      0.85      2490
+weighted avg       0.85      0.85      0.85      2490
+
+2025-10-31 11:35:11 - INFO - 
+Fold 3 Completed Successfully
+2025-10-31 11:35:11 - INFO -   Validation AUC-ROC: 0.9246
+2025-10-31 11:35:11 - INFO -   Validation F1-Score: 0.8489
+2025-10-31 11:35:11 - INFO - 
+================================================================================
+2025-10-31 11:35:11 - INFO - TRAINING FOLD 4/5
+2025-10-31 11:35:11 - INFO - ================================================================================
+2025-10-31 11:35:11 - INFO - Fold 4 Data Split:
+2025-10-31 11:35:11 - INFO -   Training: 9962 samples (Real=4964, Fake=4998)
+2025-10-31 11:35:11 - INFO -   Validation: 2490 samples (Real=1241, Fake=1249)
+2025-10-31 11:35:11 - INFO -   Fold max sequence length: 139
+2025-10-31 11:35:15 - INFO - 
+============================================================
+2025-10-31 11:35:15 - INFO - TRAINING MODEL WITH 2 PYRAMID LAYER(S)
+2025-10-31 11:35:15 - INFO - ============================================================
+2025-10-31 11:35:15 - INFO - 
+============================================================
+2025-10-31 11:35:15 - INFO - MODEL SUMMARY: Pyramidal BiLSTM (2 layers)
+2025-10-31 11:35:15 - INFO - ============================================================
+2025-10-31 11:35:15 - INFO - PyramidalBiLSTM(
+  (first_bilstm): LSTM(80, 128, batch_first=True, bidirectional=True)
+  (first_dropout): Dropout(p=0.3, inplace=False)
+  (first_layernorm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+  (pyramid_layers): ModuleList(
+    (0-1): 2 x PyramidalDownsample()
+  )
+  (pyramid_bilstms): ModuleList(
+    (0-1): 2 x LSTM(512, 128, batch_first=True, bidirectional=True)
+  )
+  (pyramid_dropouts): ModuleList(
+    (0): Dropout(p=0.35, inplace=False)
+    (1): Dropout(p=0.4, inplace=False)
+  )
+  (pyramid_layernorms): ModuleList(
+    (0-1): 2 x LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+  )
+  (attention_pooling): AttentionPooling(
+    (attention_dense): Linear(in_features=256, out_features=128, bias=True)
+    (attention_score): Linear(in_features=128, out_features=1, bias=True)
+  )
+  (attention_dropout): Dropout(p=0.4, inplace=False)
+  (dense1): Linear(in_features=256, out_features=64, bias=True)
+  (dense1_layernorm): LayerNorm((64,), eps=1e-05, elementwise_affine=True)
+  (dense1_dropout): Dropout(p=0.5, inplace=False)
+  (output): Linear(in_features=64, out_features=1, bias=True)
+)
+2025-10-31 11:35:15 - INFO - 
+Model Parameters:
+2025-10-31 11:35:15 - INFO -   Total parameters: 1,581,058
+2025-10-31 11:35:15 - INFO -   Trainable parameters: 1,581,058
+2025-10-31 11:35:15 - INFO -   Non-trainable parameters: 0
+2025-10-31 11:35:15 - INFO - ============================================================
+2025-10-31 11:35:15 - INFO - 
+================================================================================
+2025-10-31 11:35:15 - INFO - ENHANCED TRAINING PIPELINE - PYTORCH
+2025-10-31 11:35:15 - INFO - ================================================================================
+2025-10-31 11:35:15 - INFO - Optimizer: AdamW (weight_decay=1e-05, lr=0.0001)
+2025-10-31 11:35:15 - INFO - Learning Rate: OneCycle (Base: 0.0001, Peak: 0.0005, Min: 1.0000000000000002e-06)
+2025-10-31 11:35:15 - INFO - Schedule: Warmup (5 epochs) → Peak (15 epochs) → Cosine Annealing
+2025-10-31 11:35:15 - INFO - Max Epochs: 100 (with early stopping, patience=7)
+2025-10-31 11:35:15 - INFO - Batch Size: 8
+2025-10-31 11:35:15 - INFO - Device: cuda:2
+2025-10-31 11:35:15 - INFO - 
+💾 CHECKPOINT STRATEGY:
+2025-10-31 11:35:15 - INFO -   • Best model: Saved when validation loss improves
+2025-10-31 11:35:15 - INFO -   • Last epoch: Saved at training completion
+2025-10-31 11:35:15 - INFO -   • Evaluation: Uses best model weights
+2025-10-31 11:35:15 - INFO - ================================================================================
+2025-10-31 11:35:26 - INFO - Epoch 1/100 - Train Loss: 0.6565, Train Acc: 0.6142 - Val Loss: 0.5498, Val Acc: 0.7145 - LR: 1.80e-04
+2025-10-31 11:35:26 - INFO - 💾 Best model saved: best_model_2layers_1761906915.pt
+2025-10-31 11:35:38 - INFO - Epoch 2/100 - Train Loss: 0.5588, Train Acc: 0.7102 - Val Loss: 0.4956, Val Acc: 0.7610 - LR: 2.60e-04
+2025-10-31 11:35:38 - INFO - 💾 Best model saved: best_model_2layers_1761906915.pt
+2025-10-31 11:35:50 - INFO - Epoch 3/100 - Train Loss: 0.5070, Train Acc: 0.7544 - Val Loss: 0.4902, Val Acc: 0.7659 - LR: 3.40e-04
+2025-10-31 11:35:50 - INFO - 💾 Best model saved: best_model_2layers_1761906915.pt
+2025-10-31 11:36:02 - INFO - Epoch 4/100 - Train Loss: 0.4787, Train Acc: 0.7746 - Val Loss: 0.4904, Val Acc: 0.7867 - LR: 4.20e-04
+2025-10-31 11:36:13 - INFO - Epoch 5/100 - Train Loss: 0.4504, Train Acc: 0.7981 - Val Loss: 0.5885, Val Acc: 0.7598 - LR: 5.00e-04
+2025-10-31 11:36:24 - INFO - Epoch 6/100 - Train Loss: 0.4343, Train Acc: 0.8111 - Val Loss: 0.4411, Val Acc: 0.8112 - LR: 5.00e-04
+2025-10-31 11:36:24 - INFO - 💾 Best model saved: best_model_2layers_1761906915.pt
+2025-10-31 11:36:35 - INFO - Epoch 7/100 - Train Loss: 0.3998, Train Acc: 0.8361 - Val Loss: 0.4385, Val Acc: 0.7960 - LR: 5.00e-04
+2025-10-31 11:36:35 - INFO - 💾 Best model saved: best_model_2layers_1761906915.pt
+2025-10-31 11:36:46 - INFO - Epoch 8/100 - Train Loss: 0.3652, Train Acc: 0.8541 - Val Loss: 0.4430, Val Acc: 0.8281 - LR: 5.00e-04
+2025-10-31 11:36:57 - INFO - Epoch 9/100 - Train Loss: 0.3339, Train Acc: 0.8709 - Val Loss: 0.4591, Val Acc: 0.8321 - LR: 5.00e-04
+2025-10-31 11:37:08 - INFO - Epoch 10/100 - Train Loss: 0.3200, Train Acc: 0.8821 - Val Loss: 0.4434, Val Acc: 0.8474 - LR: 5.00e-04
+2025-10-31 11:37:19 - INFO - Epoch 11/100 - Train Loss: 0.3092, Train Acc: 0.8887 - Val Loss: 0.4755, Val Acc: 0.8120 - LR: 1.00e-04
+2025-10-31 11:37:30 - INFO - Epoch 12/100 - Train Loss: 0.2099, Train Acc: 0.9308 - Val Loss: 0.4794, Val Acc: 0.8546 - LR: 5.00e-04
+2025-10-31 11:37:41 - INFO - Epoch 13/100 - Train Loss: 0.2738, Train Acc: 0.9037 - Val Loss: 0.4819, Val Acc: 0.8418 - LR: 5.00e-04
+2025-10-31 11:37:52 - INFO - Epoch 14/100 - Train Loss: 0.2559, Train Acc: 0.9088 - Val Loss: 0.5303, Val Acc: 0.8301 - LR: 5.00e-04
+2025-10-31 11:37:52 - INFO - 
+⚠️  Early stopping triggered after 14 epochs
+2025-10-31 11:37:52 - INFO - 💾 Last epoch checkpoint saved: last_epoch_model_2layers_1761906915.pt
+2025-10-31 11:37:52 - INFO - 
+============================================================
+2025-10-31 11:37:52 - INFO - TRAINING COMPLETED
+2025-10-31 11:37:52 - INFO - ============================================================
+2025-10-31 11:37:52 - INFO - Epochs trained: 14
+2025-10-31 11:37:52 - INFO - Best validation loss: 0.4385
+2025-10-31 11:37:52 - INFO - Best validation accuracy: 0.8546
+2025-10-31 11:37:52 - INFO - 
+📁 SAVED CHECKPOINTS:
+2025-10-31 11:37:52 - INFO -   Best model: best_model_2layers_1761906915.pt
+2025-10-31 11:37:52 - INFO -   Last epoch: last_epoch_model_2layers_1761906915.pt
+2025-10-31 11:37:52 - INFO - ============================================================
+2025-10-31 11:37:52 - INFO - Loading best model from checkpoint for evaluation...
+2025-10-31 11:37:52 - INFO - 
+Generating predictions for comprehensive evaluation...
+2025-10-31 11:37:54 - INFO - 
+================================================================================
+2025-10-31 11:37:54 - INFO - COMPREHENSIVE EVALUATION METRICS - TEST SET
+2025-10-31 11:37:54 - INFO - ================================================================================
+2025-10-31 11:37:54 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-10-31 11:37:54 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-10-31 11:37:59 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-10-31 11:37:59 - INFO -   Accuracy: 0.7960
+2025-10-31 11:37:59 - INFO -   Balanced Accuracy: 0.7960
+2025-10-31 11:37:59 - INFO -   AUC-ROC: 0.8896 [0.8778, 0.9013]
+2025-10-31 11:37:59 - INFO -   AUC-PR: 0.8850 [0.8694, 0.9004]
+2025-10-31 11:37:59 - INFO -   F1-Score: 0.7955 [0.7776, 0.8125]
+2025-10-31 11:37:59 - INFO -   EER: 0.2016 @ threshold=0.4901
+2025-10-31 11:37:59 - INFO - 
+PER-CLASS METRICS:
+2025-10-31 11:37:59 - INFO -   Precision (Fake Detection): 0.8000
+2025-10-31 11:37:59 - INFO -   Recall/Sensitivity (Fake Detection): 0.7910
+2025-10-31 11:37:59 - INFO -   Specificity (Real Detection): 0.8010
+2025-10-31 11:37:59 - INFO - 
+CONFUSION MATRIX:
+2025-10-31 11:37:59 - INFO -   True Negatives (Real→Real): 994
+2025-10-31 11:37:59 - INFO -   False Positives (Real→Fake): 247
+2025-10-31 11:37:59 - INFO -   False Negatives (Fake→Real): 261
+2025-10-31 11:37:59 - INFO -   True Positives (Fake→Fake): 988
+2025-10-31 11:37:59 - INFO - 
+CALIBRATION ANALYSIS:
+2025-10-31 11:37:59 - INFO -   Brier Score: 0.1412 (lower is better)
+2025-10-31 11:37:59 - INFO -   Expected Calibration Error (ECE): 0.0616
+2025-10-31 11:37:59 - INFO -   Maximum Calibration Error (MCE): 0.1592
+2025-10-31 11:37:59 - INFO - 
+================================================================================
+2025-10-31 11:37:59 - INFO - COMPREHENSIVE EVALUATION METRICS - VALIDATION SET
+2025-10-31 11:37:59 - INFO - ================================================================================
+2025-10-31 11:37:59 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-10-31 11:37:59 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-10-31 11:38:04 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-10-31 11:38:04 - INFO -   Accuracy: 0.7960
+2025-10-31 11:38:04 - INFO -   Balanced Accuracy: 0.7960
+2025-10-31 11:38:04 - INFO -   AUC-ROC: 0.8896 [0.8778, 0.9013]
+2025-10-31 11:38:04 - INFO -   AUC-PR: 0.8850 [0.8694, 0.9004]
+2025-10-31 11:38:04 - INFO -   F1-Score: 0.7955 [0.7776, 0.8125]
+2025-10-31 11:38:04 - INFO -   EER: 0.2016 @ threshold=0.4901
+2025-10-31 11:38:04 - INFO - 
+PER-CLASS METRICS:
+2025-10-31 11:38:04 - INFO -   Precision (Fake Detection): 0.8000
+2025-10-31 11:38:04 - INFO -   Recall/Sensitivity (Fake Detection): 0.7910
+2025-10-31 11:38:04 - INFO -   Specificity (Real Detection): 0.8010
+2025-10-31 11:38:04 - INFO - 
+CONFUSION MATRIX:
+2025-10-31 11:38:04 - INFO -   True Negatives (Real→Real): 994
+2025-10-31 11:38:04 - INFO -   False Positives (Real→Fake): 247
+2025-10-31 11:38:04 - INFO -   False Negatives (Fake→Real): 261
+2025-10-31 11:38:04 - INFO -   True Positives (Fake→Fake): 988
+2025-10-31 11:38:04 - INFO - 
+CALIBRATION ANALYSIS:
+2025-10-31 11:38:04 - INFO -   Brier Score: 0.1412 (lower is better)
+2025-10-31 11:38:04 - INFO -   Expected Calibration Error (ECE): 0.0616
+2025-10-31 11:38:04 - INFO -   Maximum Calibration Error (MCE): 0.1592
+2025-10-31 11:38:04 - INFO - 
+======================================================================
+2025-10-31 11:38:04 - INFO - COMPREHENSIVE RESULTS FOR 2 PYRAMID LAYER(S)
+2025-10-31 11:38:04 - INFO - ======================================================================
+2025-10-31 11:38:04 - INFO - TRAINING SUMMARY:
+2025-10-31 11:38:04 - INFO -   Total Parameters: 1,581,058
+2025-10-31 11:38:04 - INFO -   Epochs Trained: 14
+2025-10-31 11:38:04 - INFO -   Best Epoch: 7 (1-indexed)
+2025-10-31 11:38:04 - INFO -   Best Validation Loss: 0.4385
+2025-10-31 11:38:04 - INFO -   Model Checkpoint: best_model_2layers_1761906915.pt
+2025-10-31 11:38:04 - INFO - 
+📁 CHECKPOINTS SAVED:
+2025-10-31 11:38:04 - INFO -   Best model: best_model_2layers_1761906915.pt
+2025-10-31 11:38:04 - INFO -   Last epoch: last_epoch_model_2layers_1761906915.pt
+2025-10-31 11:38:04 - INFO - 
+FINAL PERFORMANCE SUMMARY (using best model):
+2025-10-31 11:38:04 - INFO -   Test AUC-ROC: 0.8896 [0.8778, 0.9013]
+2025-10-31 11:38:04 - INFO -   Test AUC-PR: 0.8850 [0.8694, 0.9004]
+2025-10-31 11:38:04 - INFO -   Test F1-Score: 0.7955 [0.7776, 0.8125]
+2025-10-31 11:38:04 - INFO -   Test Balanced Accuracy: 0.7960
+2025-10-31 11:38:04 - INFO -   Test EER: 0.2016 @ threshold=0.4901
+2025-10-31 11:38:04 - INFO - 
+STANDARD CLASSIFICATION REPORT (Test Set):
+2025-10-31 11:38:04 - INFO -               precision    recall  f1-score   support
+
+        Real       0.79      0.80      0.80      1241
+        Fake       0.80      0.79      0.80      1249
+
+    accuracy                           0.80      2490
+   macro avg       0.80      0.80      0.80      2490
+weighted avg       0.80      0.80      0.80      2490
+
+2025-10-31 11:38:04 - INFO - 
+Fold 4 Completed Successfully
+2025-10-31 11:38:04 - INFO -   Validation AUC-ROC: 0.8896
+2025-10-31 11:38:04 - INFO -   Validation F1-Score: 0.7955
+2025-10-31 11:38:04 - INFO - 
+================================================================================
+2025-10-31 11:38:04 - INFO - TRAINING FOLD 5/5
+2025-10-31 11:38:04 - INFO - ================================================================================
+2025-10-31 11:38:04 - INFO - Fold 5 Data Split:
+2025-10-31 11:38:04 - INFO -   Training: 9962 samples (Real=4964, Fake=4998)
+2025-10-31 11:38:04 - INFO -   Validation: 2490 samples (Real=1241, Fake=1249)
+2025-10-31 11:38:04 - INFO -   Fold max sequence length: 139
+2025-10-31 11:38:07 - INFO - 
+============================================================
+2025-10-31 11:38:07 - INFO - TRAINING MODEL WITH 2 PYRAMID LAYER(S)
+2025-10-31 11:38:07 - INFO - ============================================================
+2025-10-31 11:38:07 - INFO - 
+============================================================
+2025-10-31 11:38:07 - INFO - MODEL SUMMARY: Pyramidal BiLSTM (2 layers)
+2025-10-31 11:38:07 - INFO - ============================================================
+2025-10-31 11:38:07 - INFO - PyramidalBiLSTM(
+  (first_bilstm): LSTM(80, 128, batch_first=True, bidirectional=True)
+  (first_dropout): Dropout(p=0.3, inplace=False)
+  (first_layernorm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+  (pyramid_layers): ModuleList(
+    (0-1): 2 x PyramidalDownsample()
+  )
+  (pyramid_bilstms): ModuleList(
+    (0-1): 2 x LSTM(512, 128, batch_first=True, bidirectional=True)
+  )
+  (pyramid_dropouts): ModuleList(
+    (0): Dropout(p=0.35, inplace=False)
+    (1): Dropout(p=0.4, inplace=False)
+  )
+  (pyramid_layernorms): ModuleList(
+    (0-1): 2 x LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+  )
+  (attention_pooling): AttentionPooling(
+    (attention_dense): Linear(in_features=256, out_features=128, bias=True)
+    (attention_score): Linear(in_features=128, out_features=1, bias=True)
+  )
+  (attention_dropout): Dropout(p=0.4, inplace=False)
+  (dense1): Linear(in_features=256, out_features=64, bias=True)
+  (dense1_layernorm): LayerNorm((64,), eps=1e-05, elementwise_affine=True)
+  (dense1_dropout): Dropout(p=0.5, inplace=False)
+  (output): Linear(in_features=64, out_features=1, bias=True)
+)
+2025-10-31 11:38:07 - INFO - 
+Model Parameters:
+2025-10-31 11:38:07 - INFO -   Total parameters: 1,581,058
+2025-10-31 11:38:07 - INFO -   Trainable parameters: 1,581,058
+2025-10-31 11:38:07 - INFO -   Non-trainable parameters: 0
+2025-10-31 11:38:07 - INFO - ============================================================
+2025-10-31 11:38:07 - INFO - 
+================================================================================
+2025-10-31 11:38:07 - INFO - ENHANCED TRAINING PIPELINE - PYTORCH
+2025-10-31 11:38:07 - INFO - ================================================================================
+2025-10-31 11:38:07 - INFO - Optimizer: AdamW (weight_decay=1e-05, lr=0.0001)
+2025-10-31 11:38:07 - INFO - Learning Rate: OneCycle (Base: 0.0001, Peak: 0.0005, Min: 1.0000000000000002e-06)
+2025-10-31 11:38:07 - INFO - Schedule: Warmup (5 epochs) → Peak (15 epochs) → Cosine Annealing
+2025-10-31 11:38:07 - INFO - Max Epochs: 100 (with early stopping, patience=7)
+2025-10-31 11:38:07 - INFO - Batch Size: 8
+2025-10-31 11:38:07 - INFO - Device: cuda:2
+2025-10-31 11:38:07 - INFO - 
+💾 CHECKPOINT STRATEGY:
+2025-10-31 11:38:07 - INFO -   • Best model: Saved when validation loss improves
+2025-10-31 11:38:07 - INFO -   • Last epoch: Saved at training completion
+2025-10-31 11:38:07 - INFO -   • Evaluation: Uses best model weights
+2025-10-31 11:38:07 - INFO - ================================================================================
+2025-10-31 11:38:18 - INFO - Epoch 1/100 - Train Loss: 0.6460, Train Acc: 0.6206 - Val Loss: 0.5524, Val Acc: 0.7068 - LR: 1.80e-04
+2025-10-31 11:38:18 - INFO - 💾 Best model saved: best_model_2layers_1761907087.pt
+2025-10-31 11:38:29 - INFO - Epoch 2/100 - Train Loss: 0.5533, Train Acc: 0.7189 - Val Loss: 0.5191, Val Acc: 0.7502 - LR: 2.60e-04
+2025-10-31 11:38:29 - INFO - 💾 Best model saved: best_model_2layers_1761907087.pt
+2025-10-31 11:38:40 - INFO - Epoch 3/100 - Train Loss: 0.5089, Train Acc: 0.7575 - Val Loss: 0.5746, Val Acc: 0.7293 - LR: 3.40e-04
+2025-10-31 11:38:50 - INFO - Epoch 4/100 - Train Loss: 0.4688, Train Acc: 0.7858 - Val Loss: 0.4760, Val Acc: 0.7675 - LR: 4.20e-04
+2025-10-31 11:38:50 - INFO - 💾 Best model saved: best_model_2layers_1761907087.pt
+2025-10-31 11:39:01 - INFO - Epoch 5/100 - Train Loss: 0.4443, Train Acc: 0.7983 - Val Loss: 0.5238, Val Acc: 0.7715 - LR: 5.00e-04
+2025-10-31 11:39:12 - INFO - Epoch 6/100 - Train Loss: 0.4338, Train Acc: 0.8130 - Val Loss: 0.4688, Val Acc: 0.7980 - LR: 5.00e-04
+2025-10-31 11:39:12 - INFO - 💾 Best model saved: best_model_2layers_1761907087.pt
+2025-10-31 11:39:23 - INFO - Epoch 7/100 - Train Loss: 0.3981, Train Acc: 0.8328 - Val Loss: 0.4437, Val Acc: 0.8157 - LR: 5.00e-04
+2025-10-31 11:39:23 - INFO - 💾 Best model saved: best_model_2layers_1761907087.pt
+2025-10-31 11:39:34 - INFO - Epoch 8/100 - Train Loss: 0.3797, Train Acc: 0.8446 - Val Loss: 0.4462, Val Acc: 0.8241 - LR: 5.00e-04
+2025-10-31 11:39:45 - INFO - Epoch 9/100 - Train Loss: 0.3537, Train Acc: 0.8598 - Val Loss: 0.4545, Val Acc: 0.8317 - LR: 5.00e-04
+2025-10-31 11:39:56 - INFO - Epoch 10/100 - Train Loss: 0.3315, Train Acc: 0.8745 - Val Loss: 0.4523, Val Acc: 0.8337 - LR: 5.00e-04
+2025-10-31 11:40:07 - INFO - Epoch 11/100 - Train Loss: 0.3134, Train Acc: 0.8835 - Val Loss: 0.4299, Val Acc: 0.8394 - LR: 5.00e-04
+2025-10-31 11:40:07 - INFO - 💾 Best model saved: best_model_2layers_1761907087.pt
+2025-10-31 11:40:18 - INFO - Epoch 12/100 - Train Loss: 0.2820, Train Acc: 0.8981 - Val Loss: 0.4837, Val Acc: 0.8349 - LR: 5.00e-04
+2025-10-31 11:40:29 - INFO - Epoch 13/100 - Train Loss: 0.2718, Train Acc: 0.9047 - Val Loss: 0.4957, Val Acc: 0.8458 - LR: 5.00e-04
+2025-10-31 11:40:39 - INFO - Epoch 14/100 - Train Loss: 0.2499, Train Acc: 0.9148 - Val Loss: 0.5336, Val Acc: 0.8325 - LR: 5.00e-04
+2025-10-31 11:40:50 - INFO - Epoch 15/100 - Train Loss: 0.2382, Train Acc: 0.9196 - Val Loss: 0.5398, Val Acc: 0.8402 - LR: 1.00e-04
+2025-10-31 11:41:01 - INFO - Epoch 16/100 - Train Loss: 0.1466, Train Acc: 0.9552 - Val Loss: 0.5934, Val Acc: 0.8518 - LR: 5.00e-04
+2025-10-31 11:41:12 - INFO - Epoch 17/100 - Train Loss: 0.2093, Train Acc: 0.9359 - Val Loss: 0.5787, Val Acc: 0.8406 - LR: 5.00e-04
+2025-10-31 11:41:23 - INFO - Epoch 18/100 - Train Loss: 0.2164, Train Acc: 0.9345 - Val Loss: 0.4975, Val Acc: 0.8382 - LR: 5.00e-04
+2025-10-31 11:41:23 - INFO - 
+⚠️  Early stopping triggered after 18 epochs
+2025-10-31 11:41:23 - INFO - 💾 Last epoch checkpoint saved: last_epoch_model_2layers_1761907087.pt
+2025-10-31 11:41:23 - INFO - 
+============================================================
+2025-10-31 11:41:23 - INFO - TRAINING COMPLETED
+2025-10-31 11:41:23 - INFO - ============================================================
+2025-10-31 11:41:23 - INFO - Epochs trained: 18
+2025-10-31 11:41:23 - INFO - Best validation loss: 0.4299
+2025-10-31 11:41:23 - INFO - Best validation accuracy: 0.8518
+2025-10-31 11:41:23 - INFO - 
+📁 SAVED CHECKPOINTS:
+2025-10-31 11:41:23 - INFO -   Best model: best_model_2layers_1761907087.pt
+2025-10-31 11:41:23 - INFO -   Last epoch: last_epoch_model_2layers_1761907087.pt
+2025-10-31 11:41:23 - INFO - ============================================================
+2025-10-31 11:41:23 - INFO - Loading best model from checkpoint for evaluation...
+2025-10-31 11:41:23 - INFO - 
+Generating predictions for comprehensive evaluation...
+2025-10-31 11:41:24 - INFO - 
+================================================================================
+2025-10-31 11:41:24 - INFO - COMPREHENSIVE EVALUATION METRICS - TEST SET
+2025-10-31 11:41:24 - INFO - ================================================================================
+2025-10-31 11:41:24 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-10-31 11:41:24 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-10-31 11:41:29 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-10-31 11:41:29 - INFO -   Accuracy: 0.8394
+2025-10-31 11:41:29 - INFO -   Balanced Accuracy: 0.8393
+2025-10-31 11:41:29 - INFO -   AUC-ROC: 0.9166 [0.9054, 0.9272]
+2025-10-31 11:41:29 - INFO -   AUC-PR: 0.9096 [0.8943, 0.9236]
+2025-10-31 11:41:29 - INFO -   F1-Score: 0.8431 [0.8275, 0.8585]
+2025-10-31 11:41:29 - INFO -   EER: 0.1598 @ threshold=0.6179
+2025-10-31 11:41:29 - INFO - 
+PER-CLASS METRICS:
+2025-10-31 11:41:29 - INFO -   Precision (Fake Detection): 0.8263
+2025-10-31 11:41:29 - INFO -   Recall/Sensitivity (Fake Detection): 0.8607
+2025-10-31 11:41:29 - INFO -   Specificity (Real Detection): 0.8179
+2025-10-31 11:41:29 - INFO - 
+CONFUSION MATRIX:
+2025-10-31 11:41:29 - INFO -   True Negatives (Real→Real): 1015
+2025-10-31 11:41:29 - INFO -   False Positives (Real→Fake): 226
+2025-10-31 11:41:29 - INFO -   False Negatives (Fake→Real): 174
+2025-10-31 11:41:29 - INFO -   True Positives (Fake→Fake): 1075
+2025-10-31 11:41:29 - INFO - 
+CALIBRATION ANALYSIS:
+2025-10-31 11:41:29 - INFO -   Brier Score: 0.1262 (lower is better)
+2025-10-31 11:41:29 - INFO -   Expected Calibration Error (ECE): 0.0848
+2025-10-31 11:41:29 - INFO -   Maximum Calibration Error (MCE): 0.2366
+2025-10-31 11:41:29 - INFO - 
+================================================================================
+2025-10-31 11:41:29 - INFO - COMPREHENSIVE EVALUATION METRICS - VALIDATION SET
+2025-10-31 11:41:29 - INFO - ================================================================================
+2025-10-31 11:41:29 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-10-31 11:41:29 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-10-31 11:41:34 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-10-31 11:41:34 - INFO -   Accuracy: 0.8394
+2025-10-31 11:41:34 - INFO -   Balanced Accuracy: 0.8393
+2025-10-31 11:41:34 - INFO -   AUC-ROC: 0.9166 [0.9054, 0.9272]
+2025-10-31 11:41:34 - INFO -   AUC-PR: 0.9096 [0.8943, 0.9236]
+2025-10-31 11:41:34 - INFO -   F1-Score: 0.8431 [0.8275, 0.8585]
+2025-10-31 11:41:34 - INFO -   EER: 0.1598 @ threshold=0.6179
+2025-10-31 11:41:34 - INFO - 
+PER-CLASS METRICS:
+2025-10-31 11:41:34 - INFO -   Precision (Fake Detection): 0.8263
+2025-10-31 11:41:34 - INFO -   Recall/Sensitivity (Fake Detection): 0.8607
+2025-10-31 11:41:34 - INFO -   Specificity (Real Detection): 0.8179
+2025-10-31 11:41:34 - INFO - 
+CONFUSION MATRIX:
+2025-10-31 11:41:34 - INFO -   True Negatives (Real→Real): 1015
+2025-10-31 11:41:34 - INFO -   False Positives (Real→Fake): 226
+2025-10-31 11:41:34 - INFO -   False Negatives (Fake→Real): 174
+2025-10-31 11:41:34 - INFO -   True Positives (Fake→Fake): 1075
+2025-10-31 11:41:34 - INFO - 
+CALIBRATION ANALYSIS:
+2025-10-31 11:41:34 - INFO -   Brier Score: 0.1262 (lower is better)
+2025-10-31 11:41:34 - INFO -   Expected Calibration Error (ECE): 0.0848
+2025-10-31 11:41:34 - INFO -   Maximum Calibration Error (MCE): 0.2366
+2025-10-31 11:41:34 - INFO - 
+======================================================================
+2025-10-31 11:41:34 - INFO - COMPREHENSIVE RESULTS FOR 2 PYRAMID LAYER(S)
+2025-10-31 11:41:34 - INFO - ======================================================================
+2025-10-31 11:41:34 - INFO - TRAINING SUMMARY:
+2025-10-31 11:41:34 - INFO -   Total Parameters: 1,581,058
+2025-10-31 11:41:34 - INFO -   Epochs Trained: 18
+2025-10-31 11:41:34 - INFO -   Best Epoch: 11 (1-indexed)
+2025-10-31 11:41:34 - INFO -   Best Validation Loss: 0.4299
+2025-10-31 11:41:34 - INFO -   Model Checkpoint: best_model_2layers_1761907087.pt
+2025-10-31 11:41:34 - INFO - 
+📁 CHECKPOINTS SAVED:
+2025-10-31 11:41:34 - INFO -   Best model: best_model_2layers_1761907087.pt
+2025-10-31 11:41:34 - INFO -   Last epoch: last_epoch_model_2layers_1761907087.pt
+2025-10-31 11:41:34 - INFO - 
+FINAL PERFORMANCE SUMMARY (using best model):
+2025-10-31 11:41:34 - INFO -   Test AUC-ROC: 0.9166 [0.9054, 0.9272]
+2025-10-31 11:41:34 - INFO -   Test AUC-PR: 0.9096 [0.8943, 0.9236]
+2025-10-31 11:41:34 - INFO -   Test F1-Score: 0.8431 [0.8275, 0.8585]
+2025-10-31 11:41:34 - INFO -   Test Balanced Accuracy: 0.8393
+2025-10-31 11:41:34 - INFO -   Test EER: 0.1598 @ threshold=0.6179
+2025-10-31 11:41:34 - INFO - 
+STANDARD CLASSIFICATION REPORT (Test Set):
+2025-10-31 11:41:34 - INFO -               precision    recall  f1-score   support
+
+        Real       0.85      0.82      0.84      1241
+        Fake       0.83      0.86      0.84      1249
+
+    accuracy                           0.84      2490
+   macro avg       0.84      0.84      0.84      2490
+weighted avg       0.84      0.84      0.84      2490
+
+2025-10-31 11:41:34 - INFO - 
+Fold 5 Completed Successfully
+2025-10-31 11:41:34 - INFO -   Validation AUC-ROC: 0.9166
+2025-10-31 11:41:34 - INFO -   Validation F1-Score: 0.8431
+2025-10-31 11:41:34 - INFO - 
+==========================================================================================
+2025-10-31 11:41:34 - INFO - CROSS-VALIDATION COMPLETED - STATISTICAL ANALYSIS
+2025-10-31 11:41:34 - INFO - ==========================================================================================
+2025-10-31 11:41:34 - INFO - Analyzing results from 3 successful folds (out of 5 total)
+2025-10-31 11:41:34 - INFO - 
+================================================================================
+2025-10-31 11:41:34 - INFO - CROSS-VALIDATION STATISTICS (n=3 folds)
+2025-10-31 11:41:34 - INFO - ================================================================================
+2025-10-31 11:41:34 - INFO - MODEL PERFORMANCE ACROSS FOLDS:
+2025-10-31 11:41:34 - INFO -   AUC-ROC:           0.9102 ± 0.0150 [0.8896, 0.9246]
+2025-10-31 11:41:34 - INFO -   AUC-PR:            0.9050 ± 0.0148 [0.8850, 0.9203]
+2025-10-31 11:41:34 - INFO -   F1-Score:          0.8292 ± 0.0239 [0.7955, 0.8489]
+2025-10-31 11:41:34 - INFO -   Balanced Accuracy: 0.8278 ± 0.0228
+2025-10-31 11:41:34 - INFO -   EER:               0.1715 ± 0.0215
+2025-10-31 11:41:34 - INFO - 
+TRAINING STATISTICS:
+2025-10-31 11:41:34 - INFO -   Successful Folds: 3/5 (60.0%)
+2025-10-31 11:41:34 - INFO -   Avg Training Epochs: 16.3
+2025-10-31 11:41:34 - INFO -   Model Parameters: 1,581,058
+2025-10-31 11:41:34 - INFO - 
+STATISTICAL ROBUSTNESS:
+2025-10-31 11:41:34 - INFO -   AUC-ROC Coefficient of Variation: 0.016 (Low variability)
+2025-10-31 11:41:34 - INFO -   Mean AUC-ROC 95% CI: [0.8731, 0.9474]
+2025-10-31 11:41:34 - INFO - 
+================================================================================
+2025-10-31 11:41:34 - INFO - FINAL HOLD-OUT TEST SET EVALUATION
+2025-10-31 11:41:34 - INFO - ================================================================================
+2025-10-31 11:41:34 - INFO - Using model from Fold 3 (best validation AUC: 0.9246)
+2025-10-31 11:41:34 - INFO - Padding test data to length 139 (same as best fold)
+2025-10-31 11:41:35 - INFO - 
+================================================================================
+2025-10-31 11:41:35 - INFO - COMPREHENSIVE EVALUATION METRICS - HOLD-OUT TEST SET
+2025-10-31 11:41:35 - INFO - ================================================================================
+2025-10-31 11:41:35 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-10-31 11:41:35 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-10-31 11:41:39 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-10-31 11:41:39 - INFO -   Accuracy: 0.7721
+2025-10-31 11:41:39 - INFO -   Balanced Accuracy: 0.7721
+2025-10-31 11:41:39 - INFO -   AUC-ROC: 0.8805 [0.8600, 0.9026]
+2025-10-31 11:41:39 - INFO -   AUC-PR: 0.8801 [0.8516, 0.9057]
+2025-10-31 11:41:39 - INFO -   F1-Score: 0.7507 [0.7158, 0.7841]
+2025-10-31 11:41:39 - INFO -   EER: 0.2047 @ threshold=0.1242
+2025-10-31 11:41:39 - INFO - 
+PER-CLASS METRICS:
+2025-10-31 11:41:39 - INFO -   Precision (Fake Detection): 0.8284
+2025-10-31 11:41:39 - INFO -   Recall/Sensitivity (Fake Detection): 0.6863
+2025-10-31 11:41:39 - INFO -   Specificity (Real Detection): 0.8578
+2025-10-31 11:41:39 - INFO - 
+CONFUSION MATRIX:
+2025-10-31 11:41:39 - INFO -   True Negatives (Real→Real): 350
+2025-10-31 11:41:39 - INFO -   False Positives (Real→Fake): 58
+2025-10-31 11:41:39 - INFO -   False Negatives (Fake→Real): 128
+2025-10-31 11:41:39 - INFO -   True Positives (Fake→Fake): 280
+2025-10-31 11:41:39 - INFO - 
+CALIBRATION ANALYSIS:
+2025-10-31 11:41:39 - INFO -   Brier Score: 0.1846 (lower is better)
+2025-10-31 11:41:39 - INFO -   Expected Calibration Error (ECE): 0.1639
+2025-10-31 11:41:39 - INFO -   Maximum Calibration Error (MCE): 0.4460
+2025-10-31 11:41:39 - INFO - 
+================================================================================
+2025-10-31 11:41:39 - INFO - EXPERIMENT RESULTS: 5-Fold Cross-Validation - PyTorch
+2025-10-31 11:41:39 - INFO - ================================================================================
+2025-10-31 11:41:39 - INFO -   cv_type: stratified_kfold
+2025-10-31 11:41:39 - INFO -   k_folds: 5.0000
+2025-10-31 11:41:39 - INFO -   successful_folds: 3.0000
+2025-10-31 11:41:39 - INFO -   fold_results: [{'pyramid_layers': 2, 'total_params': 1581058, 'epochs_trained': 17, 'best_epoch': np.int64(10), 'best_val_loss': 0.3929541616494876, 'best_val_acc': 0.8694779116465864, 'test_metrics': {'accuracy': np.float64(0.8481927710843373), 'balanced_accuracy': np.float64(0.8481860427907193), 'auc_roc': 0.9245572122484451, 'auc_roc_ci': {'mean': np.float64(0.9248249795732382), 'std': np.float64(0.004915959659764459), 'ci_lower': np.float64(0.9143991098788689), 'ci_upper': np.float64(0.9335511669348883), 'confidence': 0.95}, 'auc_pr': 0.9203132568424754, 'auc_pr_ci': {'mean': np.float64(0.920741517579883), 'std': np.float64(0.006608685963541495), 'ci_lower': np.float64(0.9059488767066847), 'ci_upper': np.float64(0.9321683891206254), 'confidence': 0.95}, 'f1_score': 0.8489208633093526, 'f1_ci': {'mean': np.float64(0.8492903842277096), 'std': np.float64(0.00734525799449374), 'ci_lower': np.float64(0.8349573884616521), 'ci_upper': np.float64(0.8636915184734695), 'confidence': 0.95}, 'precision': 0.8475658419792498, 'recall': 0.8502802241793435, 'specificity': np.float64(0.8460918614020951), 'eer': np.float64(0.1530123373477186), 'eer_threshold': np.float32(0.51884717), 'confusion_matrix': array([[1050,  191],
+       [ 187, 1062]]), 'calibration': {'brier_score': 0.11747216221906424, 'ece': np.float64(0.0657484156360109), 'mce': np.float64(0.17791056808303385)}, 'bootstrap_confidence': 0.95}, 'val_metrics': {'accuracy': np.float64(0.8481927710843373), 'balanced_accuracy': np.float64(0.8481860427907193), 'auc_roc': 0.9245572122484451, 'auc_roc_ci': {'mean': np.float64(0.9248249795732382), 'std': np.float64(0.004915959659764459), 'ci_lower': np.float64(0.9143991098788689), 'ci_upper': np.float64(0.9335511669348883), 'confidence': 0.95}, 'auc_pr': 0.9203132568424754, 'auc_pr_ci': {'mean': np.float64(0.920741517579883), 'std': np.float64(0.006608685963541495), 'ci_lower': np.float64(0.9059488767066847), 'ci_upper': np.float64(0.9321683891206254), 'confidence': 0.95}, 'f1_score': 0.8489208633093526, 'f1_ci': {'mean': np.float64(0.8492903842277096), 'std': np.float64(0.00734525799449374), 'ci_lower': np.float64(0.8349573884616521), 'ci_upper': np.float64(0.8636915184734695), 'confidence': 0.95}, 'precision': 0.8475658419792498, 'recall': 0.8502802241793435, 'specificity': np.float64(0.8460918614020951), 'eer': np.float64(0.1530123373477186), 'eer_threshold': np.float32(0.51884717), 'confusion_matrix': array([[1050,  191],
+       [ 187, 1062]]), 'calibration': {'brier_score': 0.11747216221906424, 'ece': np.float64(0.0657484156360109), 'mce': np.float64(0.17791056808303385)}, 'bootstrap_confidence': 0.95}, 'checkpoint_path': 'best_model_2layers_1761906713.pt', 'best_checkpoint_path': 'best_model_2layers_1761906713.pt', 'last_checkpoint_path': 'last_epoch_model_2layers_1761906713.pt', 'history': {'train_loss': [0.6466449875473569, 0.5503716306785962, 0.511895215797319, 0.4799136285967579, 0.44725893230993236, 0.4333847261317593, 0.40514476614735184, 0.36758762243533083, 0.3385388327762858, 0.3195168290865383, 0.2966809830714531, 0.2682501462323165, 0.25651871306042767, 0.2316641759940159, 0.1366833722780918, 0.20133012034684417, 0.20417964104811676], 'val_loss': [0.5787953150918684, 0.5334736341632993, 0.47318300592552226, 0.4896364231964192, 0.4714908537735422, 0.48771548029409356, 0.43119878666587624, 0.4227278134310581, 0.4350693565909283, 0.3929541616494876, 0.4620157138261211, 0.5113418971424002, 0.5180433353311925, 0.49715317953677185, 0.5298224069800856, 0.5399370630716823, 0.5527217115182056], 'train_acc': [0.6340092350933547, 0.7213410961654286, 0.7494479020277053, 0.7810680586227665, 0.802148163019474, 0.8085725757879944, 0.8291507729371612, 0.8528407950210801, 0.8675968680987753, 0.8813491266813893, 0.8915880345312186, 0.9085524994980928, 0.9119654687813692, 0.9221039951816904, 0.955531017867898, 0.9351535836177475, 0.933346717526601], 'val_acc': [0.697991967871486, 0.7421686746987952, 0.7819277108433735, 0.7690763052208835, 0.7939759036144578, 0.8024096385542169, 0.8124497991967872, 0.8313253012048193, 0.8361445783132531, 0.8481927710843373, 0.840562248995984, 0.8413654618473896, 0.8281124497991967, 0.846987951807229, 0.8694779116465864, 0.8514056224899599, 0.8409638554216867]}, 'evaluation_type': 'comprehensive_with_bootstrap', 'fold_idx': 3, 'train_size': 9962, 'val_size': 2490, 'scaler': StandardScaler(), 'fold_max_T': 139}, {'pyramid_layers': 2, 'total_params': 1581058, 'epochs_trained': 14, 'best_epoch': np.int64(7), 'best_val_loss': 0.4385272922196302, 'best_val_acc': 0.8546184738955823, 'test_metrics': {'accuracy': np.float64(0.7959839357429719), 'balanced_accuracy': np.float64(0.7959998941941627), 'auc_roc': 0.8895961249257262, 'auc_roc_ci': {'mean': np.float64(0.8897036036510931), 'std': np.float64(0.006029087340588758), 'ci_lower': np.float64(0.8778071180944224), 'ci_upper': np.float64(0.9012908918168634), 'confidence': 0.95}, 'auc_pr': 0.8850488666346182, 'auc_pr_ci': {'mean': np.float64(0.8853587739365711), 'std': np.float64(0.007925008227338015), 'ci_lower': np.float64(0.8693858588501316), 'ci_upper': np.float64(0.9003921820892969), 'confidence': 0.95}, 'f1_score': 0.7954911433172303, 'f1_ci': {'mean': np.float64(0.795626567544382), 'std': np.float64(0.008934450113983368), 'ci_lower': np.float64(0.7776427204112749), 'ci_upper': np.float64(0.8125030818540434), 'confidence': 0.95}, 'precision': 0.8, 'recall': 0.7910328262610088, 'specificity': np.float64(0.8009669621273167), 'eer': np.float64(0.20160592615913847), 'eer_threshold': np.float32(0.49006802), 'confusion_matrix': array([[994, 247],
+       [261, 988]]), 'calibration': {'brier_score': 0.14117944419889547, 'ece': np.float64(0.06163951989308181), 'mce': np.float64(0.15917503106884845)}, 'bootstrap_confidence': 0.95}, 'val_metrics': {'accuracy': np.float64(0.7959839357429719), 'balanced_accuracy': np.float64(0.7959998941941627), 'auc_roc': 0.8895961249257262, 'auc_roc_ci': {'mean': np.float64(0.8897036036510931), 'std': np.float64(0.006029087340588758), 'ci_lower': np.float64(0.8778071180944224), 'ci_upper': np.float64(0.9012908918168634), 'confidence': 0.95}, 'auc_pr': 0.8850488666346182, 'auc_pr_ci': {'mean': np.float64(0.8853587739365711), 'std': np.float64(0.007925008227338015), 'ci_lower': np.float64(0.8693858588501316), 'ci_upper': np.float64(0.9003921820892969), 'confidence': 0.95}, 'f1_score': 0.7954911433172303, 'f1_ci': {'mean': np.float64(0.795626567544382), 'std': np.float64(0.008934450113983368), 'ci_lower': np.float64(0.7776427204112749), 'ci_upper': np.float64(0.8125030818540434), 'confidence': 0.95}, 'precision': 0.8, 'recall': 0.7910328262610088, 'specificity': np.float64(0.8009669621273167), 'eer': np.float64(0.20160592615913847), 'eer_threshold': np.float32(0.49006802), 'confusion_matrix': array([[994, 247],
+       [261, 988]]), 'calibration': {'brier_score': 0.14117944419889547, 'ece': np.float64(0.06163951989308181), 'mce': np.float64(0.15917503106884845)}, 'bootstrap_confidence': 0.95}, 'checkpoint_path': 'best_model_2layers_1761906915.pt', 'best_checkpoint_path': 'best_model_2layers_1761906915.pt', 'last_checkpoint_path': 'last_epoch_model_2layers_1761906915.pt', 'history': {'train_loss': [0.6564886563036294, 0.5587793718234432, 0.5070198993741736, 0.4787445574119325, 0.450431872800193, 0.4343331730087833, 0.39982418070067316, 0.36522354549808544, 0.333913665331408, 0.31996741413073926, 0.30917966026566734, 0.2098668628701141, 0.27381375885092335, 0.2558989707340147], 'val_loss': [0.5498163187240501, 0.4956070860945077, 0.4901687086346638, 0.4904486185934649, 0.5884622410837427, 0.44107621729852686, 0.4385272922196302, 0.4429967870135384, 0.4590547469336106, 0.44339861710178086, 0.47553547041483196, 0.47936193406821254, 0.4818796307858394, 0.5302684502803298], 'train_acc': [0.6142340895402529, 0.7101987552700261, 0.7543665930536037, 0.7746436458542462, 0.7981329050391488, 0.8110821120256977, 0.8360770929532222, 0.8541457538646858, 0.8709094559325437, 0.8820517968279462, 0.8886769724954828, 0.9308371812888978, 0.9037341899217025, 0.908753262397109], 'val_acc': [0.7144578313253012, 0.7610441767068273, 0.765863453815261, 0.7867469879518072, 0.7598393574297189, 0.8112449799196787, 0.7959839357429719, 0.8281124497991967, 0.8321285140562249, 0.8473895582329317, 0.8120481927710843, 0.8546184738955823, 0.8417670682730923, 0.8301204819277108]}, 'evaluation_type': 'comprehensive_with_bootstrap', 'fold_idx': 4, 'train_size': 9962, 'val_size': 2490, 'scaler': StandardScaler(), 'fold_max_T': 139}, {'pyramid_layers': 2, 'total_params': 1581058, 'epochs_trained': 18, 'best_epoch': np.int64(11), 'best_val_loss': 0.4298794448136326, 'best_val_acc': 0.8518072289156626, 'test_metrics': {'accuracy': np.float64(0.8393574297188755), 'balanced_accuracy': np.float64(0.8392886750980155), 'auc_roc': 0.9165740327959386, 'auc_roc_ci': {'mean': np.float64(0.9166635403127573), 'std': np.float64(0.005586674834352121), 'ci_lower': np.float64(0.905371994821378), 'ci_upper': np.float64(0.9271795142465875), 'confidence': 0.95}, 'auc_pr': 0.9095872478149409, 'auc_pr_ci': {'mean': np.float64(0.9097794820234071), 'std': np.float64(0.007621483407760334), 'ci_lower': np.float64(0.894319924190599), 'ci_upper': np.float64(0.9236131922151124), 'confidence': 0.95}, 'f1_score': 0.8431372549019608, 'f1_ci': {'mean': np.float64(0.8434892290955088), 'std': np.float64(0.008062259530471613), 'ci_lower': np.float64(0.8274955510052033), 'ci_upper': np.float64(0.85846536823929), 'confidence': 0.95}, 'precision': 0.8262874711760184, 'recall': 0.8606885508406725, 'specificity': np.float64(0.8178887993553586), 'eer': np.float64(0.1598384267446189), 'eer_threshold': np.float32(0.6179389), 'confusion_matrix': array([[1015,  226],
+       [ 174, 1075]]), 'calibration': {'brier_score': 0.1262054241347994, 'ece': np.float64(0.0847536903331019), 'mce': np.float64(0.2366265417713868)}, 'bootstrap_confidence': 0.95}, 'val_metrics': {'accuracy': np.float64(0.8393574297188755), 'balanced_accuracy': np.float64(0.8392886750980155), 'auc_roc': 0.9165740327959386, 'auc_roc_ci': {'mean': np.float64(0.9166635403127573), 'std': np.float64(0.005586674834352121), 'ci_lower': np.float64(0.905371994821378), 'ci_upper': np.float64(0.9271795142465875), 'confidence': 0.95}, 'auc_pr': 0.9095872478149409, 'auc_pr_ci': {'mean': np.float64(0.9097794820234071), 'std': np.float64(0.007621483407760334), 'ci_lower': np.float64(0.894319924190599), 'ci_upper': np.float64(0.9236131922151124), 'confidence': 0.95}, 'f1_score': 0.8431372549019608, 'f1_ci': {'mean': np.float64(0.8434892290955088), 'std': np.float64(0.008062259530471613), 'ci_lower': np.float64(0.8274955510052033), 'ci_upper': np.float64(0.85846536823929), 'confidence': 0.95}, 'precision': 0.8262874711760184, 'recall': 0.8606885508406725, 'specificity': np.float64(0.8178887993553586), 'eer': np.float64(0.1598384267446189), 'eer_threshold': np.float32(0.6179389), 'confusion_matrix': array([[1015,  226],
+       [ 174, 1075]]), 'calibration': {'brier_score': 0.1262054241347994, 'ece': np.float64(0.0847536903331019), 'mce': np.float64(0.2366265417713868)}, 'bootstrap_confidence': 0.95}, 'checkpoint_path': 'best_model_2layers_1761907087.pt', 'best_checkpoint_path': 'best_model_2layers_1761907087.pt', 'last_checkpoint_path': 'last_epoch_model_2layers_1761907087.pt', 'history': {'train_loss': [0.6460467573151343, 0.5532864454675214, 0.5089110076379594, 0.46883264811635855, 0.44426589182009063, 0.4337870697585293, 0.3981116576424279, 0.3796567064899741, 0.35371588012197963, 0.33151385969957464, 0.3133782386986206, 0.28203503109041295, 0.27181884410715, 0.24990656481757745, 0.23824416880141155, 0.14660620275653766, 0.20926406911875894, 0.2163690028138514], 'val_loss': [0.552440820975476, 0.5190550600668513, 0.5745945565552117, 0.4760237376972375, 0.5238116026463279, 0.4688113713958656, 0.44373311115555975, 0.446249669404274, 0.4544609257495068, 0.4522932990427956, 0.4298794448136326, 0.4837430265937823, 0.4956661636181864, 0.5336230869603205, 0.5397846621292901, 0.5934045949329932, 0.5786879877787996, 0.4974888817164074], 'train_acc': [0.6205581208592652, 0.7189319413772335, 0.7574784179883558, 0.7857859867496486, 0.7983336679381651, 0.8129893595663521, 0.8327645051194539, 0.8446095161614133, 0.8597671150371411, 0.8745231881148364, 0.88345713712106, 0.8981128287492471, 0.9047380044167838, 0.9147761493675969, 0.9195944589439872, 0.9552298735193736, 0.9358562537643044, 0.9344509134711905], 'val_acc': [0.7068273092369478, 0.7502008032128514, 0.7293172690763052, 0.7674698795180723, 0.7714859437751004, 0.797991967871486, 0.8156626506024096, 0.8240963855421687, 0.831726907630522, 0.8337349397590361, 0.8393574297188755, 0.8349397590361446, 0.8457831325301205, 0.8325301204819278, 0.8401606425702811, 0.8518072289156626, 0.840562248995984, 0.838152610441767]}, 'evaluation_type': 'comprehensive_with_bootstrap', 'fold_idx': 5, 'train_size': 9962, 'val_size': 2490, 'scaler': StandardScaler(), 'fold_max_T': 139}]
+2025-10-31 11:41:39 - INFO -   cv_statistics: {'auc_roc': {'mean': np.float64(0.9102424566567033), 'std': np.float64(0.014958521517892865), 'min': np.float64(0.8895961249257262), 'max': np.float64(0.9245572122484451), 'values': [0.9245572122484451, 0.8895961249257262, 0.9165740327959386]}, 'auc_pr': {'mean': np.float64(0.9049831237640115), 'std': np.float64(0.014760143921842673), 'min': np.float64(0.8850488666346182), 'max': np.float64(0.9203132568424754), 'values': [0.9203132568424754, 0.8850488666346182, 0.9095872478149409]}, 'f1_score': {'mean': np.float64(0.8291830871761813), 'std': np.float64(0.023940521329585955), 'min': np.float64(0.7954911433172303), 'max': np.float64(0.8489208633093526), 'values': [0.8489208633093526, 0.7954911433172303, 0.8431372549019608]}, 'balanced_accuracy': {'mean': np.float64(0.8278248706942991), 'std': np.float64(0.02279492099701847), 'min': np.float64(0.7959998941941627), 'max': np.float64(0.8481860427907193), 'values': [0.8481860427907193, 0.7959998941941627, 0.8392886750980155]}, 'eer': {'mean': np.float64(0.17148556341715868), 'std': np.float64(0.021479851999722174), 'min': np.float64(0.1530123373477186), 'max': np.float64(0.20160592615913847), 'values': [0.1530123373477186, 0.20160592615913847, 0.1598384267446189]}, 'precision': {'mean': np.float64(0.824617771051756), 'std': np.float64(0.019454532542614335), 'min': np.float64(0.8), 'max': np.float64(0.8475658419792498), 'values': [0.8475658419792498, 0.8, 0.8262874711760184]}, 'recall': {'mean': np.float64(0.8340005337603417), 'std': np.float64(0.03067845315291498), 'min': np.float64(0.7910328262610088), 'max': np.float64(0.8606885508406725), 'values': [0.8502802241793435, 0.7910328262610088, 0.8606885508406725]}, 'summary': {'successful_folds': 3, 'total_folds': 5, 'completion_rate': 0.6, 'avg_training_epochs': np.float64(16.333333333333332), 'total_parameters': 1581058}}
+2025-10-31 11:41:39 - INFO -   best_fold_idx: 1
+2025-10-31 11:41:39 - INFO -   best_fold_result: {'pyramid_layers': 2, 'total_params': 1581058, 'epochs_trained': 17, 'best_epoch': np.int64(10), 'best_val_loss': 0.3929541616494876, 'best_val_acc': 0.8694779116465864, 'test_metrics': {'accuracy': np.float64(0.8481927710843373), 'balanced_accuracy': np.float64(0.8481860427907193), 'auc_roc': 0.9245572122484451, 'auc_roc_ci': {'mean': np.float64(0.9248249795732382), 'std': np.float64(0.004915959659764459), 'ci_lower': np.float64(0.9143991098788689), 'ci_upper': np.float64(0.9335511669348883), 'confidence': 0.95}, 'auc_pr': 0.9203132568424754, 'auc_pr_ci': {'mean': np.float64(0.920741517579883), 'std': np.float64(0.006608685963541495), 'ci_lower': np.float64(0.9059488767066847), 'ci_upper': np.float64(0.9321683891206254), 'confidence': 0.95}, 'f1_score': 0.8489208633093526, 'f1_ci': {'mean': np.float64(0.8492903842277096), 'std': np.float64(0.00734525799449374), 'ci_lower': np.float64(0.8349573884616521), 'ci_upper': np.float64(0.8636915184734695), 'confidence': 0.95}, 'precision': 0.8475658419792498, 'recall': 0.8502802241793435, 'specificity': np.float64(0.8460918614020951), 'eer': np.float64(0.1530123373477186), 'eer_threshold': np.float32(0.51884717), 'confusion_matrix': array([[1050,  191],
+       [ 187, 1062]]), 'calibration': {'brier_score': 0.11747216221906424, 'ece': np.float64(0.0657484156360109), 'mce': np.float64(0.17791056808303385)}, 'bootstrap_confidence': 0.95}, 'val_metrics': {'accuracy': np.float64(0.8481927710843373), 'balanced_accuracy': np.float64(0.8481860427907193), 'auc_roc': 0.9245572122484451, 'auc_roc_ci': {'mean': np.float64(0.9248249795732382), 'std': np.float64(0.004915959659764459), 'ci_lower': np.float64(0.9143991098788689), 'ci_upper': np.float64(0.9335511669348883), 'confidence': 0.95}, 'auc_pr': 0.9203132568424754, 'auc_pr_ci': {'mean': np.float64(0.920741517579883), 'std': np.float64(0.006608685963541495), 'ci_lower': np.float64(0.9059488767066847), 'ci_upper': np.float64(0.9321683891206254), 'confidence': 0.95}, 'f1_score': 0.8489208633093526, 'f1_ci': {'mean': np.float64(0.8492903842277096), 'std': np.float64(0.00734525799449374), 'ci_lower': np.float64(0.8349573884616521), 'ci_upper': np.float64(0.8636915184734695), 'confidence': 0.95}, 'precision': 0.8475658419792498, 'recall': 0.8502802241793435, 'specificity': np.float64(0.8460918614020951), 'eer': np.float64(0.1530123373477186), 'eer_threshold': np.float32(0.51884717), 'confusion_matrix': array([[1050,  191],
+       [ 187, 1062]]), 'calibration': {'brier_score': 0.11747216221906424, 'ece': np.float64(0.0657484156360109), 'mce': np.float64(0.17791056808303385)}, 'bootstrap_confidence': 0.95}, 'checkpoint_path': 'best_model_2layers_1761906713.pt', 'best_checkpoint_path': 'best_model_2layers_1761906713.pt', 'last_checkpoint_path': 'last_epoch_model_2layers_1761906713.pt', 'history': {'train_loss': [0.6466449875473569, 0.5503716306785962, 0.511895215797319, 0.4799136285967579, 0.44725893230993236, 0.4333847261317593, 0.40514476614735184, 0.36758762243533083, 0.3385388327762858, 0.3195168290865383, 0.2966809830714531, 0.2682501462323165, 0.25651871306042767, 0.2316641759940159, 0.1366833722780918, 0.20133012034684417, 0.20417964104811676], 'val_loss': [0.5787953150918684, 0.5334736341632993, 0.47318300592552226, 0.4896364231964192, 0.4714908537735422, 0.48771548029409356, 0.43119878666587624, 0.4227278134310581, 0.4350693565909283, 0.3929541616494876, 0.4620157138261211, 0.5113418971424002, 0.5180433353311925, 0.49715317953677185, 0.5298224069800856, 0.5399370630716823, 0.5527217115182056], 'train_acc': [0.6340092350933547, 0.7213410961654286, 0.7494479020277053, 0.7810680586227665, 0.802148163019474, 0.8085725757879944, 0.8291507729371612, 0.8528407950210801, 0.8675968680987753, 0.8813491266813893, 0.8915880345312186, 0.9085524994980928, 0.9119654687813692, 0.9221039951816904, 0.955531017867898, 0.9351535836177475, 0.933346717526601], 'val_acc': [0.697991967871486, 0.7421686746987952, 0.7819277108433735, 0.7690763052208835, 0.7939759036144578, 0.8024096385542169, 0.8124497991967872, 0.8313253012048193, 0.8361445783132531, 0.8481927710843373, 0.840562248995984, 0.8413654618473896, 0.8281124497991967, 0.846987951807229, 0.8694779116465864, 0.8514056224899599, 0.8409638554216867]}, 'evaluation_type': 'comprehensive_with_bootstrap', 'fold_idx': 3, 'train_size': 9962, 'val_size': 2490, 'scaler': StandardScaler(), 'fold_max_T': 139}
+2025-10-31 11:41:39 - INFO -   holdout_test_metrics: {'accuracy': np.float64(0.7720588235294118), 'balanced_accuracy': np.float64(0.7720588235294117), 'auc_roc': 0.880490676662822, 'auc_roc_ci': {'mean': np.float64(0.8808254351429287), 'std': np.float64(0.011287374402869936), 'ci_lower': np.float64(0.859961926003565), 'ci_upper': np.float64(0.9025649193007038), 'confidence': 0.95}, 'auc_pr': 0.8800938958586725, 'auc_pr_ci': {'mean': np.float64(0.88037528997419), 'std': np.float64(0.013638561183336286), 'ci_lower': np.float64(0.8516456396023323), 'ci_upper': np.float64(0.9057391408226314), 'confidence': 0.95}, 'f1_score': 0.7506702412868632, 'f1_ci': {'mean': np.float64(0.7501877926920469), 'std': np.float64(0.017300665922763997), 'ci_lower': np.float64(0.7158169888528292), 'ci_upper': np.float64(0.7840642410871114), 'confidence': 0.95}, 'precision': 0.8284023668639053, 'recall': 0.6862745098039216, 'specificity': np.float64(0.8578431372549019), 'eer': np.float64(0.20465686274509806), 'eer_threshold': np.float32(0.12415118), 'confusion_matrix': array([[350,  58],
+       [128, 280]]), 'calibration': {'brier_score': 0.18458931153364436, 'ece': np.float64(0.16388629769048124), 'mce': np.float64(0.4459759443998337)}, 'bootstrap_confidence': 0.95}
+2025-10-31 11:41:39 - INFO -   model_config: {'pyramid_layers': 2, 'random_state': 42}
+2025-10-31 11:41:39 - INFO - ================================================================================
+2025-10-31 11:41:39 - INFO - 
+==========================================================================================
+2025-10-31 11:41:39 - INFO - APPROACH 3: AUTOMATED HYPERPARAMETER OPTIMIZATION - PYTORCH
+2025-10-31 11:41:39 - INFO - ==========================================================================================
+2025-10-31 11:41:39 - INFO - Running Optuna hyperparameter optimization to find optimal PyTorch configuration...
+2025-10-31 11:41:39 - INFO - 
+📁 Optuna Database Configuration:
+2025-10-31 11:41:39 - INFO -   Database Location: /workspace/pratham/deepfake/optuna_studies.db
+2025-10-31 11:41:39 - INFO -   Database will persist across runs and can be resumed
+2025-10-31 11:41:39 - INFO - 
+==========================================================================================
+2025-10-31 11:41:39 - INFO - AUTOMATED HYPERPARAMETER OPTIMIZATION - PYTORCH WITH SQL STORAGE
+2025-10-31 11:41:39 - INFO - ==========================================================================================
+2025-10-31 11:41:39 - INFO - Optimization Study: pytorch_pyramidal_bilstm_deepfake
+2025-10-31 11:41:39 - INFO - Number of Trials: 25
+2025-10-31 11:41:39 - INFO - Training Data: 10208 samples
+2025-10-31 11:41:39 - INFO - Validation Data: 2244 samples
+2025-10-31 11:41:39 - INFO - Objective: Maximize Validation AUC-ROC
+2025-10-31 11:41:39 - INFO - Storage Backend: SQL Database
+2025-10-31 11:41:39 - INFO - Storage Path: sqlite:////workspace/pratham/deepfake/optuna_studies.db
+2025-10-31 11:41:39 - INFO - 📊 Study will be saved persistently and can be resumed
+2025-10-31 11:41:40 - INFO - ==========================================================================================
+2025-10-31 11:41:40 - INFO - 
+🔄 RESUMING EXISTING STUDY:
+2025-10-31 11:41:40 - INFO -   Found 25 existing trials
+2025-10-31 11:41:40 - INFO -   Best trial so far: 10 (AUC: 0.9721)
+2025-10-31 11:41:40 - INFO -   Continuing with 25 additional trials...
+2025-10-31 11:41:40 - INFO - Starting hyperparameter search...
+2025-10-31 11:41:40 - INFO - 
+Trial 25: Testing configuration...
+2025-10-31 11:41:40 - INFO -   Base Units: 64
+2025-10-31 11:41:40 - INFO -   Pyramid Layers: 1
+2025-10-31 11:41:40 - INFO -   Dropout: 0.447
+2025-10-31 11:41:40 - INFO -   Learning Rate: 5.20e-05
+2025-10-31 11:41:40 - INFO -   Batch Size: 32
+2025-10-31 11:42:08 - INFO - Trial 25 failed: 
+2025-10-31 11:42:08 - INFO - 
+Trial 26: Testing configuration...
+2025-10-31 11:42:08 - INFO -   Base Units: 64
+2025-10-31 11:42:08 - INFO -   Pyramid Layers: 3
+2025-10-31 11:42:08 - INFO -   Dropout: 0.334
+2025-10-31 11:42:08 - INFO -   Learning Rate: 2.84e-05
+2025-10-31 11:42:08 - INFO -   Batch Size: 32
+2025-10-31 11:42:47 - INFO - Trial 26 failed: 
+2025-10-31 11:42:47 - INFO - 
+Trial 27: Testing configuration...
+2025-10-31 11:42:47 - INFO -   Base Units: 256
+2025-10-31 11:42:47 - INFO -   Pyramid Layers: 2
+2025-10-31 11:42:47 - INFO -   Dropout: 0.379
+2025-10-31 11:42:47 - INFO -   Learning Rate: 3.88e-04
+2025-10-31 11:42:47 - INFO -   Batch Size: 16
+2025-10-31 11:46:20 - INFO -   Validation AUC: 0.9640
+2025-10-31 11:46:20 - INFO - 
+Trial 28: Testing configuration...
+2025-10-31 11:46:20 - INFO -   Base Units: 128
+2025-10-31 11:46:20 - INFO -   Pyramid Layers: 2
+2025-10-31 11:46:20 - INFO -   Dropout: 0.499
+2025-10-31 11:46:20 - INFO -   Learning Rate: 2.20e-04
+2025-10-31 11:46:20 - INFO -   Batch Size: 8
+2025-10-31 11:49:37 - INFO -   Validation AUC: 0.9711
+2025-10-31 11:49:37 - INFO - 
+Trial 29: Testing configuration...
+2025-10-31 11:49:37 - INFO -   Base Units: 128
+2025-10-31 11:49:37 - INFO -   Pyramid Layers: 1
+2025-10-31 11:49:37 - INFO -   Dropout: 0.492
+2025-10-31 11:49:37 - INFO -   Learning Rate: 2.28e-04
+2025-10-31 11:49:37 - INFO -   Batch Size: 8
+2025-10-31 11:51:25 - INFO -   Validation AUC: 0.9603
+2025-10-31 11:51:25 - INFO - 
+Trial 30: Testing configuration...
+2025-10-31 11:51:25 - INFO -   Base Units: 128
+2025-10-31 11:51:25 - INFO -   Pyramid Layers: 3
+2025-10-31 11:51:25 - INFO -   Dropout: 0.309
+2025-10-31 11:51:25 - INFO -   Learning Rate: 4.42e-04
+2025-10-31 11:51:25 - INFO -   Batch Size: 8
+2025-10-31 11:55:33 - INFO -   Validation AUC: 0.9742
+2025-10-31 11:55:33 - INFO - 
+Trial 31: Testing configuration...
+2025-10-31 11:55:33 - INFO -   Base Units: 128
+2025-10-31 11:55:33 - INFO -   Pyramid Layers: 3
+2025-10-31 11:55:33 - INFO -   Dropout: 0.304
+2025-10-31 11:55:33 - INFO -   Learning Rate: 3.78e-04
+2025-10-31 11:55:33 - INFO -   Batch Size: 8
+2025-10-31 11:57:52 - INFO -   Validation AUC: 0.9628
+2025-10-31 11:57:52 - INFO - 
+Trial 32: Testing configuration...
+2025-10-31 11:57:52 - INFO -   Base Units: 128
+2025-10-31 11:57:52 - INFO -   Pyramid Layers: 3
+2025-10-31 11:57:52 - INFO -   Dropout: 0.295
+2025-10-31 11:57:52 - INFO -   Learning Rate: 5.42e-04
+2025-10-31 11:57:52 - INFO -   Batch Size: 8
+2025-10-31 12:00:52 - INFO -   Validation AUC: 0.9762
+2025-10-31 12:00:52 - INFO - 
+Trial 33: Testing configuration...
+2025-10-31 12:00:52 - INFO -   Base Units: 128
+2025-10-31 12:00:52 - INFO -   Pyramid Layers: 3
+2025-10-31 12:00:52 - INFO -   Dropout: 0.300
+2025-10-31 12:00:52 - INFO -   Learning Rate: 5.30e-04
+2025-10-31 12:00:52 - INFO -   Batch Size: 8
+2025-10-31 12:03:50 - INFO -   Validation AUC: 0.9766
+2025-10-31 12:03:50 - INFO - 
+Trial 34: Testing configuration...
+2025-10-31 12:03:50 - INFO -   Base Units: 128
+2025-10-31 12:03:50 - INFO -   Pyramid Layers: 3
+2025-10-31 12:03:50 - INFO -   Dropout: 0.287
+2025-10-31 12:03:50 - INFO -   Learning Rate: 5.85e-04
+2025-10-31 12:03:50 - INFO -   Batch Size: 8
+2025-10-31 12:07:06 - INFO -   Validation AUC: 0.9639
+2025-10-31 12:07:06 - INFO - 
+Trial 35: Testing configuration...
+2025-10-31 12:07:06 - INFO -   Base Units: 128
+2025-10-31 12:07:06 - INFO -   Pyramid Layers: 3
+2025-10-31 12:07:06 - INFO -   Dropout: 0.304
+2025-10-31 12:07:06 - INFO -   Learning Rate: 7.75e-04
+2025-10-31 12:07:06 - INFO -   Batch Size: 8
+2025-10-31 12:10:27 - INFO -   Validation AUC: 0.9631
+2025-10-31 12:10:27 - INFO - 
+Trial 36: Testing configuration...
+2025-10-31 12:10:27 - INFO -   Base Units: 128
+2025-10-31 12:10:27 - INFO -   Pyramid Layers: 3
+2025-10-31 12:10:27 - INFO -   Dropout: 0.258
+2025-10-31 12:10:27 - INFO -   Learning Rate: 9.25e-04
+2025-10-31 12:10:27 - INFO -   Batch Size: 8
+2025-10-31 12:14:58 - INFO -   Validation AUC: 0.9544
+2025-10-31 12:14:58 - INFO - 
+Trial 37: Testing configuration...
+2025-10-31 12:14:58 - INFO -   Base Units: 128
+2025-10-31 12:14:58 - INFO -   Pyramid Layers: 3
+2025-10-31 12:14:58 - INFO -   Dropout: 0.329
+2025-10-31 12:14:58 - INFO -   Learning Rate: 4.60e-04
+2025-10-31 12:14:58 - INFO -   Batch Size: 8
+2025-10-31 12:18:09 - INFO -   Validation AUC: 0.9752
+2025-10-31 12:18:09 - INFO - 
+Trial 38: Testing configuration...
+2025-10-31 12:18:09 - INFO -   Base Units: 128
+2025-10-31 12:18:09 - INFO -   Pyramid Layers: 3
+2025-10-31 12:18:09 - INFO -   Dropout: 0.320
+2025-10-31 12:18:09 - INFO -   Learning Rate: 4.79e-04
+2025-10-31 12:18:09 - INFO -   Batch Size: 8
+2025-10-31 12:21:36 - INFO -   Validation AUC: 0.9724
+2025-10-31 12:21:36 - INFO - 
+Trial 39: Testing configuration...
+2025-10-31 12:21:36 - INFO -   Base Units: 128
+2025-10-31 12:21:36 - INFO -   Pyramid Layers: 3
+2025-10-31 12:21:36 - INFO -   Dropout: 0.279
+2025-10-31 12:21:36 - INFO -   Learning Rate: 7.26e-04
+2025-10-31 12:21:36 - INFO -   Batch Size: 8
+2025-10-31 12:24:30 - INFO -   Validation AUC: 0.9542
+2025-10-31 12:24:30 - INFO - 
+Trial 40: Testing configuration...
+2025-10-31 12:24:30 - INFO -   Base Units: 128
+2025-10-31 12:24:30 - INFO -   Pyramid Layers: 3
+2025-10-31 12:24:30 - INFO -   Dropout: 0.251
+2025-10-31 12:24:30 - INFO -   Learning Rate: 5.14e-04
+2025-10-31 12:24:30 - INFO -   Batch Size: 4
+2025-10-31 12:30:17 - INFO -   Validation AUC: 0.9501
+2025-10-31 12:30:18 - INFO - 
+Trial 41: Testing configuration...
+2025-10-31 12:30:18 - INFO -   Base Units: 128
+2025-10-31 12:30:18 - INFO -   Pyramid Layers: 3
+2025-10-31 12:30:18 - INFO -   Dropout: 0.327
+2025-10-31 12:30:18 - INFO -   Learning Rate: 4.53e-04
+2025-10-31 12:30:18 - INFO -   Batch Size: 8
+2025-10-31 12:34:35 - INFO -   Validation AUC: 0.9709
+2025-10-31 12:34:35 - INFO - 
+Trial 42: Testing configuration...
+2025-10-31 12:34:35 - INFO -   Base Units: 128
+2025-10-31 12:34:35 - INFO -   Pyramid Layers: 3
+2025-10-31 12:34:35 - INFO -   Dropout: 0.317
+2025-10-31 12:34:35 - INFO -   Learning Rate: 3.37e-04
+2025-10-31 12:34:35 - INFO -   Batch Size: 8
+2025-10-31 12:38:41 - INFO -   Validation AUC: 0.9766
+2025-10-31 12:38:41 - INFO - 
+Trial 43: Testing configuration...
+2025-10-31 12:38:41 - INFO -   Base Units: 192
+2025-10-31 12:38:41 - INFO -   Pyramid Layers: 3
+2025-10-31 12:38:41 - INFO -   Dropout: 0.313
+2025-10-31 12:38:41 - INFO -   Learning Rate: 3.32e-04
+2025-10-31 12:38:41 - INFO -   Batch Size: 8
+2025-10-31 12:44:51 - INFO -   Validation AUC: 0.9681
+2025-10-31 12:44:51 - INFO - 
+Trial 44: Testing configuration...
+2025-10-31 12:44:51 - INFO -   Base Units: 128
+2025-10-31 12:44:51 - INFO -   Pyramid Layers: 3
+2025-10-31 12:44:51 - INFO -   Dropout: 0.350
+2025-10-31 12:44:51 - INFO -   Learning Rate: 9.90e-04
+2025-10-31 12:44:51 - INFO -   Batch Size: 8
+2025-10-31 12:48:43 - INFO -   Validation AUC: 0.9583
+2025-10-31 12:48:43 - INFO - 
+Trial 45: Testing configuration...
+2025-10-31 12:48:43 - INFO -   Base Units: 128
+2025-10-31 12:48:43 - INFO -   Pyramid Layers: 3
+2025-10-31 12:48:43 - INFO -   Dropout: 0.289
+2025-10-31 12:48:43 - INFO -   Learning Rate: 6.55e-04
+2025-10-31 12:48:43 - INFO -   Batch Size: 8
+2025-10-31 12:51:35 - INFO -   Validation AUC: 0.9629
+2025-10-31 12:51:35 - INFO - 
+Trial 46: Testing configuration...
+2025-10-31 12:51:35 - INFO -   Base Units: 128
+2025-10-31 12:51:35 - INFO -   Pyramid Layers: 3
+2025-10-31 12:51:35 - INFO -   Dropout: 0.352
+2025-10-31 12:51:35 - INFO -   Learning Rate: 1.11e-05
+2025-10-31 12:51:35 - INFO -   Batch Size: 4
+2025-10-31 12:56:48 - INFO - Trial 46 failed: 
+2025-10-31 12:56:48 - INFO - 
+Trial 47: Testing configuration...
+2025-10-31 12:56:48 - INFO -   Base Units: 256
+2025-10-31 12:56:48 - INFO -   Pyramid Layers: 3
+2025-10-31 12:56:48 - INFO -   Dropout: 0.239
+2025-10-31 12:56:48 - INFO -   Learning Rate: 4.01e-04
+2025-10-31 12:56:48 - INFO -   Batch Size: 8
+2025-10-31 13:02:24 - INFO -   Validation AUC: 0.9760
+2025-10-31 13:02:24 - INFO - 
+Trial 48: Testing configuration...
+2025-10-31 13:02:24 - INFO -   Base Units: 256
+2025-10-31 13:02:24 - INFO -   Pyramid Layers: 3
+2025-10-31 13:02:24 - INFO -   Dropout: 0.238
+2025-10-31 13:02:24 - INFO -   Learning Rate: 5.61e-04
+2025-10-31 13:02:24 - INFO -   Batch Size: 8
+2025-10-31 13:08:32 - INFO -   Validation AUC: 0.9625
+2025-10-31 13:08:32 - INFO - 
+Trial 49: Testing configuration...
+2025-10-31 13:08:32 - INFO -   Base Units: 256
+2025-10-31 13:08:32 - INFO -   Pyramid Layers: 3
+2025-10-31 13:08:32 - INFO -   Dropout: 0.220
+2025-10-31 13:08:32 - INFO -   Learning Rate: 3.66e-04
+2025-10-31 13:08:32 - INFO -   Batch Size: 8
+2025-10-31 13:14:09 - INFO -   Validation AUC: 0.9690
+2025-10-31 13:14:09 - INFO - 
+================================================================================
+2025-10-31 13:14:09 - INFO - HYPERPARAMETER OPTIMIZATION COMPLETED
+2025-10-31 13:14:09 - INFO - ================================================================================
+2025-10-31 13:14:09 - INFO - Best Trial: 42
+2025-10-31 13:14:09 - INFO - Best Validation AUC: 0.9766
+2025-10-31 13:14:09 - INFO - 
+Best Hyperparameters:
+2025-10-31 13:14:09 - INFO -   batch_size: 8
+2025-10-31 13:14:09 - INFO -   base_units: 128
+2025-10-31 13:14:09 - INFO -   num_pyramid_layers: 3
+2025-10-31 13:14:09 - INFO -   dropout_rate: 0.31696827063796124
+2025-10-31 13:14:09 - INFO -   recurrent_dropout: 0.140788138989581
+2025-10-31 13:14:09 - INFO -   attention_units: 128
+2025-10-31 13:14:09 - INFO -   dense_units: 32
+2025-10-31 13:14:09 - INFO -   learning_rate: 0.0003371211809648965
+2025-10-31 13:14:09 - INFO -   weight_decay: 1.8835902269353854e-05
+2025-10-31 13:14:09 - INFO - 
+Optimization Statistics:
+2025-10-31 13:14:09 - INFO -   Completed Trials: 50
+2025-10-31 13:14:09 - INFO -   Pruned Trials: 0
+2025-10-31 13:14:09 - INFO -   Failed Trials: 0
+2025-10-31 13:14:09 - INFO -   AUC Range: [0.5000, 0.9766]
+2025-10-31 13:14:09 - INFO -   AUC Improvement: 0.4766
+2025-10-31 13:14:09 - INFO - 
+💾 STUDY SAVED TO DATABASE:
+2025-10-31 13:14:09 - INFO -   Database: sqlite:////workspace/pratham/deepfake/optuna_studies.db
+2025-10-31 13:14:09 - INFO -   Study Name: pytorch_pyramidal_bilstm_deepfake
+2025-10-31 13:14:09 - INFO -   Total Trials: 50
+2025-10-31 13:14:09 - INFO -   To resume later, use the same study_name and storage_path
+2025-10-31 13:14:09 - INFO - 
+📊 To view study in dashboard:
+2025-10-31 13:14:09 - INFO -   optuna-dashboard sqlite:////workspace/pratham/deepfake/optuna_studies.db
+2025-10-31 13:14:09 - INFO - 
+Training final model with best hyperparameters...
+2025-10-31 13:14:09 - INFO - 
+==========================================================================================
+2025-10-31 13:14:09 - INFO - TRAINING FINAL MODEL WITH OPTIMIZED HYPERPARAMETERS - PYTORCH
+2025-10-31 13:14:09 - INFO - ==========================================================================================
+2025-10-31 13:14:09 - INFO - Optimized Configuration:
+2025-10-31 13:14:09 - INFO -   batch_size: 8
+2025-10-31 13:14:09 - INFO -   base_units: 128
+2025-10-31 13:14:09 - INFO -   num_pyramid_layers: 3
+2025-10-31 13:14:09 - INFO -   dropout_rate: 0.31696827063796124
+2025-10-31 13:14:09 - INFO -   recurrent_dropout: 0.140788138989581
+2025-10-31 13:14:09 - INFO -   attention_units: 128
+2025-10-31 13:14:09 - INFO -   dense_units: 32
+2025-10-31 13:14:09 - INFO -   learning_rate: 0.0003371211809648965
+2025-10-31 13:14:09 - INFO -   weight_decay: 1.8835902269353854e-05
+2025-10-31 13:14:09 - INFO - 
+============================================================
+2025-10-31 13:14:09 - INFO - TRAINING MODEL WITH 3 PYRAMID LAYER(S)
+2025-10-31 13:14:09 - INFO - ============================================================
+2025-10-31 13:14:09 - INFO - 
+============================================================
+2025-10-31 13:14:09 - INFO - MODEL SUMMARY: Pyramidal BiLSTM (3 layers)
+2025-10-31 13:14:09 - INFO - ============================================================
+2025-10-31 13:14:09 - INFO - PyramidalBiLSTM(
+  (first_bilstm): LSTM(80, 128, batch_first=True, bidirectional=True)
+  (first_dropout): Dropout(p=0.3, inplace=False)
+  (first_layernorm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+  (pyramid_layers): ModuleList(
+    (0-2): 3 x PyramidalDownsample()
+  )
+  (pyramid_bilstms): ModuleList(
+    (0-2): 3 x LSTM(512, 128, batch_first=True, bidirectional=True)
+  )
+  (pyramid_dropouts): ModuleList(
+    (0): Dropout(p=0.35, inplace=False)
+    (1): Dropout(p=0.4, inplace=False)
+    (2): Dropout(p=0.45, inplace=False)
+  )
+  (pyramid_layernorms): ModuleList(
+    (0-2): 3 x LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+  )
+  (attention_pooling): AttentionPooling(
+    (attention_dense): Linear(in_features=256, out_features=128, bias=True)
+    (attention_score): Linear(in_features=128, out_features=1, bias=True)
+  )
+  (attention_dropout): Dropout(p=0.4, inplace=False)
+  (dense1): Linear(in_features=256, out_features=64, bias=True)
+  (dense1_layernorm): LayerNorm((64,), eps=1e-05, elementwise_affine=True)
+  (dense1_dropout): Dropout(p=0.5, inplace=False)
+  (output): Linear(in_features=64, out_features=1, bias=True)
+)
+2025-10-31 13:14:09 - INFO - 
+Model Parameters:
+2025-10-31 13:14:09 - INFO -   Total parameters: 2,238,978
+2025-10-31 13:14:09 - INFO -   Trainable parameters: 2,238,978
+2025-10-31 13:14:09 - INFO -   Non-trainable parameters: 0
+2025-10-31 13:14:09 - INFO - ============================================================
+2025-10-31 13:14:09 - INFO - 
+================================================================================
+2025-10-31 13:14:09 - INFO - ENHANCED TRAINING PIPELINE - PYTORCH
+2025-10-31 13:14:09 - INFO - ================================================================================
+2025-10-31 13:14:09 - INFO - Optimizer: AdamW (weight_decay=1.8835902269353854e-05, lr=0.0003371211809648965)
+2025-10-31 13:14:09 - INFO - Learning Rate: OneCycle (Base: 0.0003371211809648965, Peak: 0.0016856059048244824, Min: 3.3712118096489653e-06)
+2025-10-31 13:14:09 - INFO - Schedule: Warmup (5 epochs) → Peak (15 epochs) → Cosine Annealing
+2025-10-31 13:14:09 - INFO - Max Epochs: 100 (with early stopping, patience=7)
+2025-10-31 13:14:09 - INFO - Batch Size: 8
+2025-10-31 13:14:09 - INFO - Device: cuda:2
+2025-10-31 13:14:09 - INFO - 
+💾 CHECKPOINT STRATEGY:
+2025-10-31 13:14:09 - INFO -   • Best model: Saved when validation loss improves
+2025-10-31 13:14:09 - INFO -   • Last epoch: Saved at training completion
+2025-10-31 13:14:09 - INFO -   • Evaluation: Uses best model weights
+2025-10-31 13:14:09 - INFO - ================================================================================
+2025-10-31 13:14:23 - INFO - Epoch 1/100 - Train Loss: 0.6717, Train Acc: 0.6082 - Val Loss: 0.5144, Val Acc: 0.7723 - LR: 6.07e-04
+2025-10-31 13:14:23 - INFO - 💾 Best model saved: best_model_3layers_1761912849.pt
+2025-10-31 13:14:37 - INFO - Epoch 2/100 - Train Loss: 0.5943, Train Acc: 0.6987 - Val Loss: 0.4162, Val Acc: 0.8298 - LR: 8.77e-04
+2025-10-31 13:14:37 - INFO - 💾 Best model saved: best_model_3layers_1761912849.pt
+2025-10-31 13:14:51 - INFO - Epoch 3/100 - Train Loss: 0.5681, Train Acc: 0.7187 - Val Loss: 0.4805, Val Acc: 0.7914 - LR: 1.15e-03
+2025-10-31 13:15:05 - INFO - Epoch 4/100 - Train Loss: 0.5356, Train Acc: 0.7428 - Val Loss: 0.3435, Val Acc: 0.8623 - LR: 1.42e-03
+2025-10-31 13:15:05 - INFO - 💾 Best model saved: best_model_3layers_1761912849.pt
+2025-10-31 13:15:20 - INFO - Epoch 5/100 - Train Loss: 0.5126, Train Acc: 0.7598 - Val Loss: 0.3663, Val Acc: 0.8422 - LR: 1.69e-03
+2025-10-31 13:15:35 - INFO - Epoch 6/100 - Train Loss: 0.4956, Train Acc: 0.7759 - Val Loss: 0.3735, Val Acc: 0.8320 - LR: 1.69e-03
+2025-10-31 13:15:49 - INFO - Epoch 7/100 - Train Loss: 0.4620, Train Acc: 0.7982 - Val Loss: 0.3809, Val Acc: 0.8489 - LR: 1.69e-03
+2025-10-31 13:16:03 - INFO - Epoch 8/100 - Train Loss: 0.4382, Train Acc: 0.8136 - Val Loss: 0.3587, Val Acc: 0.8498 - LR: 3.37e-04
+2025-10-31 13:16:18 - INFO - Epoch 9/100 - Train Loss: 0.3509, Train Acc: 0.8567 - Val Loss: 0.3295, Val Acc: 0.8712 - LR: 1.69e-03
+2025-10-31 13:16:18 - INFO - 💾 Best model saved: best_model_3layers_1761912849.pt
+2025-10-31 13:16:31 - INFO - Epoch 10/100 - Train Loss: 0.3999, Train Acc: 0.8316 - Val Loss: 0.3612, Val Acc: 0.8605 - LR: 1.69e-03
+2025-10-31 13:16:45 - INFO - Epoch 11/100 - Train Loss: 0.3867, Train Acc: 0.8376 - Val Loss: 0.3698, Val Acc: 0.8494 - LR: 1.69e-03
+2025-10-31 13:17:00 - INFO - Epoch 12/100 - Train Loss: 0.3942, Train Acc: 0.8377 - Val Loss: 0.4016, Val Acc: 0.7981 - LR: 1.69e-03
+2025-10-31 13:17:14 - INFO - Epoch 13/100 - Train Loss: 0.3802, Train Acc: 0.8443 - Val Loss: 0.4168, Val Acc: 0.8494 - LR: 3.37e-04
+2025-10-31 13:17:28 - INFO - Epoch 14/100 - Train Loss: 0.3122, Train Acc: 0.8808 - Val Loss: 0.3736, Val Acc: 0.8592 - LR: 1.69e-03
+2025-10-31 13:17:42 - INFO - Epoch 15/100 - Train Loss: 0.3596, Train Acc: 0.8596 - Val Loss: 0.3404, Val Acc: 0.8592 - LR: 1.69e-03
+2025-10-31 13:17:57 - INFO - Epoch 16/100 - Train Loss: 0.3623, Train Acc: 0.8573 - Val Loss: 0.3074, Val Acc: 0.8873 - LR: 1.69e-03
+2025-10-31 13:17:57 - INFO - 💾 Best model saved: best_model_3layers_1761912849.pt
+2025-10-31 13:18:10 - INFO - Epoch 17/100 - Train Loss: 0.3538, Train Acc: 0.8588 - Val Loss: 0.3483, Val Acc: 0.8725 - LR: 1.69e-03
+2025-10-31 13:18:25 - INFO - Epoch 18/100 - Train Loss: 0.3538, Train Acc: 0.8622 - Val Loss: 0.3503, Val Acc: 0.8659 - LR: 1.69e-03
+2025-10-31 13:18:40 - INFO - Epoch 19/100 - Train Loss: 0.3584, Train Acc: 0.8610 - Val Loss: 0.2981, Val Acc: 0.8770 - LR: 1.69e-03
+2025-10-31 13:18:40 - INFO - 💾 Best model saved: best_model_3layers_1761912849.pt
+2025-10-31 13:18:56 - INFO - Epoch 20/100 - Train Loss: 0.3543, Train Acc: 0.8607 - Val Loss: 0.3450, Val Acc: 0.8676 - LR: 1.69e-03
+2025-10-31 13:19:11 - INFO - Epoch 21/100 - Train Loss: 0.3530, Train Acc: 0.8626 - Val Loss: 0.3045, Val Acc: 0.8806 - LR: 1.68e-03
+2025-10-31 13:19:26 - INFO - Epoch 22/100 - Train Loss: 0.3510, Train Acc: 0.8575 - Val Loss: 0.3046, Val Acc: 0.8748 - LR: 1.68e-03
+2025-10-31 13:19:41 - INFO - Epoch 23/100 - Train Loss: 0.3482, Train Acc: 0.8597 - Val Loss: 0.3639, Val Acc: 0.8694 - LR: 3.36e-04
+2025-10-31 13:19:56 - INFO - Epoch 24/100 - Train Loss: 0.3013, Train Acc: 0.8852 - Val Loss: 0.3276, Val Acc: 0.8815 - LR: 1.68e-03
+2025-10-31 13:20:11 - INFO - Epoch 25/100 - Train Loss: 0.3401, Train Acc: 0.8678 - Val Loss: 0.3561, Val Acc: 0.8783 - LR: 1.67e-03
+2025-10-31 13:20:25 - INFO - Epoch 26/100 - Train Loss: 0.3615, Train Acc: 0.8622 - Val Loss: 0.3231, Val Acc: 0.8699 - LR: 1.66e-03
+2025-10-31 13:20:25 - INFO - 
+⚠️  Early stopping triggered after 26 epochs
+2025-10-31 13:20:25 - INFO - 💾 Last epoch checkpoint saved: last_epoch_model_3layers_1761912849.pt
+2025-10-31 13:20:25 - INFO - 
+============================================================
+2025-10-31 13:20:25 - INFO - TRAINING COMPLETED
+2025-10-31 13:20:25 - INFO - ============================================================
+2025-10-31 13:20:25 - INFO - Epochs trained: 26
+2025-10-31 13:20:25 - INFO - Best validation loss: 0.2981
+2025-10-31 13:20:25 - INFO - Best validation accuracy: 0.8873
+2025-10-31 13:20:25 - INFO - 
+📁 SAVED CHECKPOINTS:
+2025-10-31 13:20:25 - INFO -   Best model: best_model_3layers_1761912849.pt
+2025-10-31 13:20:25 - INFO -   Last epoch: last_epoch_model_3layers_1761912849.pt
+2025-10-31 13:20:25 - INFO - ============================================================
+2025-10-31 13:20:25 - INFO - Loading best model from checkpoint for evaluation...
+2025-10-31 13:20:26 - INFO - 
+Generating predictions for comprehensive evaluation...
+2025-10-31 13:20:27 - INFO - 
+================================================================================
+2025-10-31 13:20:27 - INFO - COMPREHENSIVE EVALUATION METRICS - TEST SET
+2025-10-31 13:20:27 - INFO - ================================================================================
+2025-10-31 13:20:27 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-10-31 13:20:27 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-10-31 13:20:31 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-10-31 13:20:31 - INFO -   Accuracy: 0.6765
+2025-10-31 13:20:31 - INFO -   Balanced Accuracy: 0.6765
+2025-10-31 13:20:31 - INFO -   AUC-ROC: 0.7679 [0.7389, 0.8001]
+2025-10-31 13:20:31 - INFO -   AUC-PR: 0.7529 [0.7057, 0.7994]
+2025-10-31 13:20:31 - INFO -   F1-Score: 0.7167 [0.6831, 0.7495]
+2025-10-31 13:20:31 - INFO -   EER: 0.2990 @ threshold=0.7339
+2025-10-31 13:20:31 - INFO - 
+PER-CLASS METRICS:
+2025-10-31 13:20:31 - INFO -   Precision (Fake Detection): 0.6374
+2025-10-31 13:20:31 - INFO -   Recall/Sensitivity (Fake Detection): 0.8186
+2025-10-31 13:20:31 - INFO -   Specificity (Real Detection): 0.5343
+2025-10-31 13:20:31 - INFO - 
+CONFUSION MATRIX:
+2025-10-31 13:20:31 - INFO -   True Negatives (Real→Real): 218
+2025-10-31 13:20:31 - INFO -   False Positives (Real→Fake): 190
+2025-10-31 13:20:31 - INFO -   False Negatives (Fake→Real): 74
+2025-10-31 13:20:31 - INFO -   True Positives (Fake→Fake): 334
+2025-10-31 13:20:31 - INFO - 
+CALIBRATION ANALYSIS:
+2025-10-31 13:20:31 - INFO -   Brier Score: 0.2267 (lower is better)
+2025-10-31 13:20:31 - INFO -   Expected Calibration Error (ECE): 0.1711
+2025-10-31 13:20:31 - INFO -   Maximum Calibration Error (MCE): 0.2669
+2025-10-31 13:20:31 - INFO - 
+================================================================================
+2025-10-31 13:20:31 - INFO - COMPREHENSIVE EVALUATION METRICS - VALIDATION SET
+2025-10-31 13:20:31 - INFO - ================================================================================
+2025-10-31 13:20:31 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-10-31 13:20:31 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-10-31 13:20:36 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-10-31 13:20:36 - INFO -   Accuracy: 0.8770
+2025-10-31 13:20:36 - INFO -   Balanced Accuracy: 0.8759
+2025-10-31 13:20:36 - INFO -   AUC-ROC: 0.9451 [0.9364, 0.9533]
+2025-10-31 13:20:36 - INFO -   AUC-PR: 0.9380 [0.9251, 0.9501]
+2025-10-31 13:20:36 - INFO -   F1-Score: 0.8858 [0.8728, 0.8991]
+2025-10-31 13:20:36 - INFO -   EER: 0.1279 @ threshold=0.6879
+2025-10-31 13:20:36 - INFO - 
+PER-CLASS METRICS:
+2025-10-31 13:20:36 - INFO -   Precision (Fake Detection): 0.8405
+2025-10-31 13:20:36 - INFO -   Recall/Sensitivity (Fake Detection): 0.9361
+2025-10-31 13:20:36 - INFO -   Specificity (Real Detection): 0.8156
+2025-10-31 13:20:36 - INFO - 
+CONFUSION MATRIX:
+2025-10-31 13:20:36 - INFO -   True Negatives (Real→Real): 898
+2025-10-31 13:20:36 - INFO -   False Positives (Real→Fake): 203
+2025-10-31 13:20:36 - INFO -   False Negatives (Fake→Real): 73
+2025-10-31 13:20:36 - INFO -   True Positives (Fake→Fake): 1070
+2025-10-31 13:20:36 - INFO - 
+CALIBRATION ANALYSIS:
+2025-10-31 13:20:36 - INFO -   Brier Score: 0.0917 (lower is better)
+2025-10-31 13:20:36 - INFO -   Expected Calibration Error (ECE): 0.0280
+2025-10-31 13:20:36 - INFO -   Maximum Calibration Error (MCE): 0.1571
+2025-10-31 13:20:36 - INFO - 
+======================================================================
+2025-10-31 13:20:36 - INFO - COMPREHENSIVE RESULTS FOR 3 PYRAMID LAYER(S)
+2025-10-31 13:20:36 - INFO - ======================================================================
+2025-10-31 13:20:36 - INFO - TRAINING SUMMARY:
+2025-10-31 13:20:36 - INFO -   Total Parameters: 2,238,978
+2025-10-31 13:20:36 - INFO -   Epochs Trained: 26
+2025-10-31 13:20:36 - INFO -   Best Epoch: 19 (1-indexed)
+2025-10-31 13:20:36 - INFO -   Best Validation Loss: 0.2981
+2025-10-31 13:20:36 - INFO -   Model Checkpoint: best_model_3layers_1761912849.pt
+2025-10-31 13:20:36 - INFO - 
+📁 CHECKPOINTS SAVED:
+2025-10-31 13:20:36 - INFO -   Best model: best_model_3layers_1761912849.pt
+2025-10-31 13:20:36 - INFO -   Last epoch: last_epoch_model_3layers_1761912849.pt
+2025-10-31 13:20:36 - INFO - 
+FINAL PERFORMANCE SUMMARY (using best model):
+2025-10-31 13:20:36 - INFO -   Test AUC-ROC: 0.7679 [0.7389, 0.8001]
+2025-10-31 13:20:36 - INFO -   Test AUC-PR: 0.7529 [0.7057, 0.7994]
+2025-10-31 13:20:36 - INFO -   Test F1-Score: 0.7167 [0.6831, 0.7495]
+2025-10-31 13:20:36 - INFO -   Test Balanced Accuracy: 0.6765
+2025-10-31 13:20:36 - INFO -   Test EER: 0.2990 @ threshold=0.7339
+2025-10-31 13:20:36 - INFO - 
+STANDARD CLASSIFICATION REPORT (Test Set):
+2025-10-31 13:20:36 - INFO -               precision    recall  f1-score   support
+
+        Real       0.75      0.53      0.62       408
+        Fake       0.64      0.82      0.72       408
+
+    accuracy                           0.68       816
+   macro avg       0.69      0.68      0.67       816
+weighted avg       0.69      0.68      0.67       816
+
+2025-10-31 13:20:36 - INFO - 
+================================================================================
+2025-10-31 13:20:36 - INFO - EXPERIMENT RESULTS: Hyperparameter Optimized Model - PyTorch
+2025-10-31 13:20:36 - INFO - ================================================================================
+2025-10-31 13:20:36 - INFO -   pyramid_layers: 3.0000
+2025-10-31 13:20:36 - INFO -   total_params: 2238978.0000
+2025-10-31 13:20:36 - INFO -   epochs_trained: 26.0000
+2025-10-31 13:20:36 - INFO -   best_epoch: 19
+2025-10-31 13:20:36 - INFO -   best_val_loss: 0.2981
+2025-10-31 13:20:36 - INFO -   best_val_acc: 0.8873
+2025-10-31 13:20:36 - INFO -   test_metrics: {'accuracy': np.float64(0.6764705882352942), 'balanced_accuracy': np.float64(0.6764705882352942), 'auc_roc': 0.767931805074971, 'auc_roc_ci': {'mean': np.float64(0.7684760920111312), 'std': np.float64(0.016103609896780315), 'ci_lower': np.float64(0.738900994141132), 'ci_upper': np.float64(0.8000891399950818), 'confidence': 0.95}, 'auc_pr': 0.7529059193623749, 'auc_pr_ci': {'mean': np.float64(0.7545943017888912), 'std': np.float64(0.02372522847924417), 'ci_lower': np.float64(0.7056789195878532), 'ci_upper': np.float64(0.7993652974847206), 'confidence': 0.95}, 'f1_score': 0.7167381974248928, 'f1_ci': {'mean': np.float64(0.7167872298802811), 'std': np.float64(0.01705466988140522), 'ci_lower': np.float64(0.683130050719538), 'ci_upper': np.float64(0.749492830635938), 'confidence': 0.95}, 'precision': 0.6374045801526718, 'recall': 0.8186274509803921, 'specificity': np.float64(0.5343137254901961), 'eer': np.float64(0.2990196078431373), 'eer_threshold': np.float32(0.7338819), 'confusion_matrix': array([[218, 190],
+       [ 74, 334]]), 'calibration': {'brier_score': 0.22671176375118904, 'ece': np.float64(0.17106997457278122), 'mce': np.float64(0.2669236352763225)}, 'bootstrap_confidence': 0.95}
+2025-10-31 13:20:36 - INFO -   val_metrics: {'accuracy': np.float64(0.8770053475935828), 'balanced_accuracy': np.float64(0.875877572524143), 'auc_roc': 0.9450662445577591, 'auc_roc_ci': {'mean': np.float64(0.9451726963785468), 'std': np.float64(0.004403533717810333), 'ci_lower': np.float64(0.9364376992773964), 'ci_upper': np.float64(0.9532952395006371), 'confidence': 0.95}, 'auc_pr': 0.937972477749458, 'auc_pr_ci': {'mean': np.float64(0.938205807657482), 'std': np.float64(0.006518035494085718), 'ci_lower': np.float64(0.9251191839541789), 'ci_upper': np.float64(0.9501249363816667), 'confidence': 0.95}, 'f1_score': 0.8857615894039735, 'f1_ci': {'mean': np.float64(0.886050698344303), 'std': np.float64(0.006828331963184158), 'ci_lower': np.float64(0.8727553117117959), 'ci_upper': np.float64(0.899083890754303), 'confidence': 0.95}, 'precision': 0.8405341712490181, 'recall': 0.9361329833770778, 'specificity': np.float64(0.815622161671208), 'eer': np.float64(0.12789971417060608), 'eer_threshold': np.float32(0.68790776), 'confusion_matrix': array([[ 898,  203],
+       [  73, 1070]]), 'calibration': {'brier_score': 0.09168321223742702, 'ece': np.float64(0.028026680038733928), 'mce': np.float64(0.15708480179309847)}, 'bootstrap_confidence': 0.95}
+2025-10-31 13:20:36 - INFO -   checkpoint_path: best_model_3layers_1761912849.pt
+2025-10-31 13:20:36 - INFO -   best_checkpoint_path: best_model_3layers_1761912849.pt
+2025-10-31 13:20:36 - INFO -   last_checkpoint_path: last_epoch_model_3layers_1761912849.pt
+2025-10-31 13:20:36 - INFO -   history: {'train_loss': [0.6716586325469436, 0.5942606728839276, 0.568075762798887, 0.5355717513161393, 0.5126373924688673, 0.4956195649915728, 0.4620261796630428, 0.4382096376783889, 0.350944524324356, 0.39994396591197034, 0.3867342457537274, 0.394186481389693, 0.38018826129890065, 0.31221469873737623, 0.3596491751620155, 0.36225000354038045, 0.353838182031104, 0.35383625518308726, 0.35842362561607644, 0.3542606513085994, 0.3529639358451257, 0.3509589157820472, 0.348166760435287, 0.30134917269636025, 0.3400806762835706, 0.3614911503701538], 'val_loss': [0.5144427443676879, 0.4161760522826258, 0.4804542507584507, 0.34354184185438613, 0.36627283663141963, 0.37345215226664685, 0.38094889481490524, 0.3587316297486079, 0.3295225105621917, 0.36117578203559136, 0.3698463202744669, 0.4015576060655495, 0.41676392216308444, 0.3736439316057054, 0.34043477754541895, 0.3073663945424365, 0.3482859256791877, 0.350323401789933, 0.2980847651945716, 0.3450369207576953, 0.3045003948643564, 0.304555793523576, 0.363924837413903, 0.3276197660561658, 0.35614602964989006, 0.323122804934647], 'train_acc': [0.6081504702194357, 0.6986677115987461, 0.7186520376175548, 0.7428487460815048, 0.7597962382445141, 0.7758620689655172, 0.7981974921630094, 0.8135775862068966, 0.8566810344827587, 0.8316026645768025, 0.8375783699059561, 0.8376763322884012, 0.8443377742946708, 0.8807797805642633, 0.8596199059561128, 0.8572688087774295, 0.8588362068965517, 0.8621669278996865, 0.8609913793103449, 0.8606974921630094, 0.8625587774294671, 0.8574647335423198, 0.859717868338558, 0.8851880877742947, 0.8677507836990596, 0.8621669278996865], 'val_acc': [0.7722816399286988, 0.8297682709447415, 0.7914438502673797, 0.8622994652406417, 0.8422459893048129, 0.8319964349376114, 0.8489304812834224, 0.8498217468805704, 0.8712121212121212, 0.8605169340463458, 0.8493761140819964, 0.7981283422459893, 0.8493761140819964, 0.8591800356506238, 0.8591800356506238, 0.8872549019607843, 0.8725490196078431, 0.8658645276292335, 0.8770053475935828, 0.8676470588235294, 0.8805704099821747, 0.874777183600713, 0.8694295900178253, 0.8814616755793226, 0.8783422459893048, 0.8698752228163993]}
+2025-10-31 13:20:36 - INFO -   evaluation_type: comprehensive_with_bootstrap
+2025-10-31 13:20:36 - INFO -   optimization_params: {'batch_size': 8, 'base_units': 128, 'num_pyramid_layers': 3, 'dropout_rate': 0.31696827063796124, 'recurrent_dropout': 0.140788138989581, 'attention_units': 128, 'dense_units': 32, 'learning_rate': 0.0003371211809648965, 'weight_decay': 1.8835902269353854e-05}
+2025-10-31 13:20:36 - INFO - ================================================================================
+2025-10-31 13:20:36 - INFO - 
+==========================================================================================
+2025-10-31 13:20:36 - INFO - APPROACH 4: OPTIMIZED DATALOADER PIPELINE - PYTORCH
+2025-10-31 13:20:36 - INFO - ==========================================================================================
+2025-10-31 13:20:36 - INFO - 
+================================================================================
+2025-10-31 13:20:36 - INFO - CREATING OPTIMIZED PYTORCH DATALOADERS
+2025-10-31 13:20:36 - INFO - ================================================================================
+2025-10-31 13:20:36 - INFO - Dataset Statistics:
+2025-10-31 13:20:36 - INFO -   Training: 10208 files (5104 real, 5104 fake)
+2025-10-31 13:20:36 - INFO -   Validation: 2244 files (1101 real, 1143 fake)
+2025-10-31 13:20:36 - INFO -   Testing: 816 files (408 real, 408 fake)
+2025-10-31 13:20:36 - INFO - 
+DataLoader Configuration:
+2025-10-31 13:20:36 - INFO -   Batch Size: 8
+2025-10-31 13:20:36 - INFO -   Num Workers: 2 (parallel data loading)
+2025-10-31 13:20:36 - INFO -   Pin Memory: True (GPU optimization)
+2025-10-31 13:20:36 - INFO -   Training Augmentation: ON
+2025-10-31 13:20:36 - INFO -   Val/Test Augmentation: OFF
+2025-10-31 13:20:36 - INFO - 
+============================================================
+2025-10-31 13:20:36 - INFO - MODEL SUMMARY: DataLoader Optimized PyTorch BiLSTM
+2025-10-31 13:20:36 - INFO - ============================================================
+2025-10-31 13:20:36 - INFO - PyramidalBiLSTM(
+  (first_bilstm): LSTM(80, 128, batch_first=True, bidirectional=True)
+  (first_dropout): Dropout(p=0.3, inplace=False)
+  (first_layernorm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+  (pyramid_layers): ModuleList(
+    (0-1): 2 x PyramidalDownsample()
+  )
+  (pyramid_bilstms): ModuleList(
+    (0-1): 2 x LSTM(512, 128, batch_first=True, bidirectional=True)
+  )
+  (pyramid_dropouts): ModuleList(
+    (0): Dropout(p=0.35, inplace=False)
+    (1): Dropout(p=0.4, inplace=False)
+  )
+  (pyramid_layernorms): ModuleList(
+    (0-1): 2 x LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+  )
+  (attention_pooling): AttentionPooling(
+    (attention_dense): Linear(in_features=256, out_features=128, bias=True)
+    (attention_score): Linear(in_features=128, out_features=1, bias=True)
+  )
+  (attention_dropout): Dropout(p=0.4, inplace=False)
+  (dense1): Linear(in_features=256, out_features=64, bias=True)
+  (dense1_layernorm): LayerNorm((64,), eps=1e-05, elementwise_affine=True)
+  (dense1_dropout): Dropout(p=0.5, inplace=False)
+  (output): Linear(in_features=64, out_features=1, bias=True)
+)
+2025-10-31 13:20:36 - INFO - 
+Model Parameters:
+2025-10-31 13:20:36 - INFO -   Total parameters: 1,581,058
+2025-10-31 13:20:36 - INFO -   Trainable parameters: 1,581,058
+2025-10-31 13:20:36 - INFO -   Non-trainable parameters: 0
+2025-10-31 13:20:36 - INFO - ============================================================
+2025-10-31 13:20:36 - INFO - 
+================================================================================
+2025-10-31 13:20:36 - INFO - TRAINING WITH OPTIMIZED DATALOADER PIPELINE - PYTORCH
+2025-10-31 13:20:36 - INFO - ================================================================================
+2025-10-31 13:20:36 - INFO - Training Configuration:
+2025-10-31 13:20:36 - INFO -   Max Epochs: 100
+2025-10-31 13:20:36 - INFO -   Early Stopping Patience: 7
+2025-10-31 13:20:36 - INFO -   Best Checkpoint: dataloader_best_model_1761913236.pt
+2025-10-31 13:20:36 - INFO -   Last Checkpoint: dataloader_last_epoch_1761913236.pt
+2025-10-31 13:22:42 - INFO - Epoch 1/100 - Train Loss: 0.7077, Train Acc: 0.5219 - Val Loss: 0.6723, Val Acc: 0.5940 - LR: 1.80e-04
+2025-10-31 13:22:42 - INFO - 💾 Best model saved: dataloader_best_model_1761913236.pt
+2025-10-31 13:24:39 - INFO - Epoch 2/100 - Train Loss: 0.6951, Train Acc: 0.5247 - Val Loss: 0.6867, Val Acc: 0.4884 - LR: 2.60e-04
+2025-10-31 13:26:37 - INFO - Epoch 3/100 - Train Loss: 0.6923, Train Acc: 0.5343 - Val Loss: 0.7022, Val Acc: 0.4862 - LR: 3.40e-04
+2025-10-31 13:28:32 - INFO - Epoch 4/100 - Train Loss: 0.6801, Train Acc: 0.5809 - Val Loss: 0.6707, Val Acc: 0.4875 - LR: 4.20e-04
+2025-10-31 13:28:32 - INFO - 💾 Best model saved: dataloader_best_model_1761913236.pt
+2025-10-31 13:30:30 - INFO - Epoch 5/100 - Train Loss: 0.6760, Train Acc: 0.5912 - Val Loss: 0.7226, Val Acc: 0.5049 - LR: 5.00e-04
+2025-10-31 13:32:26 - INFO - Epoch 6/100 - Train Loss: 0.6637, Train Acc: 0.6184 - Val Loss: 0.7161, Val Acc: 0.5388 - LR: 5.00e-04
+2025-10-31 13:34:22 - INFO - Epoch 7/100 - Train Loss: 0.6640, Train Acc: 0.6164 - Val Loss: 0.7067, Val Acc: 0.5094 - LR: 5.00e-04
+2025-10-31 13:36:18 - INFO - Epoch 8/100 - Train Loss: 0.6597, Train Acc: 0.6240 - Val Loss: 0.6481, Val Acc: 0.6586 - LR: 5.00e-04
+2025-10-31 13:36:18 - INFO - 💾 Best model saved: dataloader_best_model_1761913236.pt
+2025-10-31 13:38:12 - INFO - Epoch 9/100 - Train Loss: 0.6526, Train Acc: 0.6425 - Val Loss: 0.5939, Val Acc: 0.6988 - LR: 5.00e-04
+2025-10-31 13:38:12 - INFO - 💾 Best model saved: dataloader_best_model_1761913236.pt
+2025-10-31 13:40:16 - INFO - Epoch 10/100 - Train Loss: 0.6522, Train Acc: 0.6388 - Val Loss: 0.7025, Val Acc: 0.5294 - LR: 5.00e-04
+2025-10-31 13:42:17 - INFO - Epoch 11/100 - Train Loss: 0.6533, Train Acc: 0.6430 - Val Loss: 0.6487, Val Acc: 0.6422 - LR: 5.00e-04
+2025-10-31 13:44:15 - INFO - Epoch 12/100 - Train Loss: 0.6485, Train Acc: 0.6429 - Val Loss: 0.6924, Val Acc: 0.5120 - LR: 5.00e-04
+2025-10-31 13:46:10 - INFO - Epoch 13/100 - Train Loss: 0.6468, Train Acc: 0.6474 - Val Loss: 0.5951, Val Acc: 0.7237 - LR: 5.00e-04
+2025-10-31 13:48:05 - INFO - Epoch 14/100 - Train Loss: 0.6434, Train Acc: 0.6527 - Val Loss: 0.7280, Val Acc: 0.5156 - LR: 5.00e-04
+2025-10-31 13:50:05 - INFO - Epoch 15/100 - Train Loss: 0.6400, Train Acc: 0.6546 - Val Loss: 0.5529, Val Acc: 0.7335 - LR: 5.00e-04
+2025-10-31 13:50:05 - INFO - 💾 Best model saved: dataloader_best_model_1761913236.pt
+2025-10-31 13:52:00 - INFO - Epoch 16/100 - Train Loss: 0.6369, Train Acc: 0.6613 - Val Loss: 0.7306, Val Acc: 0.5570 - LR: 5.00e-04
+2025-10-31 13:53:53 - INFO - Epoch 17/100 - Train Loss: 0.6430, Train Acc: 0.6511 - Val Loss: 0.5747, Val Acc: 0.7188 - LR: 5.00e-04
+2025-10-31 13:55:51 - INFO - Epoch 18/100 - Train Loss: 0.6224, Train Acc: 0.6670 - Val Loss: 0.5688, Val Acc: 0.7175 - LR: 5.00e-04
+2025-10-31 13:57:40 - INFO - Epoch 19/100 - Train Loss: 0.6285, Train Acc: 0.6597 - Val Loss: 0.5549, Val Acc: 0.7331 - LR: 5.00e-04
+2025-10-31 13:59:35 - INFO - Epoch 20/100 - Train Loss: 0.6276, Train Acc: 0.6680 - Val Loss: 0.6407, Val Acc: 0.6301 - LR: 5.00e-04
+2025-10-31 14:01:30 - INFO - Epoch 21/100 - Train Loss: 0.6249, Train Acc: 0.6584 - Val Loss: 0.5551, Val Acc: 0.7291 - LR: 5.00e-04
+2025-10-31 14:03:27 - INFO - Epoch 22/100 - Train Loss: 0.6188, Train Acc: 0.6750 - Val Loss: 0.7668, Val Acc: 0.5838 - LR: 4.99e-04
+2025-10-31 14:03:27 - INFO - 
+⚠️  Early stopping triggered after 22 epochs
+2025-10-31 14:03:27 - INFO - 💾 Last epoch checkpoint saved: dataloader_last_epoch_1761913236.pt
+2025-10-31 14:03:27 - INFO - 
+📁 SAVED CHECKPOINTS:
+2025-10-31 14:03:27 - INFO -   Best model: dataloader_best_model_1761913236.pt
+2025-10-31 14:03:27 - INFO -   Last epoch: dataloader_last_epoch_1761913236.pt
+2025-10-31 14:03:27 - INFO - 
+Evaluating DataLoader optimized model on test set...
+2025-10-31 14:03:35 - INFO - 
+================================================================================
+2025-10-31 14:03:35 - INFO - COMPREHENSIVE EVALUATION METRICS - TEST (DATALOADER) SET
+2025-10-31 14:03:35 - INFO - ================================================================================
+2025-10-31 14:03:35 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-10-31 14:03:35 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-10-31 14:03:40 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-10-31 14:03:40 - INFO -   Accuracy: 0.5711
+2025-10-31 14:03:40 - INFO -   Balanced Accuracy: 0.5711
+2025-10-31 14:03:40 - INFO -   AUC-ROC: 0.5968 [0.5573, 0.6327]
+2025-10-31 14:03:40 - INFO -   AUC-PR: 0.6275 [0.5755, 0.6813]
+2025-10-31 14:03:40 - INFO -   F1-Score: 0.5592 [0.5149, 0.5969]
+2025-10-31 14:03:40 - INFO -   EER: 0.4363 @ threshold=0.4611
+2025-10-31 14:03:40 - INFO - 
+PER-CLASS METRICS:
+2025-10-31 14:03:40 - INFO -   Precision (Fake Detection): 0.5751
+2025-10-31 14:03:40 - INFO -   Recall/Sensitivity (Fake Detection): 0.5441
+2025-10-31 14:03:40 - INFO -   Specificity (Real Detection): 0.5980
+2025-10-31 14:03:40 - INFO - 
+CONFUSION MATRIX:
+2025-10-31 14:03:40 - INFO -   True Negatives (Real→Real): 244
+2025-10-31 14:03:40 - INFO -   False Positives (Real→Fake): 164
+2025-10-31 14:03:40 - INFO -   False Negatives (Fake→Real): 186
+2025-10-31 14:03:40 - INFO -   True Positives (Fake→Fake): 222
+2025-10-31 14:03:40 - INFO - 
+CALIBRATION ANALYSIS:
+2025-10-31 14:03:40 - INFO -   Brier Score: 0.2749 (lower is better)
+2025-10-31 14:03:40 - INFO -   Expected Calibration Error (ECE): 0.1857
+2025-10-31 14:03:40 - INFO -   Maximum Calibration Error (MCE): 0.3377
+2025-10-31 14:03:40 - INFO - 
+================================================================================
+2025-10-31 14:03:40 - INFO - COMPREHENSIVE EVALUATION METRICS - VALIDATION (DATALOADER) SET
+2025-10-31 14:03:40 - INFO - ================================================================================
+2025-10-31 14:03:40 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-10-31 14:03:40 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-10-31 14:03:45 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-10-31 14:03:45 - INFO -   Accuracy: 0.5838
+2025-10-31 14:03:45 - INFO -   Balanced Accuracy: 0.5871
+2025-10-31 14:03:45 - INFO -   AUC-ROC: 0.6939 [0.6722, 0.7157]
+2025-10-31 14:03:45 - INFO -   AUC-PR: 0.6327 [0.6032, 0.6672]
+2025-10-31 14:03:45 - INFO -   F1-Score: 0.5016 [0.4747, 0.5299]
+2025-10-31 14:03:45 - INFO -   EER: 0.3516 @ threshold=0.2029
+2025-10-31 14:03:45 - INFO - 
+PER-CLASS METRICS:
+2025-10-31 14:03:45 - INFO -   Precision (Fake Detection): 0.6430
+2025-10-31 14:03:45 - INFO -   Recall/Sensitivity (Fake Detection): 0.4112
+2025-10-31 14:03:45 - INFO -   Specificity (Real Detection): 0.7629
+2025-10-31 14:03:45 - INFO - 
+CONFUSION MATRIX:
+2025-10-31 14:03:45 - INFO -   True Negatives (Real→Real): 840
+2025-10-31 14:03:45 - INFO -   False Positives (Real→Fake): 261
+2025-10-31 14:03:45 - INFO -   False Negatives (Fake→Real): 673
+2025-10-31 14:03:45 - INFO -   True Positives (Fake→Fake): 470
+2025-10-31 14:03:45 - INFO - 
+CALIBRATION ANALYSIS:
+2025-10-31 14:03:45 - INFO -   Brier Score: 0.2733 (lower is better)
+2025-10-31 14:03:45 - INFO -   Expected Calibration Error (ECE): 0.1913
+2025-10-31 14:03:45 - INFO -   Maximum Calibration Error (MCE): 0.4330
+2025-10-31 14:03:45 - INFO - 
+================================================================================
+2025-10-31 14:03:45 - INFO - EXPERIMENT RESULTS: Optimized DataLoader Pipeline - PyTorch
+2025-10-31 14:03:45 - INFO - ================================================================================
+2025-10-31 14:03:45 - INFO -   test_metrics: {'accuracy': np.float64(0.571078431372549), 'balanced_accuracy': np.float64(0.571078431372549), 'auc_roc': 0.5967656670511341, 'auc_roc_ci': {'mean': np.float64(0.595441570396187), 'std': np.float64(0.01972681030026212), 'ci_lower': np.float64(0.5572670136153873), 'ci_upper': np.float64(0.6326755889151167), 'confidence': 0.95}, 'auc_pr': 0.6275392597957676, 'auc_pr_ci': {'mean': np.float64(0.6284166047245769), 'std': np.float64(0.02625713869495606), 'ci_lower': np.float64(0.5754751775477223), 'ci_upper': np.float64(0.6813457627723143), 'confidence': 0.95}, 'f1_score': 0.5591939546599496, 'f1_ci': {'mean': np.float64(0.5580137201253988), 'std': np.float64(0.021035097701119346), 'ci_lower': np.float64(0.5149358339301521), 'ci_upper': np.float64(0.5968927119515981), 'confidence': 0.95}, 'precision': 0.5751295336787565, 'recall': 0.5441176470588235, 'specificity': np.float64(0.5980392156862745), 'eer': np.float64(0.4362745098039216), 'eer_threshold': np.float32(0.4611133), 'confusion_matrix': array([[244, 164],
+       [186, 222]]), 'calibration': {'brier_score': 0.27486222483373784, 'ece': np.float64(0.18569975883206902), 'mce': np.float64(0.337723284250214)}, 'bootstrap_confidence': 0.95}
+2025-10-31 14:03:45 - INFO -   val_metrics: {'accuracy': np.float64(0.5837789661319073), 'balanced_accuracy': np.float64(0.5870706897332656), 'auc_roc': 0.6939416405828471, 'auc_roc_ci': {'mean': np.float64(0.6942146952195969), 'std': np.float64(0.011346337494331931), 'ci_lower': np.float64(0.6722023882072173), 'ci_upper': np.float64(0.7157166012443736), 'confidence': 0.95}, 'auc_pr': 0.6326770937014468, 'auc_pr_ci': {'mean': np.float64(0.634896079598431), 'std': np.float64(0.016174773857939893), 'ci_lower': np.float64(0.6031834708582835), 'ci_upper': np.float64(0.6671858767569743), 'confidence': 0.95}, 'f1_score': 0.5016008537886874, 'f1_ci': {'mean': np.float64(0.5019417901678764), 'std': np.float64(0.014417026467973793), 'ci_lower': np.float64(0.474686555003729), 'ci_upper': np.float64(0.5298703359041804), 'confidence': 0.95}, 'precision': 0.6429548563611491, 'recall': 0.4111986001749781, 'specificity': np.float64(0.7629427792915532), 'eer': np.float64(0.3516023371737933), 'eer_threshold': np.float32(0.20294559), 'confusion_matrix': array([[840, 261],
+       [673, 470]]), 'calibration': {'brier_score': 0.273281540220779, 'ece': np.float64(0.19131373348454953), 'mce': np.float64(0.43296823564803966)}, 'bootstrap_confidence': 0.95}
+2025-10-31 14:03:45 - INFO -   total_params: 1581058.0000
+2025-10-31 14:03:45 - INFO -   checkpoint_path: dataloader_best_model_1761913236.pt
+2025-10-31 14:03:45 - INFO -   epochs_trained: 22.0000
+2025-10-31 14:03:45 - INFO - ================================================================================
+2025-10-31 14:03:45 - INFO - 
+DataLoader Pipeline Results Summary:
+2025-10-31 14:03:45 - INFO -   Test AUC-ROC: 0.5968
+2025-10-31 14:03:45 - INFO -   Test F1-Score: 0.5592
+2025-10-31 14:03:45 - INFO -   Training Epochs: 22
+2025-10-31 14:03:45 - INFO -   Pipeline Efficiency: Multi-worker data loading + pin memory
+2025-10-31 14:03:45 - INFO - 
+
+====================================================================================================
+2025-10-31 14:03:45 - INFO - FINAL COMPREHENSIVE RESULTS COMPARISON - PYTORCH
+2025-10-31 14:03:45 - INFO - ====================================================================================================
+2025-10-31 14:03:45 - INFO - 
+METHODOLOGY COMPARISON:
+2025-10-31 14:03:45 - INFO - ================================================================================
+2025-10-31 14:03:45 - INFO - APPROACH 1 - SINGLE SPLIT RESULTS (Manual Pipeline):
+2025-10-31 14:03:45 - INFO -   Test AUC-ROC: 0.8122 [0.7824, 0.8394]
+2025-10-31 14:03:45 - INFO -   Test F1-Score: 0.7048 [0.6657, 0.7391]
+2025-10-31 14:03:45 - INFO -   Validation AUC-ROC: 0.9770
+2025-10-31 14:03:45 - INFO -   Parameters: 1,581,058
+2025-10-31 14:03:45 - INFO -   Data Pipeline: Manual preprocessing & batching
+2025-10-31 14:03:45 - INFO - 
+APPROACH 2 - K-FOLD CROSS-VALIDATION RESULTS (Statistical Validation):
+2025-10-31 14:03:45 - INFO -   CV AUC-ROC (mean±std): 0.9102 ± 0.0150
+2025-10-31 14:03:45 - INFO -   CV F1-Score (mean±std): 0.8292 ± 0.0239
+2025-10-31 14:03:45 - INFO -   Hold-out Test AUC-ROC: 0.8805
+2025-10-31 14:03:45 - INFO -   Hold-out Test F1-Score: 0.7507
+2025-10-31 14:03:45 - INFO -   Performance Variability: 0.016 (Low)
+2025-10-31 14:03:45 - INFO -   Robustness: Validated across 5 folds
+2025-10-31 14:03:45 - INFO - 
+APPROACH 3 - HYPERPARAMETER OPTIMIZED RESULTS (Automated Tuning):
+2025-10-31 14:03:45 - INFO -   Test AUC-ROC: 0.7679 [0.7389, 0.8001]
+2025-10-31 14:03:45 - INFO -   Test F1-Score: 0.7167 [0.6831, 0.7495]
+2025-10-31 14:03:45 - INFO -   Validation AUC-ROC: 0.9451
+2025-10-31 14:03:45 - INFO -   Parameters: 2,238,978
+2025-10-31 14:03:45 - INFO -   Improvement over Baseline: -5.46%
+2025-10-31 14:03:45 - INFO - 
+APPROACH 4 - OPTIMIZED DATALOADER PIPELINE (Production Performance):
+2025-10-31 14:03:45 - INFO -   Test AUC-ROC: 0.5968 [0.5573, 0.6327]
+2025-10-31 14:03:45 - INFO -   Test F1-Score: 0.5592 [0.5149, 0.5969]
+2025-10-31 14:03:45 - INFO -   Validation AUC-ROC: 0.6939
+2025-10-31 14:03:45 - INFO -   Parameters: 1,581,058
+2025-10-31 14:03:45 - INFO -   Data Pipeline: Optimized DataLoader with multi-worker loading
+2025-10-31 14:03:45 - INFO -   Pipeline Efficiency Improvement: -26.53%
+2025-10-31 14:03:45 - INFO - 
+PERFORMANCE RANKING:
+2025-10-31 14:03:45 - INFO - ============================================================
+2025-10-31 14:03:45 - INFO -   🥇 1. K-Fold CV (Statistical): 0.8805 AUC-ROC
+2025-10-31 14:03:45 - INFO -   🥈 2. Single Split (Manual): 0.8122 AUC-ROC
+2025-10-31 14:03:45 - INFO -   🥉 3. Hyperparameter Optimized: 0.7679 AUC-ROC
+2025-10-31 14:03:45 - INFO -      4. Optimized DataLoader: 0.5968 AUC-ROC
+2025-10-31 14:03:45 - INFO - 
+FINAL ASSESSMENT & RECOMMENDATIONS:
+2025-10-31 14:03:45 - INFO - ================================================================================
+2025-10-31 14:03:45 - INFO - 🎯 BEST PERFORMING: K-Fold CV (Statistical) (0.8805 AUC-ROC)
+2025-10-31 14:03:45 - INFO - ✅ ROBUST PERFORMANCE: Low cross-validation variability (0.016)
+2025-10-31 14:03:45 - INFO - ✅ PRODUCTION READY: Model shows consistent performance across data splits
+2025-10-31 14:03:45 - INFO - 
+🏆 RECOMMENDED DEPLOYMENT STRATEGY:
+2025-10-31 14:03:45 - INFO -   → 🥇 DEPLOY K-FOLD CV (STATISTICAL) MODEL
+2025-10-31 14:03:45 - INFO -   → 📈 PyTorch implementation provides excellent flexibility
+2025-10-31 14:03:45 - INFO -   → ⚡ Native GPU acceleration available
+2025-10-31 14:03:45 - INFO -   → 🔧 Easy integration with production serving frameworks
+2025-10-31 14:03:45 - INFO - 
+================================================================================
+2025-10-31 14:03:45 - INFO - EXPERIMENT SUMMARY - PYTORCH ULTRA-ENHANCED ARCHITECTURE
+2025-10-31 14:03:45 - INFO - ================================================================================
+2025-10-31 14:03:45 - INFO - This comprehensive PyTorch implementation now features ALL 4 APPROACHES:
+2025-10-31 14:03:45 - INFO - 
+✅ APPROACH 1 - SINGLE SPLIT VALIDATION:
+2025-10-31 14:03:45 - INFO - • 2 pyramid layers with native PyTorch downsampling
+2025-10-31 14:03:45 - INFO - • Log-Mel spectrograms (80 bins)
+2025-10-31 14:03:45 - INFO - • AttentionPooling for complete temporal information
+2025-10-31 14:03:45 - INFO - • AdamW optimizer with gradient clipping + OneCycle LR schedule
+2025-10-31 14:03:45 - INFO - 
+✅ APPROACH 2 - STRATIFIED K-FOLD CROSS-VALIDATION:
+2025-10-31 14:03:45 - INFO - • 5-fold cross-validation for robust performance estimation
+2025-10-31 14:03:45 - INFO - • Stratified splitting preserves class distribution
+2025-10-31 14:03:45 - INFO - • Statistical analysis with coefficient of variation
+2025-10-31 14:03:45 - INFO - • 95% confidence intervals for mean performance
+2025-10-31 14:03:45 - INFO - • Hold-out test set evaluation with best fold model
+2025-10-31 14:03:45 - INFO - 
+✅ APPROACH 3 - HYPERPARAMETER OPTIMIZATION:
+2025-10-31 14:03:45 - INFO - • Optuna-based Bayesian optimization
+2025-10-31 14:03:45 - INFO - • Automated search across architecture & training parameters
+2025-10-31 14:03:45 - INFO - • Median pruning for efficient trial management
+2025-10-31 14:03:45 - INFO - • Parameters optimized: base_units, pyramid_layers, dropout, LR, batch_size
+2025-10-31 14:03:45 - INFO - • Best configuration automatically selected and retrained
+2025-10-31 14:03:45 - INFO - 
+✅ APPROACH 4 - OPTIMIZED DATALOADER PIPELINE:
+2025-10-31 14:03:45 - INFO - • Multi-worker parallel data loading
+2025-10-31 14:03:45 - INFO - • Pin memory for faster GPU transfer
+2025-10-31 14:03:45 - INFO - • On-the-fly feature extraction with augmentation
+2025-10-31 14:03:45 - INFO - • Custom collate function for variable-length sequences
+2025-10-31 14:03:45 - INFO - • Production-ready scalable data pipeline
+2025-10-31 14:03:45 - INFO - 
+🔥 ENHANCED REGULARIZATION ACROSS ALL APPROACHES:
+2025-10-31 14:03:45 - INFO -   - Dropout in all layers with progressive rates
+2025-10-31 14:03:45 - INFO -   - LayerNormalization for training stability
+2025-10-31 14:03:45 - INFO -   - Weight decay for parameter control
+2025-10-31 14:03:45 - INFO -   - Gradient clipping (max_norm=1.0)
+2025-10-31 14:03:45 - INFO - 
+🚀 ROBUST TRAINING PIPELINE:
+2025-10-31 14:03:45 - INFO -   - Model checkpointing with best weight restoration
+2025-10-31 14:03:45 - INFO -   - Early stopping (patience=7)
+2025-10-31 14:03:45 - INFO -   - OneCycle + Plateau LR schedulers
+2025-10-31 14:03:45 - INFO -   - Up to 100 epochs with intelligent stopping
+2025-10-31 14:03:45 - INFO - 
+🎵 MULTI-LEVEL DATA AUGMENTATION:
+2025-10-31 14:03:45 - INFO -   - Audio-level: Speed (±10%), pitch (±1 semitone), noise (10-20dB)
+2025-10-31 14:03:45 - INFO -   - Spectral-level: SpecAugment time/frequency masking
+2025-10-31 14:03:45 - INFO - 
+📊 COMPREHENSIVE STATISTICAL EVALUATION:
+2025-10-31 14:03:45 - INFO -   - Bootstrap confidence intervals (95% CI)
+2025-10-31 14:03:45 - INFO -   - AUC-PR analysis
+2025-10-31 14:03:45 - INFO -   - Calibration analysis (Brier score, ECE, MCE)
+2025-10-31 14:03:45 - INFO -   - Per-class performance breakdown
+2025-10-31 14:03:45 - INFO -   - Performance ranking with deployment recommendations
+2025-10-31 14:03:45 - INFO - 
+📈 DATASET STATISTICS:
+2025-10-31 14:03:45 - INFO -   Training: 10208 samples
+2025-10-31 14:03:45 - INFO -   Validation: 2244 samples
+2025-10-31 14:03:45 - INFO -   Testing: 816 samples
+2025-10-31 14:03:45 - INFO - 
+🏆 METHODOLOGY COMPARISON:
+2025-10-31 14:03:45 - INFO -   Approaches Evaluated: 4
+2025-10-31 14:03:45 - INFO -   Best Method: K-Fold CV (Statistical)
+2025-10-31 14:03:45 - INFO -   Best AUC-ROC: 0.8805
+2025-10-31 14:03:45 - INFO - 
+✅ FULL FEATURE PARITY WITH TENSORFLOW VERSION ACHIEVED!
+2025-10-31 14:03:45 - INFO - ================================================================================
+2025-10-31 14:03:45 - INFO - 
+================================================================================
+2025-10-31 14:03:45 - INFO - TRAINING SESSION COMPLETED
+2025-10-31 14:03:45 - INFO - ================================================================================
+2025-10-31 14:03:45 - INFO - 📝 Complete log saved to: logs/pyramidal_bilstm_pytorch_training_20251031_112411.log
+2025-10-31 14:03:45 - INFO - 🕒 Session duration: 2025-10-31 14:03:45
+2025-10-31 14:03:45 - INFO - 🔧 All outputs (training progress, model summaries, metrics) are saved
+2025-10-31 14:03:45 - INFO - 📊 Log file includes:
+2025-10-31 14:03:45 - INFO -    • Complete model architecture details
+2025-10-31 14:03:45 - INFO -    • Training progress and epoch-by-epoch metrics
+2025-10-31 14:03:45 - INFO -    • Comprehensive evaluation results
+2025-10-31 14:03:45 - INFO -    • Cross-validation and hyperparameter optimization logs
+2025-10-31 14:03:45 - INFO -    • System information and configuration
+2025-10-31 14:03:45 - INFO - 💾 Use this log file for:
+2025-10-31 14:03:45 - INFO -    • Reproducing experiments
+2025-10-31 14:03:45 - INFO -    • Debugging and performance analysis
+2025-10-31 14:03:45 - INFO -    • Research documentation and reporting
+2025-10-31 14:03:45 - INFO -    • Comparing different model configurations
+2025-10-31 14:03:45 - INFO - ================================================================================
+2025-10-31 14:03:45 - INFO - 
+==========================================================================================
+2025-10-31 14:03:45 - INFO - ✅ PYTORCH COMPREHENSIVE IMPLEMENTATION COMPLETE!
+2025-10-31 14:03:45 - INFO - ==========================================================================================
+2025-10-31 14:03:45 - INFO - COMPLETE FEATURE PARITY WITH TENSORFLOW VERSION:
+2025-10-31 14:03:45 - INFO - ✓ All 4 experimental approaches implemented
+2025-10-31 14:03:45 - INFO - ✓ K-Fold cross-validation with statistical analysis
+2025-10-31 14:03:45 - INFO - ✓ Automated hyperparameter optimization (Optuna)
+2025-10-31 14:03:45 - INFO - ✓ Optimized DataLoader pipeline (parallel loading)
+2025-10-31 14:03:45 - INFO - ✓ Comprehensive comparison framework
+2025-10-31 14:03:45 - INFO - ✓ Performance ranking & deployment recommendations
+2025-10-31 14:03:45 - INFO - 
+KEY PYTORCH ADVANTAGES:
+2025-10-31 14:03:45 - INFO - • Native PyTorch nn.Module classes (more flexible)
+2025-10-31 14:03:45 - INFO - • Manual training loops (full control)
+2025-10-31 14:03:45 - INFO - • Multi-worker DataLoader (parallel data loading)
+2025-10-31 14:03:45 - INFO - • torch.save() checkpointing (portable)
+2025-10-31 14:03:45 - INFO - • CUDA operations (native GPU acceleration)
+2025-10-31 14:03:45 - INFO - • Easier deployment (TorchScript, ONNX export)
+2025-10-31 14:03:45 - INFO - • Production-ready (PyTorch Serve, TorchServe)
+2025-10-31 14:03:45 - INFO - 
+📊 TOTAL CODE SIZE: ~2699 lines
+2025-10-31 14:03:45 - INFO - 🎯 NOW MATCHES TensorFlow VERSION IN COMPREHENSIVENESS!
+2025-10-31 14:03:45 - INFO - ==========================================================================================

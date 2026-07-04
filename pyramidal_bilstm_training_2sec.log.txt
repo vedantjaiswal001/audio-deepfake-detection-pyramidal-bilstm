@@ -1,0 +1,2053 @@
+2025-09-01 00:44:48 - INFO - ================================================================================
+2025-09-01 00:44:48 - INFO - PYRAMIDAL BiLSTM AUDIO DEEPFAKE DETECTION SYSTEM
+2025-09-01 00:44:48 - INFO - ================================================================================
+2025-09-01 00:44:48 - INFO - Log file created: logs/pyramidal_bilstm_training_20250901_004448.log
+2025-09-01 00:44:48 - INFO - Python version: 3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]
+2025-09-01 00:44:48 - INFO - TensorFlow version: 2.20.0
+2025-09-01 00:44:48 - INFO - NumPy version: 2.2.6
+2025-09-01 00:44:48 - INFO - Librosa version: 0.11.0
+2025-09-01 00:44:48 - INFO - ================================================================================
+2025-09-01 00:44:48 - INFO - Optuna available for hyperparameter optimization
+2025-09-01 00:44:48 - INFO - ================================================================================
+2025-09-01 00:44:48 - INFO - LOADING DATASET WITH COMPREHENSIVE AUGMENTATION PIPELINE
+2025-09-01 00:44:48 - INFO - ================================================================================
+2025-09-01 00:44:48 - INFO - TRAINING: Audio-level + Spectral-level augmentation
+2025-09-01 00:44:48 - INFO - VAL/TEST: Clean data (no augmentation)
+2025-09-01 00:44:48 - INFO - ================================================================================
+2025-09-01 00:44:48 - INFO - Loading data from C:\Users\suman\OneDrive\Desktop\deepfake\for-2seconds\training
+2025-09-01 00:44:48 - INFO -   Augmentation: FULL AUGMENTATION (Audio + Spectral)
+2025-09-01 00:44:48 - INFO -   Audio-level: Speed (±10%), Pitch (±1 semitone), Noise (10-20dB SNR)
+2025-09-01 00:44:48 - INFO -   Spectral-level: Time masking (15 frames), Frequency masking (10 bins)
+2025-09-01 00:48:12 - INFO -   real: 6978 files loaded
+2025-09-01 00:51:05 - INFO -   fake: 6978 files loaded
+2025-09-01 00:51:05 - INFO - Total: 13956 samples with full augmentation (audio + spectral)
+2025-09-01 00:51:05 - INFO - Loading data from C:\Users\suman\OneDrive\Desktop\deepfake\for-2seconds\validation
+2025-09-01 00:51:05 - INFO -   Augmentation: NO AUGMENTATION
+2025-09-01 00:51:30 - INFO -   real: 1413 files loaded
+2025-09-01 00:51:55 - INFO -   fake: 1413 files loaded
+2025-09-01 00:51:55 - INFO - Total: 2826 samples with no augmentation
+2025-09-01 00:51:55 - INFO - Loading data from C:\Users\suman\OneDrive\Desktop\deepfake\for-2seconds\testing
+2025-09-01 00:51:55 - INFO -   Augmentation: NO AUGMENTATION
+2025-09-01 00:52:05 - INFO -   real: 544 files loaded
+2025-09-01 00:52:15 - INFO -   fake: 544 files loaded
+2025-09-01 00:52:15 - INFO - Total: 1088 samples with no augmentation
+2025-09-01 00:52:15 - INFO - Global maximum sequence length: 139
+2025-09-01 00:52:15 - INFO - Training max: 139
+2025-09-01 00:52:15 - INFO - Validation max: 126
+2025-09-01 00:52:15 - INFO - Testing max: 126
+2025-09-01 00:52:18 - INFO - 
+==========================================================================================
+2025-09-01 00:52:18 - INFO - ULTRA-ENHANCED PYRAMIDAL BiLSTM WITH COMPREHENSIVE AUGMENTATION
+2025-09-01 00:52:18 - INFO - Testing 2 pyramid layers + attention + multi-level data augmentation
+2025-09-01 00:52:18 - INFO - ==========================================================================================
+2025-09-01 00:52:18 - INFO - MAJOR IMPROVEMENTS IMPLEMENTED:
+2025-09-01 00:52:18 - INFO - ✓ TF-safe pyramid downsampling (no more crashes)
+2025-09-01 00:52:18 - INFO - ✓ Log-Mel spectrograms (80 bins) vs original MFCC (40)
+2025-09-01 00:52:18 - INFO - ✓ Proper sequence masking for variable-length sequences
+2025-09-01 00:52:18 - INFO - ✓ AttentionPooling using ALL temporal information
+2025-09-01 00:52:18 - INFO - ✓ AdamW optimizer with OneCycle learning rate schedule
+2025-09-01 00:52:18 - INFO - ✓ ENHANCED REGULARIZATION PIPELINE:
+2025-09-01 00:52:18 - INFO -   • Recurrent dropout (0.2-0.25) in all LSTM layers
+2025-09-01 00:52:18 - INFO -   • LayerNormalization after BiLSTM and Dense layers
+2025-09-01 00:52:18 - INFO -   • Progressive dropout rates (0.3 → 0.35 → 0.4 → 0.5)
+2025-09-01 00:52:18 - INFO -   • L2 kernel regularization (1e-4) on Dense layers
+2025-09-01 00:52:18 - INFO -   • Weight decay (1e-5) via AdamW optimizer
+2025-09-01 00:52:18 - INFO - ✓ COMPREHENSIVE DATA AUGMENTATION PIPELINE:
+2025-09-01 00:52:18 - INFO -   • Audio-level: Speed perturbation (±10%), Pitch shift (±1 semitone)
+2025-09-01 00:52:18 - INFO -   • Audio-level: Colored noise addition (white/pink, 10-20dB SNR)
+2025-09-01 00:52:18 - INFO -   • Spectral-level: SpecAugment (time + frequency masking)
+2025-09-01 00:52:18 - INFO - ✓ Training robustness: ~80% samples get some form of augmentation
+2025-09-01 00:52:18 - INFO - ==========================================================================================
+2025-09-01 00:52:18 - INFO - 
+====================================================================================================
+2025-09-01 00:52:18 - INFO - EVALUATION STRATEGY COMPARISON
+2025-09-01 00:52:18 - INFO - ====================================================================================================
+2025-09-01 00:52:18 - INFO - Running both single train/val/test split and 5-fold cross-validation
+2025-09-01 00:52:18 - INFO - for comprehensive performance assessment and validation robustness
+2025-09-01 00:52:18 - INFO - ====================================================================================================
+2025-09-01 00:52:18 - INFO - 
+==========================================================================================
+2025-09-01 00:52:18 - INFO - APPROACH 1: SINGLE TRAIN/VALIDATION/TEST SPLIT
+2025-09-01 00:52:18 - INFO - ==========================================================================================
+2025-09-01 00:52:18 - INFO - 
+============================================================
+2025-09-01 00:52:18 - INFO - TRAINING MODEL WITH 2 PYRAMID LAYER(S)
+2025-09-01 00:52:18 - INFO - ============================================================
+2025-09-01 00:52:18 - INFO - 🔨 Building new model (no checkpoint found)...
+2025-09-01 00:52:18 - INFO - 
+============================================================
+2025-09-01 00:52:18 - INFO - MODEL SUMMARY: Pyramidal BiLSTM (2 layers)
+2025-09-01 00:52:18 - INFO - ============================================================
+2025-09-01 00:52:18 - INFO - Model: "functional"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                  ┃ Output Shape              ┃         Param # ┃ Connected to               ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ input_layer (InputLayer)      │ (None, 139, 80)           │               0 │ -                          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ not_equal (NotEqual)          │ (None, 139, 80)           │               0 │ input_layer[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ masking (Masking)             │ (None, 139, 80)           │               0 │ input_layer[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ any (Any)                     │ (None, 139)               │               0 │ not_equal[0][0]            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional (Bidirectional) │ (None, 139, 256)          │         214,016 │ masking[0][0], any[0][0]   │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization           │ (None, 139, 256)          │             512 │ bidirectional[0][0]        │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout (Dropout)             │ (None, 139, 256)          │               0 │ layer_normalization[0][0]  │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ pyramid_downsample_layer_1    │ (None, 69, 512)           │               0 │ dropout[0][0]              │
+│ (PyramidalDownsample)         │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional_1               │ (None, 69, 256)           │         656,384 │ pyramid_downsample_layer_… │
+│ (Bidirectional)               │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_1         │ (None, 69, 256)           │             512 │ bidirectional_1[0][0]      │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_1 (Dropout)           │ (None, 69, 256)           │               0 │ layer_normalization_1[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ pyramid_downsample_layer_2    │ (None, 34, 512)           │               0 │ dropout_1[0][0]            │
+│ (PyramidalDownsample)         │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional_2               │ (None, 34, 256)           │         656,384 │ pyramid_downsample_layer_… │
+│ (Bidirectional)               │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_2         │ (None, 34, 256)           │             512 │ bidirectional_2[0][0]      │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_2 (Dropout)           │ (None, 34, 256)           │               0 │ layer_normalization_2[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ attention_pooling             │ (None, 256)               │          33,025 │ dropout_2[0][0]            │
+│ (AttentionPooling)            │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_3 (Dropout)           │ (None, 256)               │               0 │ attention_pooling[0][0]    │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dense (Dense)                 │ (None, 64)                │          16,448 │ dropout_3[0][0]            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_3         │ (None, 64)                │             128 │ dense[0][0]                │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_4 (Dropout)           │ (None, 64)                │               0 │ layer_normalization_3[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ classification_output (Dense) │ (None, 1)                 │              65 │ dropout_4[0][0]            │
+└───────────────────────────────┴───────────────────────────┴─────────────────┴────────────────────────────┘
+ Total params: 1,577,986 (6.02 MB)
+ Trainable params: 1,577,986 (6.02 MB)
+ Non-trainable params: 0 (0.00 B)
+
+2025-09-01 00:52:18 - INFO - 
+Model Parameters:
+2025-09-01 00:52:18 - INFO -   Total parameters: 1,577,986
+2025-09-01 00:52:18 - INFO -   Trainable parameters: 1,577,986
+2025-09-01 00:52:18 - INFO -   Non-trainable parameters: 0
+2025-09-01 00:52:18 - INFO - ============================================================
+2025-09-01 00:52:18 - INFO - 
+Model Architecture Summary:
+2025-09-01 00:52:18 - INFO - Total Parameters: 1,577,986
+2025-09-01 00:52:18 - INFO - 
+================================================================================
+2025-09-01 00:52:18 - INFO - ENHANCED TRAINING PIPELINE
+2025-09-01 00:52:18 - INFO - ================================================================================
+2025-09-01 00:52:18 - INFO - Optimizer: AdamW (weight_decay=1e-5, clipnorm=1.0)
+2025-09-01 00:52:18 - INFO - Learning Rate: OneCycle (Base: 1e-4, Peak: 5e-4, Min: 1e-6)
+2025-09-01 00:52:18 - INFO - Schedule: Warmup (5 epochs) → Peak (15 epochs) → Cosine Annealing
+2025-09-01 00:52:18 - INFO - Max Epochs: 100 (with early stopping)
+2025-09-01 00:52:18 - INFO - ENHANCED REGULARIZATION:
+2025-09-01 00:52:18 - INFO -   • Recurrent dropout: 0.2-0.25 in LSTM layers
+2025-09-01 00:52:18 - INFO -   • LayerNormalization after each BiLSTM and Dense layer
+2025-09-01 00:52:18 - INFO -   • Progressive dropout: 0.3 → 0.35 → 0.4 → 0.5
+2025-09-01 00:52:18 - INFO -   • L2 regularization (1e-4) on Dense layer kernels
+2025-09-01 00:52:18 - INFO -   • Weight decay (1e-5) via AdamW optimizer
+2025-09-01 00:52:18 - INFO - TRAINING CALLBACKS:
+2025-09-01 00:52:18 - INFO -   • Best model checkpointing: best_model_2layers_1756668138.keras
+2025-09-01 00:52:18 - INFO -   • Per-epoch checkpointing: epoch_XXX_model_2layers_1756668138.keras
+2025-09-01 00:52:18 - INFO -   • Early stopping: patience=7, min_delta=0.0005
+2025-09-01 00:52:18 - INFO -   • LR plateau reduction: factor=0.2, patience=3
+2025-09-01 00:52:18 - INFO -   • NaN termination for training stability
+2025-09-01 00:52:18 - INFO - ================================================================================
+2025-09-01 01:12:03 - INFO - 💾 Epoch 1 checkpoint saved: epoch_001_model_2layers_1756668138.keras
+2025-09-01 01:30:26 - INFO - 💾 Epoch 2 checkpoint saved: epoch_002_model_2layers_1756668138.keras
+2025-09-01 01:47:46 - INFO - 💾 Epoch 3 checkpoint saved: epoch_003_model_2layers_1756668138.keras
+2025-09-01 02:04:34 - INFO - 💾 Epoch 4 checkpoint saved: epoch_004_model_2layers_1756668138.keras
+2025-09-01 02:21:26 - INFO - 💾 Epoch 5 checkpoint saved: epoch_005_model_2layers_1756668138.keras
+2025-09-01 02:38:23 - INFO - 💾 Epoch 6 checkpoint saved: epoch_006_model_2layers_1756668138.keras
+2025-09-01 02:55:17 - INFO - 💾 Epoch 7 checkpoint saved: epoch_007_model_2layers_1756668138.keras
+2025-09-01 03:12:19 - INFO - 💾 Epoch 8 checkpoint saved: epoch_008_model_2layers_1756668138.keras
+2025-09-01 03:29:27 - INFO - 💾 Epoch 9 checkpoint saved: epoch_009_model_2layers_1756668138.keras
+2025-09-01 03:46:42 - INFO - 💾 Epoch 10 checkpoint saved: epoch_010_model_2layers_1756668138.keras
+2025-09-01 04:03:58 - INFO - 💾 Epoch 11 checkpoint saved: epoch_011_model_2layers_1756668138.keras
+2025-09-01 04:21:28 - INFO - 💾 Epoch 12 checkpoint saved: epoch_012_model_2layers_1756668138.keras
+2025-09-01 04:38:58 - INFO - 💾 Epoch 13 checkpoint saved: epoch_013_model_2layers_1756668138.keras
+2025-09-01 04:56:55 - INFO - 💾 Epoch 14 checkpoint saved: epoch_014_model_2layers_1756668138.keras
+2025-09-01 05:14:49 - INFO - 💾 Epoch 15 checkpoint saved: epoch_015_model_2layers_1756668138.keras
+2025-09-01 05:32:55 - INFO - 💾 Epoch 16 checkpoint saved: epoch_016_model_2layers_1756668138.keras
+2025-09-01 05:51:02 - INFO - 💾 Epoch 17 checkpoint saved: epoch_017_model_2layers_1756668138.keras
+2025-09-01 06:09:16 - INFO - 💾 Epoch 18 checkpoint saved: epoch_018_model_2layers_1756668138.keras
+2025-09-01 06:27:22 - INFO - 💾 Epoch 19 checkpoint saved: epoch_019_model_2layers_1756668138.keras
+2025-09-01 06:45:28 - INFO - 💾 Epoch 20 checkpoint saved: epoch_020_model_2layers_1756668138.keras
+2025-09-01 06:45:28 - INFO - 
+============================================================
+2025-09-01 06:45:28 - INFO - TRAINING COMPLETED
+2025-09-01 06:45:28 - INFO - ============================================================
+2025-09-01 06:45:28 - INFO - Epochs trained: 20
+2025-09-01 06:45:28 - INFO - Best model saved to: best_model_2layers_1756668138.keras
+2025-09-01 06:45:28 - INFO - Best validation loss: 0.1117
+2025-09-01 06:45:28 - INFO - Best validation accuracy: 0.9671
+2025-09-01 06:45:28 - INFO - ============================================================
+2025-09-01 06:45:28 - INFO - Loading best model from checkpoint for evaluation...
+2025-09-01 06:45:28 - INFO - 
+Generating predictions for comprehensive evaluation...
+2025-09-01 06:45:56 - INFO - 
+================================================================================
+2025-09-01 06:45:56 - INFO - COMPREHENSIVE EVALUATION METRICS - TEST SET
+2025-09-01 06:45:56 - INFO - ================================================================================
+2025-09-01 06:45:57 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-09-01 06:45:57 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-09-01 06:45:59 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-09-01 06:45:59 - INFO -   Accuracy: 0.8502
+2025-09-01 06:45:59 - INFO -   Balanced Accuracy: 0.8502
+2025-09-01 06:45:59 - INFO -   AUC-ROC: 0.9334 [0.9188, 0.9481]
+2025-09-01 06:45:59 - INFO -   AUC-PR: 0.9203 [0.8953, 0.9442]
+2025-09-01 06:45:59 - INFO -   F1-Score: 0.8631 [0.8414, 0.8840]
+2025-09-01 06:45:59 - INFO -   EER: 0.1342 @ threshold=0.8445
+2025-09-01 06:45:59 - INFO - 
+PER-CLASS METRICS:
+2025-09-01 06:45:59 - INFO -   Precision (Fake Detection): 0.7944
+2025-09-01 06:45:59 - INFO -   Recall/Sensitivity (Fake Detection): 0.9449
+2025-09-01 06:45:59 - INFO -   Specificity (Real Detection): 0.7555
+2025-09-01 06:45:59 - INFO - 
+CONFUSION MATRIX:
+2025-09-01 06:45:59 - INFO -   True Negatives (Real→Real): 411
+2025-09-01 06:45:59 - INFO -   False Positives (Real→Fake): 133
+2025-09-01 06:45:59 - INFO -   False Negatives (Fake→Real): 30
+2025-09-01 06:45:59 - INFO -   True Positives (Fake→Fake): 514
+2025-09-01 06:45:59 - INFO - 
+CALIBRATION ANALYSIS:
+2025-09-01 06:45:59 - INFO -   Brier Score: 0.1172 (lower is better)
+2025-09-01 06:45:59 - INFO -   Expected Calibration Error (ECE): 0.0991
+2025-09-01 06:45:59 - INFO -   Maximum Calibration Error (MCE): 0.3020
+2025-09-01 06:45:59 - INFO - 
+================================================================================
+2025-09-01 06:45:59 - INFO - COMPREHENSIVE EVALUATION METRICS - VALIDATION SET
+2025-09-01 06:45:59 - INFO - ================================================================================
+2025-09-01 06:45:59 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-09-01 06:45:59 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-09-01 06:46:02 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-09-01 06:46:02 - INFO -   Accuracy: 0.9632
+2025-09-01 06:46:02 - INFO -   Balanced Accuracy: 0.9632
+2025-09-01 06:46:02 - INFO -   AUC-ROC: 0.9942 [0.9922, 0.9961]
+2025-09-01 06:46:02 - INFO -   AUC-PR: 0.9935 [0.9906, 0.9958]
+2025-09-01 06:46:02 - INFO -   F1-Score: 0.9638 [0.9565, 0.9703]
+2025-09-01 06:46:02 - INFO -   EER: 0.0340 @ threshold=0.6931
+2025-09-01 06:46:02 - INFO - 
+PER-CLASS METRICS:
+2025-09-01 06:46:02 - INFO -   Precision (Fake Detection): 0.9492
+2025-09-01 06:46:02 - INFO -   Recall/Sensitivity (Fake Detection): 0.9788
+2025-09-01 06:46:02 - INFO -   Specificity (Real Detection): 0.9476
+2025-09-01 06:46:02 - INFO - 
+CONFUSION MATRIX:
+2025-09-01 06:46:02 - INFO -   True Negatives (Real→Real): 1339
+2025-09-01 06:46:02 - INFO -   False Positives (Real→Fake): 74
+2025-09-01 06:46:02 - INFO -   False Negatives (Fake→Real): 30
+2025-09-01 06:46:02 - INFO -   True Positives (Fake→Fake): 1383
+2025-09-01 06:46:02 - INFO - 
+CALIBRATION ANALYSIS:
+2025-09-01 06:46:02 - INFO -   Brier Score: 0.0276 (lower is better)
+2025-09-01 06:46:02 - INFO -   Expected Calibration Error (ECE): 0.0202
+2025-09-01 06:46:02 - INFO -   Maximum Calibration Error (MCE): 0.2200
+2025-09-01 06:46:35 - INFO - 
+======================================================================
+2025-09-01 06:46:35 - INFO - COMPREHENSIVE RESULTS FOR 2 PYRAMID LAYER(S)
+2025-09-01 06:46:35 - INFO - ======================================================================
+2025-09-01 06:46:35 - INFO - TRAINING SUMMARY:
+2025-09-01 06:46:35 - INFO -   Total Parameters: 1,577,986
+2025-09-01 06:46:35 - INFO -   Epochs Trained: 20
+2025-09-01 06:46:35 - INFO -   Best Epoch: 13 (1-indexed)
+2025-09-01 06:46:35 - INFO -   Best Validation Loss: 0.1117
+2025-09-01 06:46:35 - INFO -   Model Checkpoint: best_model_2layers_1756668138.keras
+2025-09-01 06:46:35 - INFO - 
+TRAINING CONVERGENCE:
+2025-09-01 06:46:35 - INFO -   Initial Val Loss: 0.6663
+2025-09-01 06:46:35 - INFO -   Final Val Loss: 0.1117
+2025-09-01 06:46:35 - INFO -   Loss Improvement: 83.2%
+2025-09-01 06:46:35 - INFO - 
+FINAL PERFORMANCE SUMMARY:
+2025-09-01 06:46:35 - INFO -   Test AUC-ROC: 0.9334 [0.9188, 0.9481]
+2025-09-01 06:46:35 - INFO -   Test AUC-PR: 0.9203 [0.8953, 0.9442]
+2025-09-01 06:46:35 - INFO -   Test F1-Score: 0.8631 [0.8414, 0.8840]
+2025-09-01 06:46:35 - INFO -   Test Balanced Accuracy: 0.8502
+2025-09-01 06:46:35 - INFO -   Test EER: 0.1342 @ threshold=0.8445
+2025-09-01 06:46:35 - INFO -   Validation AUC-ROC: 0.9942
+2025-09-01 06:46:35 - INFO -   Validation F1-Score: 0.9638
+2025-09-01 06:46:35 - INFO - 
+STANDARD CLASSIFICATION REPORT (Test Set):
+2025-09-01 06:46:35 - INFO -               precision    recall  f1-score   support
+
+        Real       0.93      0.76      0.83       544
+        Fake       0.79      0.94      0.86       544
+
+    accuracy                           0.85      1088
+   macro avg       0.86      0.85      0.85      1088
+weighted avg       0.86      0.85      0.85      1088
+
+2025-09-01 06:46:35 - INFO - 
+================================================================================
+2025-09-01 06:46:35 - INFO - EXPERIMENT RESULTS: Single Split Validation
+2025-09-01 06:46:35 - INFO - ================================================================================
+2025-09-01 06:46:35 - INFO -   pyramid_layers: 2.0000
+2025-09-01 06:46:35 - INFO -   total_params: 1577986.0000
+2025-09-01 06:46:35 - INFO -   epochs_trained: 20.0000
+2025-09-01 06:46:35 - INFO -   best_epoch: 13
+2025-09-01 06:46:35 - INFO -   best_val_loss: 0.1117
+2025-09-01 06:46:35 - INFO -   best_val_acc: 0.9671
+2025-09-01 06:46:35 - INFO -   test_accuracy: 0.8502
+2025-09-01 06:46:35 - INFO -   val_accuracy: 0.9632
+2025-09-01 06:46:35 - INFO -   test_loss: 0.4249
+2025-09-01 06:46:35 - INFO -   val_loss: 0.1117
+2025-09-01 06:46:35 - INFO -   test_auc: 0.9334
+2025-09-01 06:46:35 - INFO -   val_auc: 0.9942
+2025-09-01 06:46:35 - INFO -   test_eer: 0.1342
+2025-09-01 06:46:35 - INFO -   val_eer: 0.0340
+2025-09-01 06:46:35 - INFO -   eer_threshold: 0.8445262908935547
+2025-09-01 06:46:35 - INFO -   test_metrics: {'accuracy': np.float64(0.8501838235294118), 'balanced_accuracy': np.float64(0.8501838235294117), 'auc_roc': 0.933424794550173, 'auc_roc_ci': {'mean': np.float64(0.9338556679086141), 'std': np.float64(0.007464030260818406), 'ci_lower': np.float64(0.9188316598683987), 'ci_upper': np.float64(0.9480858906469891), 'confidence': 0.95}, 'auc_pr': 0.920312241715297, 'auc_pr_ci': {'mean': np.float64(0.9210927999360566), 'std': np.float64(0.012550190251791236), 'ci_lower': np.float64(0.8953274852716483), 'ci_upper': np.float64(0.9441955328816103), 'confidence': 0.95}, 'f1_score': 0.8631402183039463, 'f1_ci': {'mean': np.float64(0.863149258476184), 'std': np.float64(0.010863377735661), 'ci_lower': np.float64(0.8413748705046619), 'ci_upper': np.float64(0.8840336134453781), 'confidence': 0.95}, 'precision': 0.794435857805255, 'recall': 0.9448529411764706, 'specificity': np.float64(0.7555147058823529), 'eer': np.float64(0.1341911764705882), 'eer_threshold': np.float32(0.8445263), 'confusion_matrix': array([[411, 133],
+       [ 30, 514]]), 'calibration': {'brier_score': 0.11724054354005349, 'ece': np.float64(0.09907045112648871), 'mce': np.float64(0.3020211696624756)}, 'bootstrap_confidence': 0.95}
+2025-09-01 06:46:35 - INFO -   val_metrics: {'accuracy': np.float64(0.9631988676574664), 'balanced_accuracy': np.float64(0.9631988676574663), 'auc_roc': 0.9942471309531501, 'auc_roc_ci': {'mean': np.float64(0.9942493860759053), 'std': np.float64(0.0009942460325701962), 'ci_lower': np.float64(0.992154181349709), 'ci_upper': np.float64(0.9960823240974477), 'confidence': 0.95}, 'auc_pr': 0.9934763259748113, 'auc_pr_ci': {'mean': np.float64(0.9934834652734642), 'std': np.float64(0.0013490169958253408), 'ci_lower': np.float64(0.9905751703505259), 'ci_upper': np.float64(0.995796369499648), 'confidence': 0.95}, 'f1_score': 0.9637630662020906, 'f1_ci': {'mean': np.float64(0.9638080422360931), 'std': np.float64(0.0035109906792183325), 'ci_lower': np.float64(0.9564919373734765), 'ci_upper': np.float64(0.970334466814199), 'confidence': 0.95}, 'precision': 0.9492107069320521, 'recall': 0.9787685774946921, 'specificity': np.float64(0.9476291578202406), 'eer': np.float64(0.03397027600849256), 'eer_threshold': np.float32(0.69308054), 'confusion_matrix': array([[1339,   74],
+       [  30, 1383]]), 'calibration': {'brier_score': 0.027609216852295497, 'ece': np.float64(0.020161415441706527), 'mce': np.float64(0.22004280487696332)}, 'bootstrap_confidence': 0.95}
+2025-09-01 06:46:35 - INFO -   checkpoint_path: best_model_2layers_1756668138.keras
+2025-09-01 06:46:35 - INFO -   training_time: 20.0000
+2025-09-01 06:46:35 - INFO -   history: {'accuracy': [0.5403410792350769, 0.6263256072998047, 0.6953281760215759, 0.7361708283424377, 0.7641158103942871, 0.7846804261207581, 0.8141301274299622, 0.8301089406013489, 0.8501003384590149, 0.8612782955169678, 0.8769704699516296, 0.8832043409347534, 0.8916594982147217, 0.9018343091011047, 0.9077099561691284, 0.9122957587242126, 0.9175264835357666, 0.9258383512496948, 0.9306391477584839, 0.9333620071411133], 'loss': [0.8646486401557922, 0.6807401180267334, 0.6012391448020935, 0.5491480231285095, 0.5072898864746094, 0.4722587466239929, 0.4295331835746765, 0.38977953791618347, 0.35401400923728943, 0.33111172914505005, 0.29968658089637756, 0.28490763902664185, 0.26773467659950256, 0.24362243711948395, 0.23329828679561615, 0.22057774662971497, 0.20739945769309998, 0.19327601790428162, 0.18263140320777893, 0.17523303627967834], 'val_accuracy': [0.5750176906585693, 0.7094833850860596, 0.8372257351875305, 0.8782731890678406, 0.8743807673454285, 0.887473464012146, 0.9171974658966064, 0.9348903298377991, 0.9419674277305603, 0.9387827515602112, 0.9387827515602112, 0.9348903298377991, 0.9631988406181335, 0.9557678699493408, 0.9539985656738281, 0.9624911546707153, 0.9575371742248535, 0.9522293210029602, 0.9670913219451904, 0.9639065861701965], 'val_loss': [0.6663051843643188, 0.5615561604499817, 0.3803979158401489, 0.33956149220466614, 0.3052975833415985, 0.31022706627845764, 0.24735526740550995, 0.1951490044593811, 0.16570065915584564, 0.1597418487071991, 0.17945654690265656, 0.1768229901790619, 0.11165107786655426, 0.14833882451057434, 0.1367579996585846, 0.1254386603832245, 0.1422325223684311, 0.18845893442630768, 0.12380211800336838, 0.1271573156118393], 'learning_rate': [9.999999747378752e-05, 0.00018000000272877514, 0.00026000000070780516, 0.00033999999868683517, 0.0004199999966658652, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.00010000000474974513, 0.0005000000237487257, 0.0005000000237487257, 0.00010000000474974513, 0.0005000000237487257]}
+2025-09-01 06:46:35 - INFO -   evaluation_type: comprehensive_with_bootstrap
+2025-09-01 06:46:35 - INFO - ================================================================================
+2025-09-01 06:46:35 - WARNING - From C:\Users\suman\OneDrive\Desktop\deepfake\.venv\Lib\site-packages\keras\src\backend\common\global_state.py:82: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+2025-09-01 06:46:36 - INFO - 
+==========================================================================================
+2025-09-01 06:46:36 - INFO - APPROACH 2: STRATIFIED 5-FOLD CROSS-VALIDATION
+2025-09-01 06:46:36 - INFO - ==========================================================================================
+2025-09-01 06:46:36 - INFO - Data Preparation for K-Fold CV:
+2025-09-01 06:46:36 - INFO -   Combined CV Data: 16782 samples
+2025-09-01 06:46:36 - INFO -   Hold-out Test Data: 1088 samples
+2025-09-01 06:46:36 - INFO -   Class Distribution in CV: Real=8391, Fake=8391
+2025-09-01 06:46:36 - INFO - 
+==========================================================================================
+2025-09-01 06:46:36 - INFO - STRATIFIED 5-FOLD CROSS-VALIDATION ANALYSIS
+2025-09-01 06:46:36 - INFO - ==========================================================================================
+2025-09-01 06:46:36 - INFO - Model Configuration: 2 Pyramid Layers
+2025-09-01 06:46:36 - INFO - Dataset: 16782 samples for CV, 1088 samples for final test
+2025-09-01 06:46:36 - INFO - Class Distribution in CV Data: Real=8391, Fake=8391
+2025-09-01 06:46:36 - INFO - Random Seed: 42
+2025-09-01 06:46:36 - INFO - ==========================================================================================
+2025-09-01 06:46:36 - INFO - 
+================================================================================
+2025-09-01 06:46:36 - INFO - TRAINING FOLD 1/5
+2025-09-01 06:46:36 - INFO - ================================================================================
+2025-09-01 06:46:36 - INFO - Fold 1 Data Split:
+2025-09-01 06:46:36 - INFO -   Training: 13425 samples (Real=6712, Fake=6713)
+2025-09-01 06:46:36 - INFO -   Validation: 3357 samples (Real=1679, Fake=1678)
+2025-09-01 06:46:36 - INFO -   Fold max sequence length: 139
+2025-09-01 06:46:36 - INFO -   Fold train max: 139
+2025-09-01 06:46:36 - INFO -   Fold val max: 139
+2025-09-01 06:46:38 - INFO - 
+============================================================
+2025-09-01 06:46:38 - INFO - TRAINING MODEL WITH 2 PYRAMID LAYER(S)
+2025-09-01 06:46:38 - INFO - ============================================================
+2025-09-01 06:46:38 - INFO - 
+🔄 CHECKPOINT FOUND: best_model_2layers_1756668138.keras
+2025-09-01 06:46:38 - INFO - ✅ Automatically resuming from latest checkpoint...
+2025-09-01 06:46:39 - INFO - ✅ Successfully loaded checkpoint: best_model_2layers_1756668138.keras
+2025-09-01 06:46:39 - INFO - 🚀 Resuming training from loaded checkpoint...
+2025-09-01 06:46:39 - INFO - 
+============================================================
+2025-09-01 06:46:39 - INFO - MODEL SUMMARY: Pyramidal BiLSTM (2 layers)
+2025-09-01 06:46:39 - INFO - ============================================================
+2025-09-01 06:46:39 - INFO - Model: "functional"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                  ┃ Output Shape              ┃         Param # ┃ Connected to               ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ input_layer (InputLayer)      │ (None, 139, 80)           │               0 │ -                          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ not_equal_1 (NotEqual)        │ (None, 139, 80)           │               0 │ input_layer[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ masking (Masking)             │ (None, 139, 80)           │               0 │ input_layer[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ any_1 (Any)                   │ (None, 139)               │               0 │ not_equal_1[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional (Bidirectional) │ (None, 139, 256)          │         214,016 │ masking[0][0], any_1[0][0] │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization           │ (None, 139, 256)          │             512 │ bidirectional[0][0]        │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout (Dropout)             │ (None, 139, 256)          │               0 │ layer_normalization[0][0]  │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ pyramid_downsample_layer_1    │ (None, 69, 512)           │               0 │ dropout[0][0]              │
+│ (PyramidalDownsample)         │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional_1               │ (None, 69, 256)           │         656,384 │ pyramid_downsample_layer_… │
+│ (Bidirectional)               │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_1         │ (None, 69, 256)           │             512 │ bidirectional_1[0][0]      │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_1 (Dropout)           │ (None, 69, 256)           │               0 │ layer_normalization_1[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ pyramid_downsample_layer_2    │ (None, 34, 512)           │               0 │ dropout_1[0][0]            │
+│ (PyramidalDownsample)         │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional_2               │ (None, 34, 256)           │         656,384 │ pyramid_downsample_layer_… │
+│ (Bidirectional)               │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_2         │ (None, 34, 256)           │             512 │ bidirectional_2[0][0]      │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_2 (Dropout)           │ (None, 34, 256)           │               0 │ layer_normalization_2[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ attention_pooling             │ (None, 256)               │          33,025 │ dropout_2[0][0]            │
+│ (AttentionPooling)            │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_3 (Dropout)           │ (None, 256)               │               0 │ attention_pooling[0][0]    │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dense (Dense)                 │ (None, 64)                │          16,448 │ dropout_3[0][0]            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_3         │ (None, 64)                │             128 │ dense[0][0]                │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_4 (Dropout)           │ (None, 64)                │               0 │ layer_normalization_3[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ classification_output (Dense) │ (None, 1)                 │              65 │ dropout_4[0][0]            │
+└───────────────────────────────┴───────────────────────────┴─────────────────┴────────────────────────────┘
+ Total params: 1,577,986 (6.02 MB)
+ Trainable params: 1,577,986 (6.02 MB)
+ Non-trainable params: 0 (0.00 B)
+
+2025-09-01 06:46:39 - INFO - 
+Model Parameters:
+2025-09-01 06:46:39 - INFO -   Total parameters: 1,577,986
+2025-09-01 06:46:39 - INFO -   Trainable parameters: 1,577,986
+2025-09-01 06:46:39 - INFO -   Non-trainable parameters: 0
+2025-09-01 06:46:39 - INFO - ============================================================
+2025-09-01 06:46:39 - INFO - 
+Model Architecture Summary:
+2025-09-01 06:46:39 - INFO - Total Parameters: 1,577,986
+2025-09-01 06:46:39 - INFO - 
+================================================================================
+2025-09-01 06:46:39 - INFO - ENHANCED TRAINING PIPELINE
+2025-09-01 06:46:39 - INFO - ================================================================================
+2025-09-01 06:46:39 - INFO - Optimizer: AdamW (weight_decay=1e-5, clipnorm=1.0)
+2025-09-01 06:46:39 - INFO - Learning Rate: OneCycle (Base: 1e-4, Peak: 5e-4, Min: 1e-6)
+2025-09-01 06:46:39 - INFO - Schedule: Warmup (5 epochs) → Peak (15 epochs) → Cosine Annealing
+2025-09-01 06:46:39 - INFO - Max Epochs: 100 (with early stopping)
+2025-09-01 06:46:39 - INFO - ENHANCED REGULARIZATION:
+2025-09-01 06:46:39 - INFO -   • Recurrent dropout: 0.2-0.25 in LSTM layers
+2025-09-01 06:46:39 - INFO -   • LayerNormalization after each BiLSTM and Dense layer
+2025-09-01 06:46:39 - INFO -   • Progressive dropout: 0.3 → 0.35 → 0.4 → 0.5
+2025-09-01 06:46:39 - INFO -   • L2 regularization (1e-4) on Dense layer kernels
+2025-09-01 06:46:39 - INFO -   • Weight decay (1e-5) via AdamW optimizer
+2025-09-01 06:46:39 - INFO - TRAINING CALLBACKS:
+2025-09-01 06:46:39 - INFO -   • Best model checkpointing: best_model_2layers_1756689398.keras
+2025-09-01 06:46:39 - INFO -   • Per-epoch checkpointing: epoch_XXX_model_2layers_1756689398.keras
+2025-09-01 06:46:39 - INFO -   • Early stopping: patience=7, min_delta=0.0005
+2025-09-01 06:46:39 - INFO -   • LR plateau reduction: factor=0.2, patience=3
+2025-09-01 06:46:39 - INFO -   • NaN termination for training stability
+2025-09-01 06:46:39 - INFO - ================================================================================
+2025-09-01 07:06:14 - INFO - 💾 Epoch 1 checkpoint saved: epoch_001_model_2layers_1756689398.keras
+2025-09-01 07:24:17 - INFO - 💾 Epoch 2 checkpoint saved: epoch_002_model_2layers_1756689398.keras
+2025-09-01 07:42:05 - INFO - 💾 Epoch 3 checkpoint saved: epoch_003_model_2layers_1756689398.keras
+2025-09-01 07:59:51 - INFO - 💾 Epoch 4 checkpoint saved: epoch_004_model_2layers_1756689398.keras
+2025-09-01 08:17:38 - INFO - 💾 Epoch 5 checkpoint saved: epoch_005_model_2layers_1756689398.keras
+2025-09-01 08:35:26 - INFO - 💾 Epoch 6 checkpoint saved: epoch_006_model_2layers_1756689398.keras
+2025-09-01 08:53:15 - INFO - 💾 Epoch 7 checkpoint saved: epoch_007_model_2layers_1756689398.keras
+2025-09-01 09:11:03 - INFO - 💾 Epoch 8 checkpoint saved: epoch_008_model_2layers_1756689398.keras
+2025-09-01 09:28:56 - INFO - 💾 Epoch 9 checkpoint saved: epoch_009_model_2layers_1756689398.keras
+2025-09-01 09:46:48 - INFO - 💾 Epoch 10 checkpoint saved: epoch_010_model_2layers_1756689398.keras
+2025-09-01 10:04:39 - INFO - 💾 Epoch 11 checkpoint saved: epoch_011_model_2layers_1756689398.keras
+2025-09-01 10:22:30 - INFO - 💾 Epoch 12 checkpoint saved: epoch_012_model_2layers_1756689398.keras
+2025-09-01 10:40:26 - INFO - 💾 Epoch 13 checkpoint saved: epoch_013_model_2layers_1756689398.keras
+2025-09-01 10:58:26 - INFO - 💾 Epoch 14 checkpoint saved: epoch_014_model_2layers_1756689398.keras
+2025-09-01 11:16:28 - INFO - 💾 Epoch 15 checkpoint saved: epoch_015_model_2layers_1756689398.keras
+2025-09-01 11:34:51 - INFO - 💾 Epoch 16 checkpoint saved: epoch_016_model_2layers_1756689398.keras
+2025-09-01 11:53:06 - INFO - 💾 Epoch 17 checkpoint saved: epoch_017_model_2layers_1756689398.keras
+2025-09-01 12:11:19 - INFO - 💾 Epoch 18 checkpoint saved: epoch_018_model_2layers_1756689398.keras
+2025-09-01 12:29:32 - INFO - 💾 Epoch 19 checkpoint saved: epoch_019_model_2layers_1756689398.keras
+2025-09-01 12:47:50 - INFO - 💾 Epoch 20 checkpoint saved: epoch_020_model_2layers_1756689398.keras
+2025-09-01 12:47:50 - INFO - 
+============================================================
+2025-09-01 12:47:50 - INFO - TRAINING COMPLETED
+2025-09-01 12:47:50 - INFO - ============================================================
+2025-09-01 12:47:50 - INFO - Epochs trained: 20
+2025-09-01 12:47:50 - INFO - Best model saved to: best_model_2layers_1756689398.keras
+2025-09-01 12:47:50 - INFO - Best validation loss: 0.2588
+2025-09-01 12:47:50 - INFO - Best validation accuracy: 0.9068
+2025-09-01 12:47:50 - INFO - ============================================================
+2025-09-01 12:47:50 - INFO - Loading best model from checkpoint for evaluation...
+2025-09-01 12:47:51 - INFO - 
+Generating predictions for comprehensive evaluation...
+2025-09-01 12:48:47 - INFO - 
+================================================================================
+2025-09-01 12:48:47 - INFO - COMPREHENSIVE EVALUATION METRICS - TEST SET
+2025-09-01 12:48:47 - INFO - ================================================================================
+2025-09-01 12:48:47 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-09-01 12:48:47 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-09-01 12:48:50 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-09-01 12:48:50 - INFO -   Accuracy: 0.8990
+2025-09-01 12:48:50 - INFO -   Balanced Accuracy: 0.8990
+2025-09-01 12:48:50 - INFO -   AUC-ROC: 0.9647 [0.9593, 0.9699]
+2025-09-01 12:48:50 - INFO -   AUC-PR: 0.9659 [0.9602, 0.9716]
+2025-09-01 12:48:50 - INFO -   F1-Score: 0.8986 [0.8877, 0.9091]
+2025-09-01 12:48:50 - INFO -   EER: 0.0989 @ threshold=0.4892
+2025-09-01 12:48:50 - INFO - 
+PER-CLASS METRICS:
+2025-09-01 12:48:50 - INFO -   Precision (Fake Detection): 0.9021
+2025-09-01 12:48:50 - INFO -   Recall/Sensitivity (Fake Detection): 0.8951
+2025-09-01 12:48:50 - INFO -   Specificity (Real Detection): 0.9029
+2025-09-01 12:48:50 - INFO - 
+CONFUSION MATRIX:
+2025-09-01 12:48:50 - INFO -   True Negatives (Real→Real): 1516
+2025-09-01 12:48:50 - INFO -   False Positives (Real→Fake): 163
+2025-09-01 12:48:50 - INFO -   False Negatives (Fake→Real): 176
+2025-09-01 12:48:50 - INFO -   True Positives (Fake→Fake): 1502
+2025-09-01 12:48:50 - INFO - 
+CALIBRATION ANALYSIS:
+2025-09-01 12:48:50 - INFO -   Brier Score: 0.0744 (lower is better)
+2025-09-01 12:48:50 - INFO -   Expected Calibration Error (ECE): 0.0274
+2025-09-01 12:48:50 - INFO -   Maximum Calibration Error (MCE): 0.1384
+2025-09-01 12:48:50 - INFO - 
+================================================================================
+2025-09-01 12:48:50 - INFO - COMPREHENSIVE EVALUATION METRICS - VALIDATION SET
+2025-09-01 12:48:50 - INFO - ================================================================================
+2025-09-01 12:48:50 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-09-01 12:48:50 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-09-01 12:48:53 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-09-01 12:48:53 - INFO -   Accuracy: 0.8990
+2025-09-01 12:48:53 - INFO -   Balanced Accuracy: 0.8990
+2025-09-01 12:48:53 - INFO -   AUC-ROC: 0.9647 [0.9593, 0.9699]
+2025-09-01 12:48:53 - INFO -   AUC-PR: 0.9659 [0.9602, 0.9716]
+2025-09-01 12:48:53 - INFO -   F1-Score: 0.8986 [0.8877, 0.9091]
+2025-09-01 12:48:53 - INFO -   EER: 0.0989 @ threshold=0.4892
+2025-09-01 12:48:53 - INFO - 
+PER-CLASS METRICS:
+2025-09-01 12:48:53 - INFO -   Precision (Fake Detection): 0.9021
+2025-09-01 12:48:53 - INFO -   Recall/Sensitivity (Fake Detection): 0.8951
+2025-09-01 12:48:53 - INFO -   Specificity (Real Detection): 0.9029
+2025-09-01 12:48:53 - INFO - 
+CONFUSION MATRIX:
+2025-09-01 12:48:53 - INFO -   True Negatives (Real→Real): 1516
+2025-09-01 12:48:53 - INFO -   False Positives (Real→Fake): 163
+2025-09-01 12:48:53 - INFO -   False Negatives (Fake→Real): 176
+2025-09-01 12:48:53 - INFO -   True Positives (Fake→Fake): 1502
+2025-09-01 12:48:53 - INFO - 
+CALIBRATION ANALYSIS:
+2025-09-01 12:48:53 - INFO -   Brier Score: 0.0744 (lower is better)
+2025-09-01 12:48:53 - INFO -   Expected Calibration Error (ECE): 0.0274
+2025-09-01 12:48:53 - INFO -   Maximum Calibration Error (MCE): 0.1384
+2025-09-01 12:49:58 - INFO - 
+======================================================================
+2025-09-01 12:49:58 - INFO - COMPREHENSIVE RESULTS FOR 2 PYRAMID LAYER(S)
+2025-09-01 12:49:58 - INFO - ======================================================================
+2025-09-01 12:49:58 - INFO - TRAINING SUMMARY:
+2025-09-01 12:49:58 - INFO -   Total Parameters: 1,577,986
+2025-09-01 12:49:58 - INFO -   Epochs Trained: 20
+2025-09-01 12:49:58 - INFO -   Best Epoch: 13 (1-indexed)
+2025-09-01 12:49:58 - INFO -   Best Validation Loss: 0.2588
+2025-09-01 12:49:58 - INFO -   Model Checkpoint: best_model_2layers_1756689398.keras
+2025-09-01 12:49:58 - INFO - 
+TRAINING CONVERGENCE:
+2025-09-01 12:49:58 - INFO -   Initial Val Loss: 0.6252
+2025-09-01 12:49:58 - INFO -   Final Val Loss: 0.2588
+2025-09-01 12:49:58 - INFO -   Loss Improvement: 58.6%
+2025-09-01 12:49:58 - INFO - 
+FINAL PERFORMANCE SUMMARY:
+2025-09-01 12:49:58 - INFO -   Test AUC-ROC: 0.9647 [0.9593, 0.9699]
+2025-09-01 12:49:58 - INFO -   Test AUC-PR: 0.9659 [0.9602, 0.9716]
+2025-09-01 12:49:58 - INFO -   Test F1-Score: 0.8986 [0.8877, 0.9091]
+2025-09-01 12:49:58 - INFO -   Test Balanced Accuracy: 0.8990
+2025-09-01 12:49:58 - INFO -   Test EER: 0.0989 @ threshold=0.4892
+2025-09-01 12:49:58 - INFO -   Validation AUC-ROC: 0.9647
+2025-09-01 12:49:58 - INFO -   Validation F1-Score: 0.8986
+2025-09-01 12:49:58 - INFO - 
+STANDARD CLASSIFICATION REPORT (Test Set):
+2025-09-01 12:49:58 - INFO -               precision    recall  f1-score   support
+
+        Real       0.90      0.90      0.90      1679
+        Fake       0.90      0.90      0.90      1678
+
+    accuracy                           0.90      3357
+   macro avg       0.90      0.90      0.90      3357
+weighted avg       0.90      0.90      0.90      3357
+
+2025-09-01 12:49:58 - INFO - 
+Fold 1 Completed Successfully
+2025-09-01 12:49:58 - INFO -   Validation AUC-ROC: 0.9647
+2025-09-01 12:49:58 - INFO -   Validation F1-Score: 0.8986
+2025-09-01 12:49:59 - INFO - 
+================================================================================
+2025-09-01 12:49:59 - INFO - TRAINING FOLD 2/5
+2025-09-01 12:49:59 - INFO - ================================================================================
+2025-09-01 12:49:59 - INFO - Fold 2 Data Split:
+2025-09-01 12:49:59 - INFO -   Training: 13425 samples (Real=6713, Fake=6712)
+2025-09-01 12:49:59 - INFO -   Validation: 3357 samples (Real=1678, Fake=1679)
+2025-09-01 12:49:59 - INFO -   Fold max sequence length: 139
+2025-09-01 12:49:59 - INFO -   Fold train max: 139
+2025-09-01 12:49:59 - INFO -   Fold val max: 139
+2025-09-01 12:50:03 - INFO - 
+============================================================
+2025-09-01 12:50:03 - INFO - TRAINING MODEL WITH 2 PYRAMID LAYER(S)
+2025-09-01 12:50:03 - INFO - ============================================================
+2025-09-01 12:50:03 - INFO - 
+🔄 CHECKPOINT FOUND: best_model_2layers_1756689398.keras
+2025-09-01 12:50:03 - INFO - ✅ Automatically resuming from latest checkpoint...
+2025-09-01 12:50:03 - INFO - ✅ Successfully loaded checkpoint: best_model_2layers_1756689398.keras
+2025-09-01 12:50:03 - INFO - 🚀 Resuming training from loaded checkpoint...
+2025-09-01 12:50:03 - INFO - 
+============================================================
+2025-09-01 12:50:03 - INFO - MODEL SUMMARY: Pyramidal BiLSTM (2 layers)
+2025-09-01 12:50:03 - INFO - ============================================================
+2025-09-01 12:50:03 - INFO - Model: "functional"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                  ┃ Output Shape              ┃         Param # ┃ Connected to               ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ input_layer (InputLayer)      │ (None, 139, 80)           │               0 │ -                          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ not_equal_1 (NotEqual)        │ (None, 139, 80)           │               0 │ input_layer[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ masking (Masking)             │ (None, 139, 80)           │               0 │ input_layer[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ any_1 (Any)                   │ (None, 139)               │               0 │ not_equal_1[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional (Bidirectional) │ (None, 139, 256)          │         214,016 │ masking[0][0], any_1[0][0] │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization           │ (None, 139, 256)          │             512 │ bidirectional[0][0]        │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout (Dropout)             │ (None, 139, 256)          │               0 │ layer_normalization[0][0]  │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ pyramid_downsample_layer_1    │ (None, 69, 512)           │               0 │ dropout[0][0]              │
+│ (PyramidalDownsample)         │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional_1               │ (None, 69, 256)           │         656,384 │ pyramid_downsample_layer_… │
+│ (Bidirectional)               │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_1         │ (None, 69, 256)           │             512 │ bidirectional_1[0][0]      │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_1 (Dropout)           │ (None, 69, 256)           │               0 │ layer_normalization_1[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ pyramid_downsample_layer_2    │ (None, 34, 512)           │               0 │ dropout_1[0][0]            │
+│ (PyramidalDownsample)         │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional_2               │ (None, 34, 256)           │         656,384 │ pyramid_downsample_layer_… │
+│ (Bidirectional)               │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_2         │ (None, 34, 256)           │             512 │ bidirectional_2[0][0]      │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_2 (Dropout)           │ (None, 34, 256)           │               0 │ layer_normalization_2[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ attention_pooling             │ (None, 256)               │          33,025 │ dropout_2[0][0]            │
+│ (AttentionPooling)            │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_3 (Dropout)           │ (None, 256)               │               0 │ attention_pooling[0][0]    │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dense (Dense)                 │ (None, 64)                │          16,448 │ dropout_3[0][0]            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_3         │ (None, 64)                │             128 │ dense[0][0]                │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_4 (Dropout)           │ (None, 64)                │               0 │ layer_normalization_3[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ classification_output (Dense) │ (None, 1)                 │              65 │ dropout_4[0][0]            │
+└───────────────────────────────┴───────────────────────────┴─────────────────┴────────────────────────────┘
+ Total params: 1,577,986 (6.02 MB)
+ Trainable params: 1,577,986 (6.02 MB)
+ Non-trainable params: 0 (0.00 B)
+
+2025-09-01 12:50:03 - INFO - 
+Model Parameters:
+2025-09-01 12:50:03 - INFO -   Total parameters: 1,577,986
+2025-09-01 12:50:03 - INFO -   Trainable parameters: 1,577,986
+2025-09-01 12:50:03 - INFO -   Non-trainable parameters: 0
+2025-09-01 12:50:03 - INFO - ============================================================
+2025-09-01 12:50:03 - INFO - 
+Model Architecture Summary:
+2025-09-01 12:50:03 - INFO - Total Parameters: 1,577,986
+2025-09-01 12:50:03 - INFO - 
+================================================================================
+2025-09-01 12:50:03 - INFO - ENHANCED TRAINING PIPELINE
+2025-09-01 12:50:03 - INFO - ================================================================================
+2025-09-01 12:50:03 - INFO - Optimizer: AdamW (weight_decay=1e-5, clipnorm=1.0)
+2025-09-01 12:50:03 - INFO - Learning Rate: OneCycle (Base: 1e-4, Peak: 5e-4, Min: 1e-6)
+2025-09-01 12:50:03 - INFO - Schedule: Warmup (5 epochs) → Peak (15 epochs) → Cosine Annealing
+2025-09-01 12:50:03 - INFO - Max Epochs: 100 (with early stopping)
+2025-09-01 12:50:03 - INFO - ENHANCED REGULARIZATION:
+2025-09-01 12:50:03 - INFO -   • Recurrent dropout: 0.2-0.25 in LSTM layers
+2025-09-01 12:50:03 - INFO -   • LayerNormalization after each BiLSTM and Dense layer
+2025-09-01 12:50:03 - INFO -   • Progressive dropout: 0.3 → 0.35 → 0.4 → 0.5
+2025-09-01 12:50:03 - INFO -   • L2 regularization (1e-4) on Dense layer kernels
+2025-09-01 12:50:03 - INFO -   • Weight decay (1e-5) via AdamW optimizer
+2025-09-01 12:50:03 - INFO - TRAINING CALLBACKS:
+2025-09-01 12:50:03 - INFO -   • Best model checkpointing: best_model_2layers_1756711203.keras
+2025-09-01 12:50:03 - INFO -   • Per-epoch checkpointing: epoch_XXX_model_2layers_1756711203.keras
+2025-09-01 12:50:03 - INFO -   • Early stopping: patience=7, min_delta=0.0005
+2025-09-01 12:50:03 - INFO -   • LR plateau reduction: factor=0.2, patience=3
+2025-09-01 12:50:03 - INFO -   • NaN termination for training stability
+2025-09-01 12:50:03 - INFO - ================================================================================
+2025-09-01 13:11:05 - INFO - 💾 Epoch 1 checkpoint saved: epoch_001_model_2layers_1756711203.keras
+2025-09-01 13:30:51 - INFO - 💾 Epoch 2 checkpoint saved: epoch_002_model_2layers_1756711203.keras
+2025-09-01 13:50:21 - INFO - 💾 Epoch 3 checkpoint saved: epoch_003_model_2layers_1756711203.keras
+2025-09-01 14:09:51 - INFO - 💾 Epoch 4 checkpoint saved: epoch_004_model_2layers_1756711203.keras
+2025-09-01 14:29:23 - INFO - 💾 Epoch 5 checkpoint saved: epoch_005_model_2layers_1756711203.keras
+2025-09-01 14:48:55 - INFO - 💾 Epoch 6 checkpoint saved: epoch_006_model_2layers_1756711203.keras
+2025-09-01 15:08:26 - INFO - 💾 Epoch 7 checkpoint saved: epoch_007_model_2layers_1756711203.keras
+2025-09-01 15:27:58 - INFO - 💾 Epoch 8 checkpoint saved: epoch_008_model_2layers_1756711203.keras
+2025-09-01 15:47:30 - INFO - 💾 Epoch 9 checkpoint saved: epoch_009_model_2layers_1756711203.keras
+2025-09-01 16:08:12 - INFO - 💾 Epoch 10 checkpoint saved: epoch_010_model_2layers_1756711203.keras
+2025-09-01 16:27:35 - INFO - 💾 Epoch 11 checkpoint saved: epoch_011_model_2layers_1756711203.keras
+2025-09-01 16:48:02 - INFO - 💾 Epoch 12 checkpoint saved: epoch_012_model_2layers_1756711203.keras
+2025-09-01 17:07:28 - INFO - 💾 Epoch 13 checkpoint saved: epoch_013_model_2layers_1756711203.keras
+2025-09-01 17:26:52 - INFO - 💾 Epoch 14 checkpoint saved: epoch_014_model_2layers_1756711203.keras
+2025-09-01 17:46:18 - INFO - 💾 Epoch 15 checkpoint saved: epoch_015_model_2layers_1756711203.keras
+2025-09-01 18:05:51 - INFO - 💾 Epoch 16 checkpoint saved: epoch_016_model_2layers_1756711203.keras
+2025-09-01 18:25:25 - INFO - 💾 Epoch 17 checkpoint saved: epoch_017_model_2layers_1756711203.keras
+2025-09-01 18:44:59 - INFO - 💾 Epoch 18 checkpoint saved: epoch_018_model_2layers_1756711203.keras
+2025-09-01 19:04:34 - INFO - 💾 Epoch 19 checkpoint saved: epoch_019_model_2layers_1756711203.keras
+2025-09-01 19:24:14 - INFO - 💾 Epoch 20 checkpoint saved: epoch_020_model_2layers_1756711203.keras
+2025-09-01 19:43:51 - INFO - 💾 Epoch 21 checkpoint saved: epoch_021_model_2layers_1756711203.keras
+2025-09-01 20:08:00 - INFO - 💾 Epoch 22 checkpoint saved: epoch_022_model_2layers_1756711203.keras
+2025-09-01 20:33:33 - INFO - 💾 Epoch 23 checkpoint saved: epoch_023_model_2layers_1756711203.keras
+2025-09-02 00:48:13 - INFO - 💾 Epoch 24 checkpoint saved: epoch_024_model_2layers_1756711203.keras
+2025-09-02 00:48:13 - INFO - 
+============================================================
+2025-09-02 00:48:13 - INFO - TRAINING COMPLETED
+2025-09-02 00:48:13 - INFO - ============================================================
+2025-09-02 00:48:13 - INFO - Epochs trained: 24
+2025-09-02 00:48:13 - INFO - Best model saved to: best_model_2layers_1756711203.keras
+2025-09-02 00:48:13 - INFO - Best validation loss: 0.2306
+2025-09-02 00:48:13 - INFO - Best validation accuracy: 0.9234
+2025-09-02 00:48:13 - INFO - ============================================================
+2025-09-02 00:48:13 - INFO - Loading best model from checkpoint for evaluation...
+2025-09-02 00:48:14 - INFO - 
+Generating predictions for comprehensive evaluation...
+2025-09-02 00:49:18 - INFO - 
+================================================================================
+2025-09-02 00:49:18 - INFO - COMPREHENSIVE EVALUATION METRICS - TEST SET
+2025-09-02 00:49:18 - INFO - ================================================================================
+2025-09-02 00:49:18 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-09-02 00:49:18 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-09-02 00:49:21 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-09-02 00:49:21 - INFO -   Accuracy: 0.9121
+2025-09-02 00:49:21 - INFO -   Balanced Accuracy: 0.9121
+2025-09-02 00:49:21 - INFO -   AUC-ROC: 0.9724 [0.9680, 0.9769]
+2025-09-02 00:49:21 - INFO -   AUC-PR: 0.9727 [0.9670, 0.9778]
+2025-09-02 00:49:21 - INFO -   F1-Score: 0.9103 [0.9003, 0.9200]
+2025-09-02 00:49:21 - INFO -   EER: 0.0858 @ threshold=0.3736
+2025-09-02 00:49:21 - INFO - 
+PER-CLASS METRICS:
+2025-09-02 00:49:21 - INFO -   Precision (Fake Detection): 0.9303
+2025-09-02 00:49:21 - INFO -   Recall/Sensitivity (Fake Detection): 0.8910
+2025-09-02 00:49:21 - INFO -   Specificity (Real Detection): 0.9333
+2025-09-02 00:49:21 - INFO - 
+CONFUSION MATRIX:
+2025-09-02 00:49:21 - INFO -   True Negatives (Real→Real): 1566
+2025-09-02 00:49:21 - INFO -   False Positives (Real→Fake): 112
+2025-09-02 00:49:21 - INFO -   False Negatives (Fake→Real): 183
+2025-09-02 00:49:21 - INFO -   True Positives (Fake→Fake): 1496
+2025-09-02 00:49:21 - INFO - 
+CALIBRATION ANALYSIS:
+2025-09-02 00:49:21 - INFO -   Brier Score: 0.0652 (lower is better)
+2025-09-02 00:49:21 - INFO -   Expected Calibration Error (ECE): 0.0299
+2025-09-02 00:49:21 - INFO -   Maximum Calibration Error (MCE): 0.1536
+2025-09-02 00:49:21 - INFO - 
+================================================================================
+2025-09-02 00:49:21 - INFO - COMPREHENSIVE EVALUATION METRICS - VALIDATION SET
+2025-09-02 00:49:21 - INFO - ================================================================================
+2025-09-02 00:49:21 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-09-02 00:49:21 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-09-02 00:49:24 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-09-02 00:49:24 - INFO -   Accuracy: 0.9121
+2025-09-02 00:49:24 - INFO -   Balanced Accuracy: 0.9121
+2025-09-02 00:49:24 - INFO -   AUC-ROC: 0.9724 [0.9680, 0.9769]
+2025-09-02 00:49:24 - INFO -   AUC-PR: 0.9727 [0.9670, 0.9778]
+2025-09-02 00:49:24 - INFO -   F1-Score: 0.9103 [0.9003, 0.9200]
+2025-09-02 00:49:24 - INFO -   EER: 0.0858 @ threshold=0.3736
+2025-09-02 00:49:24 - INFO - 
+PER-CLASS METRICS:
+2025-09-02 00:49:24 - INFO -   Precision (Fake Detection): 0.9303
+2025-09-02 00:49:24 - INFO -   Recall/Sensitivity (Fake Detection): 0.8910
+2025-09-02 00:49:24 - INFO -   Specificity (Real Detection): 0.9333
+2025-09-02 00:49:24 - INFO - 
+CONFUSION MATRIX:
+2025-09-02 00:49:24 - INFO -   True Negatives (Real→Real): 1566
+2025-09-02 00:49:24 - INFO -   False Positives (Real→Fake): 112
+2025-09-02 00:49:24 - INFO -   False Negatives (Fake→Real): 183
+2025-09-02 00:49:24 - INFO -   True Positives (Fake→Fake): 1496
+2025-09-02 00:49:24 - INFO - 
+CALIBRATION ANALYSIS:
+2025-09-02 00:49:24 - INFO -   Brier Score: 0.0652 (lower is better)
+2025-09-02 00:49:24 - INFO -   Expected Calibration Error (ECE): 0.0299
+2025-09-02 00:49:24 - INFO -   Maximum Calibration Error (MCE): 0.1536
+2025-09-02 00:50:32 - INFO - 
+======================================================================
+2025-09-02 00:50:32 - INFO - COMPREHENSIVE RESULTS FOR 2 PYRAMID LAYER(S)
+2025-09-02 00:50:32 - INFO - ======================================================================
+2025-09-02 00:50:32 - INFO - TRAINING SUMMARY:
+2025-09-02 00:50:32 - INFO -   Total Parameters: 1,577,986
+2025-09-02 00:50:32 - INFO -   Epochs Trained: 24
+2025-09-02 00:50:32 - INFO -   Best Epoch: 17 (1-indexed)
+2025-09-02 00:50:32 - INFO -   Best Validation Loss: 0.2306
+2025-09-02 00:50:32 - INFO -   Model Checkpoint: best_model_2layers_1756711203.keras
+2025-09-02 00:50:32 - INFO - 
+TRAINING CONVERGENCE:
+2025-09-02 00:50:32 - INFO -   Initial Val Loss: 0.6394
+2025-09-02 00:50:32 - INFO -   Final Val Loss: 0.2306
+2025-09-02 00:50:32 - INFO -   Loss Improvement: 63.9%
+2025-09-02 00:50:32 - INFO - 
+FINAL PERFORMANCE SUMMARY:
+2025-09-02 00:50:32 - INFO -   Test AUC-ROC: 0.9724 [0.9680, 0.9769]
+2025-09-02 00:50:32 - INFO -   Test AUC-PR: 0.9727 [0.9670, 0.9778]
+2025-09-02 00:50:32 - INFO -   Test F1-Score: 0.9103 [0.9003, 0.9200]
+2025-09-02 00:50:32 - INFO -   Test Balanced Accuracy: 0.9121
+2025-09-02 00:50:32 - INFO -   Test EER: 0.0858 @ threshold=0.3736
+2025-09-02 00:50:32 - INFO -   Validation AUC-ROC: 0.9724
+2025-09-02 00:50:32 - INFO -   Validation F1-Score: 0.9103
+2025-09-02 00:50:32 - INFO - 
+STANDARD CLASSIFICATION REPORT (Test Set):
+2025-09-02 00:50:32 - INFO -               precision    recall  f1-score   support
+
+        Real       0.90      0.93      0.91      1678
+        Fake       0.93      0.89      0.91      1679
+
+    accuracy                           0.91      3357
+   macro avg       0.91      0.91      0.91      3357
+weighted avg       0.91      0.91      0.91      3357
+
+2025-09-02 00:50:32 - INFO - 
+Fold 2 Completed Successfully
+2025-09-02 00:50:32 - INFO -   Validation AUC-ROC: 0.9724
+2025-09-02 00:50:32 - INFO -   Validation F1-Score: 0.9103
+2025-09-02 00:50:32 - INFO - 
+================================================================================
+2025-09-02 00:50:32 - INFO - TRAINING FOLD 3/5
+2025-09-02 00:50:32 - INFO - ================================================================================
+2025-09-02 00:50:32 - INFO - Fold 3 Data Split:
+2025-09-02 00:50:32 - INFO -   Training: 13426 samples (Real=6713, Fake=6713)
+2025-09-02 00:50:32 - INFO -   Validation: 3356 samples (Real=1678, Fake=1678)
+2025-09-02 00:50:32 - INFO -   Fold max sequence length: 139
+2025-09-02 00:50:32 - INFO -   Fold train max: 139
+2025-09-02 00:50:32 - INFO -   Fold val max: 139
+2025-09-02 00:50:35 - INFO - 
+============================================================
+2025-09-02 00:50:35 - INFO - TRAINING MODEL WITH 2 PYRAMID LAYER(S)
+2025-09-02 00:50:35 - INFO - ============================================================
+2025-09-02 00:50:35 - INFO - 
+🔄 CHECKPOINT FOUND: best_model_2layers_1756711203.keras
+2025-09-02 00:50:35 - INFO - ✅ Automatically resuming from latest checkpoint...
+2025-09-02 00:50:36 - INFO - ✅ Successfully loaded checkpoint: best_model_2layers_1756711203.keras
+2025-09-02 00:50:36 - INFO - 🚀 Resuming training from loaded checkpoint...
+2025-09-02 00:50:36 - INFO - 
+============================================================
+2025-09-02 00:50:36 - INFO - MODEL SUMMARY: Pyramidal BiLSTM (2 layers)
+2025-09-02 00:50:36 - INFO - ============================================================
+2025-09-02 00:50:36 - INFO - Model: "functional"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                  ┃ Output Shape              ┃         Param # ┃ Connected to               ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ input_layer (InputLayer)      │ (None, 139, 80)           │               0 │ -                          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ not_equal_1 (NotEqual)        │ (None, 139, 80)           │               0 │ input_layer[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ masking (Masking)             │ (None, 139, 80)           │               0 │ input_layer[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ any_1 (Any)                   │ (None, 139)               │               0 │ not_equal_1[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional (Bidirectional) │ (None, 139, 256)          │         214,016 │ masking[0][0], any_1[0][0] │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization           │ (None, 139, 256)          │             512 │ bidirectional[0][0]        │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout (Dropout)             │ (None, 139, 256)          │               0 │ layer_normalization[0][0]  │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ pyramid_downsample_layer_1    │ (None, 69, 512)           │               0 │ dropout[0][0]              │
+│ (PyramidalDownsample)         │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional_1               │ (None, 69, 256)           │         656,384 │ pyramid_downsample_layer_… │
+│ (Bidirectional)               │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_1         │ (None, 69, 256)           │             512 │ bidirectional_1[0][0]      │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_1 (Dropout)           │ (None, 69, 256)           │               0 │ layer_normalization_1[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ pyramid_downsample_layer_2    │ (None, 34, 512)           │               0 │ dropout_1[0][0]            │
+│ (PyramidalDownsample)         │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional_2               │ (None, 34, 256)           │         656,384 │ pyramid_downsample_layer_… │
+│ (Bidirectional)               │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_2         │ (None, 34, 256)           │             512 │ bidirectional_2[0][0]      │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_2 (Dropout)           │ (None, 34, 256)           │               0 │ layer_normalization_2[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ attention_pooling             │ (None, 256)               │          33,025 │ dropout_2[0][0]            │
+│ (AttentionPooling)            │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_3 (Dropout)           │ (None, 256)               │               0 │ attention_pooling[0][0]    │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dense (Dense)                 │ (None, 64)                │          16,448 │ dropout_3[0][0]            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_3         │ (None, 64)                │             128 │ dense[0][0]                │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_4 (Dropout)           │ (None, 64)                │               0 │ layer_normalization_3[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ classification_output (Dense) │ (None, 1)                 │              65 │ dropout_4[0][0]            │
+└───────────────────────────────┴───────────────────────────┴─────────────────┴────────────────────────────┘
+ Total params: 1,577,986 (6.02 MB)
+ Trainable params: 1,577,986 (6.02 MB)
+ Non-trainable params: 0 (0.00 B)
+
+2025-09-02 00:50:36 - INFO - 
+Model Parameters:
+2025-09-02 00:50:36 - INFO -   Total parameters: 1,577,986
+2025-09-02 00:50:36 - INFO -   Trainable parameters: 1,577,986
+2025-09-02 00:50:36 - INFO -   Non-trainable parameters: 0
+2025-09-02 00:50:36 - INFO - ============================================================
+2025-09-02 00:50:36 - INFO - 
+Model Architecture Summary:
+2025-09-02 00:50:36 - INFO - Total Parameters: 1,577,986
+2025-09-02 00:50:36 - INFO - 
+================================================================================
+2025-09-02 00:50:36 - INFO - ENHANCED TRAINING PIPELINE
+2025-09-02 00:50:36 - INFO - ================================================================================
+2025-09-02 00:50:36 - INFO - Optimizer: AdamW (weight_decay=1e-5, clipnorm=1.0)
+2025-09-02 00:50:36 - INFO - Learning Rate: OneCycle (Base: 1e-4, Peak: 5e-4, Min: 1e-6)
+2025-09-02 00:50:36 - INFO - Schedule: Warmup (5 epochs) → Peak (15 epochs) → Cosine Annealing
+2025-09-02 00:50:36 - INFO - Max Epochs: 100 (with early stopping)
+2025-09-02 00:50:36 - INFO - ENHANCED REGULARIZATION:
+2025-09-02 00:50:36 - INFO -   • Recurrent dropout: 0.2-0.25 in LSTM layers
+2025-09-02 00:50:36 - INFO -   • LayerNormalization after each BiLSTM and Dense layer
+2025-09-02 00:50:36 - INFO -   • Progressive dropout: 0.3 → 0.35 → 0.4 → 0.5
+2025-09-02 00:50:36 - INFO -   • L2 regularization (1e-4) on Dense layer kernels
+2025-09-02 00:50:36 - INFO -   • Weight decay (1e-5) via AdamW optimizer
+2025-09-02 00:50:36 - INFO - TRAINING CALLBACKS:
+2025-09-02 00:50:36 - INFO -   • Best model checkpointing: best_model_2layers_1756754435.keras
+2025-09-02 00:50:36 - INFO -   • Per-epoch checkpointing: epoch_XXX_model_2layers_1756754435.keras
+2025-09-02 00:50:36 - INFO -   • Early stopping: patience=7, min_delta=0.0005
+2025-09-02 00:50:36 - INFO -   • LR plateau reduction: factor=0.2, patience=3
+2025-09-02 00:50:36 - INFO -   • NaN termination for training stability
+2025-09-02 00:50:36 - INFO - ================================================================================
+2025-09-02 01:11:52 - INFO - 💾 Epoch 1 checkpoint saved: epoch_001_model_2layers_1756754435.keras
+2025-09-02 01:31:18 - INFO - 💾 Epoch 2 checkpoint saved: epoch_002_model_2layers_1756754435.keras
+2025-09-02 01:50:17 - INFO - 💾 Epoch 3 checkpoint saved: epoch_003_model_2layers_1756754435.keras
+2025-09-02 02:09:16 - INFO - 💾 Epoch 4 checkpoint saved: epoch_004_model_2layers_1756754435.keras
+2025-09-02 02:28:18 - INFO - 💾 Epoch 5 checkpoint saved: epoch_005_model_2layers_1756754435.keras
+2025-09-02 02:47:59 - INFO - 💾 Epoch 6 checkpoint saved: epoch_006_model_2layers_1756754435.keras
+2025-09-02 03:06:55 - INFO - 💾 Epoch 7 checkpoint saved: epoch_007_model_2layers_1756754435.keras
+2025-09-02 03:52:05 - INFO - 💾 Epoch 8 checkpoint saved: epoch_008_model_2layers_1756754435.keras
+2025-09-02 04:14:03 - INFO - 💾 Epoch 9 checkpoint saved: epoch_009_model_2layers_1756754435.keras
+2025-09-02 04:32:40 - INFO - 💾 Epoch 10 checkpoint saved: epoch_010_model_2layers_1756754435.keras
+2025-09-02 05:02:16 - INFO - 💾 Epoch 11 checkpoint saved: epoch_011_model_2layers_1756754435.keras
+2025-09-02 05:21:58 - INFO - 💾 Epoch 12 checkpoint saved: epoch_012_model_2layers_1756754435.keras
+2025-09-02 05:39:47 - INFO - 💾 Epoch 13 checkpoint saved: epoch_013_model_2layers_1756754435.keras
+2025-09-02 05:57:35 - INFO - 💾 Epoch 14 checkpoint saved: epoch_014_model_2layers_1756754435.keras
+2025-09-02 06:15:25 - INFO - 💾 Epoch 15 checkpoint saved: epoch_015_model_2layers_1756754435.keras
+2025-09-02 06:33:17 - INFO - 💾 Epoch 16 checkpoint saved: epoch_016_model_2layers_1756754435.keras
+2025-09-02 06:51:13 - INFO - 💾 Epoch 17 checkpoint saved: epoch_017_model_2layers_1756754435.keras
+2025-09-02 07:09:11 - INFO - 💾 Epoch 18 checkpoint saved: epoch_018_model_2layers_1756754435.keras
+2025-09-02 07:27:10 - INFO - 💾 Epoch 19 checkpoint saved: epoch_019_model_2layers_1756754435.keras
+2025-09-02 07:45:10 - INFO - 💾 Epoch 20 checkpoint saved: epoch_020_model_2layers_1756754435.keras
+2025-09-02 08:03:12 - INFO - 💾 Epoch 21 checkpoint saved: epoch_021_model_2layers_1756754435.keras
+2025-09-02 08:21:22 - INFO - 💾 Epoch 22 checkpoint saved: epoch_022_model_2layers_1756754435.keras
+2025-09-02 08:39:28 - INFO - 💾 Epoch 23 checkpoint saved: epoch_023_model_2layers_1756754435.keras
+2025-09-02 08:57:38 - INFO - 💾 Epoch 24 checkpoint saved: epoch_024_model_2layers_1756754435.keras
+2025-09-02 09:15:48 - INFO - 💾 Epoch 25 checkpoint saved: epoch_025_model_2layers_1756754435.keras
+2025-09-02 09:15:49 - INFO - 
+============================================================
+2025-09-02 09:15:49 - INFO - TRAINING COMPLETED
+2025-09-02 09:15:49 - INFO - ============================================================
+2025-09-02 09:15:49 - INFO - Epochs trained: 25
+2025-09-02 09:15:49 - INFO - Best model saved to: best_model_2layers_1756754435.keras
+2025-09-02 09:15:49 - INFO - Best validation loss: 0.2368
+2025-09-02 09:15:49 - INFO - Best validation accuracy: 0.9210
+2025-09-02 09:15:49 - INFO - ============================================================
+2025-09-02 09:15:49 - INFO - Loading best model from checkpoint for evaluation...
+2025-09-02 09:15:49 - INFO - 
+Generating predictions for comprehensive evaluation...
+2025-09-02 09:16:50 - INFO - 
+================================================================================
+2025-09-02 09:16:50 - INFO - COMPREHENSIVE EVALUATION METRICS - TEST SET
+2025-09-02 09:16:50 - INFO - ================================================================================
+2025-09-02 09:16:50 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-09-02 09:16:50 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-09-02 09:16:53 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-09-02 09:16:53 - INFO -   Accuracy: 0.9103
+2025-09-02 09:16:53 - INFO -   Balanced Accuracy: 0.9103
+2025-09-02 09:16:53 - INFO -   AUC-ROC: 0.9734 [0.9692, 0.9775]
+2025-09-02 09:16:53 - INFO -   AUC-PR: 0.9721 [0.9673, 0.9771]
+2025-09-02 09:16:53 - INFO -   F1-Score: 0.9088 [0.8989, 0.9178]
+2025-09-02 09:16:53 - INFO -   EER: 0.0873 @ threshold=0.3991
+2025-09-02 09:16:53 - INFO - 
+PER-CLASS METRICS:
+2025-09-02 09:16:53 - INFO -   Precision (Fake Detection): 0.9247
+2025-09-02 09:16:53 - INFO -   Recall/Sensitivity (Fake Detection): 0.8933
+2025-09-02 09:16:53 - INFO -   Specificity (Real Detection): 0.9273
+2025-09-02 09:16:53 - INFO - 
+CONFUSION MATRIX:
+2025-09-02 09:16:53 - INFO -   True Negatives (Real→Real): 1556
+2025-09-02 09:16:53 - INFO -   False Positives (Real→Fake): 122
+2025-09-02 09:16:53 - INFO -   False Negatives (Fake→Real): 179
+2025-09-02 09:16:53 - INFO -   True Positives (Fake→Fake): 1499
+2025-09-02 09:16:53 - INFO - 
+CALIBRATION ANALYSIS:
+2025-09-02 09:16:53 - INFO -   Brier Score: 0.0673 (lower is better)
+2025-09-02 09:16:53 - INFO -   Expected Calibration Error (ECE): 0.0376
+2025-09-02 09:16:53 - INFO -   Maximum Calibration Error (MCE): 0.1988
+2025-09-02 09:16:53 - INFO - 
+================================================================================
+2025-09-02 09:16:53 - INFO - COMPREHENSIVE EVALUATION METRICS - VALIDATION SET
+2025-09-02 09:16:53 - INFO - ================================================================================
+2025-09-02 09:16:53 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-09-02 09:16:53 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-09-02 09:16:55 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-09-02 09:16:55 - INFO -   Accuracy: 0.9103
+2025-09-02 09:16:55 - INFO -   Balanced Accuracy: 0.9103
+2025-09-02 09:16:55 - INFO -   AUC-ROC: 0.9734 [0.9692, 0.9775]
+2025-09-02 09:16:55 - INFO -   AUC-PR: 0.9721 [0.9673, 0.9771]
+2025-09-02 09:16:55 - INFO -   F1-Score: 0.9088 [0.8989, 0.9178]
+2025-09-02 09:16:55 - INFO -   EER: 0.0873 @ threshold=0.3991
+2025-09-02 09:16:55 - INFO - 
+PER-CLASS METRICS:
+2025-09-02 09:16:55 - INFO -   Precision (Fake Detection): 0.9247
+2025-09-02 09:16:55 - INFO -   Recall/Sensitivity (Fake Detection): 0.8933
+2025-09-02 09:16:55 - INFO -   Specificity (Real Detection): 0.9273
+2025-09-02 09:16:55 - INFO - 
+CONFUSION MATRIX:
+2025-09-02 09:16:55 - INFO -   True Negatives (Real→Real): 1556
+2025-09-02 09:16:55 - INFO -   False Positives (Real→Fake): 122
+2025-09-02 09:16:55 - INFO -   False Negatives (Fake→Real): 179
+2025-09-02 09:16:55 - INFO -   True Positives (Fake→Fake): 1499
+2025-09-02 09:16:55 - INFO - 
+CALIBRATION ANALYSIS:
+2025-09-02 09:16:55 - INFO -   Brier Score: 0.0673 (lower is better)
+2025-09-02 09:16:55 - INFO -   Expected Calibration Error (ECE): 0.0376
+2025-09-02 09:16:55 - INFO -   Maximum Calibration Error (MCE): 0.1988
+2025-09-02 09:18:03 - INFO - 
+======================================================================
+2025-09-02 09:18:03 - INFO - COMPREHENSIVE RESULTS FOR 2 PYRAMID LAYER(S)
+2025-09-02 09:18:03 - INFO - ======================================================================
+2025-09-02 09:18:03 - INFO - TRAINING SUMMARY:
+2025-09-02 09:18:03 - INFO -   Total Parameters: 1,577,986
+2025-09-02 09:18:03 - INFO -   Epochs Trained: 25
+2025-09-02 09:18:03 - INFO -   Best Epoch: 18 (1-indexed)
+2025-09-02 09:18:03 - INFO -   Best Validation Loss: 0.2368
+2025-09-02 09:18:03 - INFO -   Model Checkpoint: best_model_2layers_1756754435.keras
+2025-09-02 09:18:03 - INFO - 
+TRAINING CONVERGENCE:
+2025-09-02 09:18:03 - INFO -   Initial Val Loss: 0.6192
+2025-09-02 09:18:03 - INFO -   Final Val Loss: 0.2368
+2025-09-02 09:18:03 - INFO -   Loss Improvement: 61.8%
+2025-09-02 09:18:03 - INFO - 
+FINAL PERFORMANCE SUMMARY:
+2025-09-02 09:18:03 - INFO -   Test AUC-ROC: 0.9734 [0.9692, 0.9775]
+2025-09-02 09:18:03 - INFO -   Test AUC-PR: 0.9721 [0.9673, 0.9771]
+2025-09-02 09:18:03 - INFO -   Test F1-Score: 0.9088 [0.8989, 0.9178]
+2025-09-02 09:18:03 - INFO -   Test Balanced Accuracy: 0.9103
+2025-09-02 09:18:03 - INFO -   Test EER: 0.0873 @ threshold=0.3991
+2025-09-02 09:18:03 - INFO -   Validation AUC-ROC: 0.9734
+2025-09-02 09:18:03 - INFO -   Validation F1-Score: 0.9088
+2025-09-02 09:18:03 - INFO - 
+STANDARD CLASSIFICATION REPORT (Test Set):
+2025-09-02 09:18:03 - INFO -               precision    recall  f1-score   support
+
+        Real       0.90      0.93      0.91      1678
+        Fake       0.92      0.89      0.91      1678
+
+    accuracy                           0.91      3356
+   macro avg       0.91      0.91      0.91      3356
+weighted avg       0.91      0.91      0.91      3356
+
+2025-09-02 09:18:03 - INFO - 
+Fold 3 Completed Successfully
+2025-09-02 09:18:03 - INFO -   Validation AUC-ROC: 0.9734
+2025-09-02 09:18:03 - INFO -   Validation F1-Score: 0.9088
+2025-09-02 09:18:04 - INFO - 
+================================================================================
+2025-09-02 09:18:04 - INFO - TRAINING FOLD 4/5
+2025-09-02 09:18:04 - INFO - ================================================================================
+2025-09-02 09:18:04 - INFO - Fold 4 Data Split:
+2025-09-02 09:18:04 - INFO -   Training: 13426 samples (Real=6713, Fake=6713)
+2025-09-02 09:18:04 - INFO -   Validation: 3356 samples (Real=1678, Fake=1678)
+2025-09-02 09:18:04 - INFO -   Fold max sequence length: 139
+2025-09-02 09:18:04 - INFO -   Fold train max: 139
+2025-09-02 09:18:04 - INFO -   Fold val max: 139
+2025-09-02 09:18:07 - INFO - 
+============================================================
+2025-09-02 09:18:07 - INFO - TRAINING MODEL WITH 2 PYRAMID LAYER(S)
+2025-09-02 09:18:07 - INFO - ============================================================
+2025-09-02 09:18:07 - INFO - 
+🔄 CHECKPOINT FOUND: best_model_2layers_1756754435.keras
+2025-09-02 09:18:07 - INFO - ✅ Automatically resuming from latest checkpoint...
+2025-09-02 09:18:07 - INFO - ✅ Successfully loaded checkpoint: best_model_2layers_1756754435.keras
+2025-09-02 09:18:07 - INFO - 🚀 Resuming training from loaded checkpoint...
+2025-09-02 09:18:08 - INFO - 
+============================================================
+2025-09-02 09:18:08 - INFO - MODEL SUMMARY: Pyramidal BiLSTM (2 layers)
+2025-09-02 09:18:08 - INFO - ============================================================
+2025-09-02 09:18:08 - INFO - Model: "functional"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                  ┃ Output Shape              ┃         Param # ┃ Connected to               ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ input_layer (InputLayer)      │ (None, 139, 80)           │               0 │ -                          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ not_equal_1 (NotEqual)        │ (None, 139, 80)           │               0 │ input_layer[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ masking (Masking)             │ (None, 139, 80)           │               0 │ input_layer[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ any_1 (Any)                   │ (None, 139)               │               0 │ not_equal_1[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional (Bidirectional) │ (None, 139, 256)          │         214,016 │ masking[0][0], any_1[0][0] │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization           │ (None, 139, 256)          │             512 │ bidirectional[0][0]        │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout (Dropout)             │ (None, 139, 256)          │               0 │ layer_normalization[0][0]  │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ pyramid_downsample_layer_1    │ (None, 69, 512)           │               0 │ dropout[0][0]              │
+│ (PyramidalDownsample)         │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional_1               │ (None, 69, 256)           │         656,384 │ pyramid_downsample_layer_… │
+│ (Bidirectional)               │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_1         │ (None, 69, 256)           │             512 │ bidirectional_1[0][0]      │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_1 (Dropout)           │ (None, 69, 256)           │               0 │ layer_normalization_1[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ pyramid_downsample_layer_2    │ (None, 34, 512)           │               0 │ dropout_1[0][0]            │
+│ (PyramidalDownsample)         │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional_2               │ (None, 34, 256)           │         656,384 │ pyramid_downsample_layer_… │
+│ (Bidirectional)               │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_2         │ (None, 34, 256)           │             512 │ bidirectional_2[0][0]      │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_2 (Dropout)           │ (None, 34, 256)           │               0 │ layer_normalization_2[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ attention_pooling             │ (None, 256)               │          33,025 │ dropout_2[0][0]            │
+│ (AttentionPooling)            │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_3 (Dropout)           │ (None, 256)               │               0 │ attention_pooling[0][0]    │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dense (Dense)                 │ (None, 64)                │          16,448 │ dropout_3[0][0]            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_3         │ (None, 64)                │             128 │ dense[0][0]                │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_4 (Dropout)           │ (None, 64)                │               0 │ layer_normalization_3[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ classification_output (Dense) │ (None, 1)                 │              65 │ dropout_4[0][0]            │
+└───────────────────────────────┴───────────────────────────┴─────────────────┴────────────────────────────┘
+ Total params: 1,577,986 (6.02 MB)
+ Trainable params: 1,577,986 (6.02 MB)
+ Non-trainable params: 0 (0.00 B)
+
+2025-09-02 09:18:08 - INFO - 
+Model Parameters:
+2025-09-02 09:18:08 - INFO -   Total parameters: 1,577,986
+2025-09-02 09:18:08 - INFO -   Trainable parameters: 1,577,986
+2025-09-02 09:18:08 - INFO -   Non-trainable parameters: 0
+2025-09-02 09:18:08 - INFO - ============================================================
+2025-09-02 09:18:08 - INFO - 
+Model Architecture Summary:
+2025-09-02 09:18:08 - INFO - Total Parameters: 1,577,986
+2025-09-02 09:18:08 - INFO - 
+================================================================================
+2025-09-02 09:18:08 - INFO - ENHANCED TRAINING PIPELINE
+2025-09-02 09:18:08 - INFO - ================================================================================
+2025-09-02 09:18:08 - INFO - Optimizer: AdamW (weight_decay=1e-5, clipnorm=1.0)
+2025-09-02 09:18:08 - INFO - Learning Rate: OneCycle (Base: 1e-4, Peak: 5e-4, Min: 1e-6)
+2025-09-02 09:18:08 - INFO - Schedule: Warmup (5 epochs) → Peak (15 epochs) → Cosine Annealing
+2025-09-02 09:18:08 - INFO - Max Epochs: 100 (with early stopping)
+2025-09-02 09:18:08 - INFO - ENHANCED REGULARIZATION:
+2025-09-02 09:18:08 - INFO -   • Recurrent dropout: 0.2-0.25 in LSTM layers
+2025-09-02 09:18:08 - INFO -   • LayerNormalization after each BiLSTM and Dense layer
+2025-09-02 09:18:08 - INFO -   • Progressive dropout: 0.3 → 0.35 → 0.4 → 0.5
+2025-09-02 09:18:08 - INFO -   • L2 regularization (1e-4) on Dense layer kernels
+2025-09-02 09:18:08 - INFO -   • Weight decay (1e-5) via AdamW optimizer
+2025-09-02 09:18:08 - INFO - TRAINING CALLBACKS:
+2025-09-02 09:18:08 - INFO -   • Best model checkpointing: best_model_2layers_1756784887.keras
+2025-09-02 09:18:08 - INFO -   • Per-epoch checkpointing: epoch_XXX_model_2layers_1756784887.keras
+2025-09-02 09:18:08 - INFO -   • Early stopping: patience=7, min_delta=0.0005
+2025-09-02 09:18:08 - INFO -   • LR plateau reduction: factor=0.2, patience=3
+2025-09-02 09:18:08 - INFO -   • NaN termination for training stability
+2025-09-02 09:18:08 - INFO - ================================================================================
+2025-09-02 09:37:40 - INFO - 💾 Epoch 1 checkpoint saved: epoch_001_model_2layers_1756784887.keras
+2025-09-02 09:55:08 - INFO - 💾 Epoch 2 checkpoint saved: epoch_002_model_2layers_1756784887.keras
+2025-09-02 10:12:36 - INFO - 💾 Epoch 3 checkpoint saved: epoch_003_model_2layers_1756784887.keras
+2025-09-02 10:29:56 - INFO - 💾 Epoch 4 checkpoint saved: epoch_004_model_2layers_1756784887.keras
+2025-09-02 10:47:09 - INFO - 💾 Epoch 5 checkpoint saved: epoch_005_model_2layers_1756784887.keras
+2025-09-02 11:04:23 - INFO - 💾 Epoch 6 checkpoint saved: epoch_006_model_2layers_1756784887.keras
+2025-09-02 11:21:36 - INFO - 💾 Epoch 7 checkpoint saved: epoch_007_model_2layers_1756784887.keras
+2025-09-02 11:38:44 - INFO - 💾 Epoch 8 checkpoint saved: epoch_008_model_2layers_1756784887.keras
+2025-09-02 11:55:48 - INFO - 💾 Epoch 9 checkpoint saved: epoch_009_model_2layers_1756784887.keras
+2025-09-02 12:12:55 - INFO - 💾 Epoch 10 checkpoint saved: epoch_010_model_2layers_1756784887.keras
+2025-09-02 12:30:03 - INFO - 💾 Epoch 11 checkpoint saved: epoch_011_model_2layers_1756784887.keras
+2025-09-02 12:47:15 - INFO - 💾 Epoch 12 checkpoint saved: epoch_012_model_2layers_1756784887.keras
+2025-09-02 13:04:26 - INFO - 💾 Epoch 13 checkpoint saved: epoch_013_model_2layers_1756784887.keras
+2025-09-02 13:21:40 - INFO - 💾 Epoch 14 checkpoint saved: epoch_014_model_2layers_1756784887.keras
+2025-09-02 13:38:49 - INFO - 💾 Epoch 15 checkpoint saved: epoch_015_model_2layers_1756784887.keras
+2025-09-02 13:56:00 - INFO - 💾 Epoch 16 checkpoint saved: epoch_016_model_2layers_1756784887.keras
+2025-09-02 14:13:16 - INFO - 💾 Epoch 17 checkpoint saved: epoch_017_model_2layers_1756784887.keras
+2025-09-02 14:30:37 - INFO - 💾 Epoch 18 checkpoint saved: epoch_018_model_2layers_1756784887.keras
+2025-09-02 14:48:02 - INFO - 💾 Epoch 19 checkpoint saved: epoch_019_model_2layers_1756784887.keras
+2025-09-02 15:05:29 - INFO - 💾 Epoch 20 checkpoint saved: epoch_020_model_2layers_1756784887.keras
+2025-09-02 15:22:59 - INFO - 💾 Epoch 21 checkpoint saved: epoch_021_model_2layers_1756784887.keras
+2025-09-02 15:40:40 - INFO - 💾 Epoch 22 checkpoint saved: epoch_022_model_2layers_1756784887.keras
+2025-09-02 15:58:11 - INFO - 💾 Epoch 23 checkpoint saved: epoch_023_model_2layers_1756784887.keras
+2025-09-02 15:58:11 - INFO - 
+============================================================
+2025-09-02 15:58:11 - INFO - TRAINING COMPLETED
+2025-09-02 15:58:11 - INFO - ============================================================
+2025-09-02 15:58:11 - INFO - Epochs trained: 23
+2025-09-02 15:58:11 - INFO - Best model saved to: best_model_2layers_1756784887.keras
+2025-09-02 15:58:11 - INFO - Best validation loss: 0.2318
+2025-09-02 15:58:11 - INFO - Best validation accuracy: 0.9300
+2025-09-02 15:58:11 - INFO - ============================================================
+2025-09-02 15:58:11 - INFO - Loading best model from checkpoint for evaluation...
+2025-09-02 15:58:11 - INFO - 
+Generating predictions for comprehensive evaluation...
+2025-09-02 15:59:13 - INFO - 
+================================================================================
+2025-09-02 15:59:13 - INFO - COMPREHENSIVE EVALUATION METRICS - TEST SET
+2025-09-02 15:59:13 - INFO - ================================================================================
+2025-09-02 15:59:13 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-09-02 15:59:13 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-09-02 15:59:15 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-09-02 15:59:15 - INFO -   Accuracy: 0.9157
+2025-09-02 15:59:15 - INFO -   Balanced Accuracy: 0.9157
+2025-09-02 15:59:15 - INFO -   AUC-ROC: 0.9737 [0.9690, 0.9778]
+2025-09-02 15:59:15 - INFO -   AUC-PR: 0.9744 [0.9694, 0.9788]
+2025-09-02 15:59:15 - INFO -   F1-Score: 0.9140 [0.9036, 0.9235]
+2025-09-02 15:59:15 - INFO -   EER: 0.0870 @ threshold=0.3977
+2025-09-02 15:59:15 - INFO - 
+PER-CLASS METRICS:
+2025-09-02 15:59:15 - INFO -   Precision (Fake Detection): 0.9330
+2025-09-02 15:59:15 - INFO -   Recall/Sensitivity (Fake Detection): 0.8957
+2025-09-02 15:59:15 - INFO -   Specificity (Real Detection): 0.9356
+2025-09-02 15:59:15 - INFO - 
+CONFUSION MATRIX:
+2025-09-02 15:59:15 - INFO -   True Negatives (Real→Real): 1570
+2025-09-02 15:59:15 - INFO -   False Positives (Real→Fake): 108
+2025-09-02 15:59:15 - INFO -   False Negatives (Fake→Real): 175
+2025-09-02 15:59:15 - INFO -   True Positives (Fake→Fake): 1503
+2025-09-02 15:59:15 - INFO - 
+CALIBRATION ANALYSIS:
+2025-09-02 15:59:15 - INFO -   Brier Score: 0.0654 (lower is better)
+2025-09-02 15:59:15 - INFO -   Expected Calibration Error (ECE): 0.0316
+2025-09-02 15:59:15 - INFO -   Maximum Calibration Error (MCE): 0.1461
+2025-09-02 15:59:15 - INFO - 
+================================================================================
+2025-09-02 15:59:15 - INFO - COMPREHENSIVE EVALUATION METRICS - VALIDATION SET
+2025-09-02 15:59:15 - INFO - ================================================================================
+2025-09-02 15:59:15 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-09-02 15:59:15 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-09-02 15:59:18 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-09-02 15:59:18 - INFO -   Accuracy: 0.9157
+2025-09-02 15:59:18 - INFO -   Balanced Accuracy: 0.9157
+2025-09-02 15:59:18 - INFO -   AUC-ROC: 0.9737 [0.9690, 0.9778]
+2025-09-02 15:59:18 - INFO -   AUC-PR: 0.9744 [0.9694, 0.9788]
+2025-09-02 15:59:18 - INFO -   F1-Score: 0.9140 [0.9036, 0.9235]
+2025-09-02 15:59:18 - INFO -   EER: 0.0870 @ threshold=0.3977
+2025-09-02 15:59:18 - INFO - 
+PER-CLASS METRICS:
+2025-09-02 15:59:18 - INFO -   Precision (Fake Detection): 0.9330
+2025-09-02 15:59:18 - INFO -   Recall/Sensitivity (Fake Detection): 0.8957
+2025-09-02 15:59:18 - INFO -   Specificity (Real Detection): 0.9356
+2025-09-02 15:59:18 - INFO - 
+CONFUSION MATRIX:
+2025-09-02 15:59:18 - INFO -   True Negatives (Real→Real): 1570
+2025-09-02 15:59:18 - INFO -   False Positives (Real→Fake): 108
+2025-09-02 15:59:18 - INFO -   False Negatives (Fake→Real): 175
+2025-09-02 15:59:18 - INFO -   True Positives (Fake→Fake): 1503
+2025-09-02 15:59:18 - INFO - 
+CALIBRATION ANALYSIS:
+2025-09-02 15:59:18 - INFO -   Brier Score: 0.0654 (lower is better)
+2025-09-02 15:59:18 - INFO -   Expected Calibration Error (ECE): 0.0316
+2025-09-02 15:59:18 - INFO -   Maximum Calibration Error (MCE): 0.1461
+2025-09-02 16:00:22 - INFO - 
+======================================================================
+2025-09-02 16:00:22 - INFO - COMPREHENSIVE RESULTS FOR 2 PYRAMID LAYER(S)
+2025-09-02 16:00:22 - INFO - ======================================================================
+2025-09-02 16:00:22 - INFO - TRAINING SUMMARY:
+2025-09-02 16:00:22 - INFO -   Total Parameters: 1,577,986
+2025-09-02 16:00:22 - INFO -   Epochs Trained: 23
+2025-09-02 16:00:22 - INFO -   Best Epoch: 16 (1-indexed)
+2025-09-02 16:00:22 - INFO -   Best Validation Loss: 0.2318
+2025-09-02 16:00:22 - INFO -   Model Checkpoint: best_model_2layers_1756784887.keras
+2025-09-02 16:00:22 - INFO - 
+TRAINING CONVERGENCE:
+2025-09-02 16:00:22 - INFO -   Initial Val Loss: 0.6448
+2025-09-02 16:00:22 - INFO -   Final Val Loss: 0.2318
+2025-09-02 16:00:22 - INFO -   Loss Improvement: 64.0%
+2025-09-02 16:00:22 - INFO - 
+FINAL PERFORMANCE SUMMARY:
+2025-09-02 16:00:22 - INFO -   Test AUC-ROC: 0.9737 [0.9690, 0.9778]
+2025-09-02 16:00:22 - INFO -   Test AUC-PR: 0.9744 [0.9694, 0.9788]
+2025-09-02 16:00:22 - INFO -   Test F1-Score: 0.9140 [0.9036, 0.9235]
+2025-09-02 16:00:22 - INFO -   Test Balanced Accuracy: 0.9157
+2025-09-02 16:00:22 - INFO -   Test EER: 0.0870 @ threshold=0.3977
+2025-09-02 16:00:22 - INFO -   Validation AUC-ROC: 0.9737
+2025-09-02 16:00:22 - INFO -   Validation F1-Score: 0.9140
+2025-09-02 16:00:22 - INFO - 
+STANDARD CLASSIFICATION REPORT (Test Set):
+2025-09-02 16:00:22 - INFO -               precision    recall  f1-score   support
+
+        Real       0.90      0.94      0.92      1678
+        Fake       0.93      0.90      0.91      1678
+
+    accuracy                           0.92      3356
+   macro avg       0.92      0.92      0.92      3356
+weighted avg       0.92      0.92      0.92      3356
+
+2025-09-02 16:00:22 - INFO - 
+Fold 4 Completed Successfully
+2025-09-02 16:00:22 - INFO -   Validation AUC-ROC: 0.9737
+2025-09-02 16:00:22 - INFO -   Validation F1-Score: 0.9140
+2025-09-02 16:00:23 - INFO - 
+================================================================================
+2025-09-02 16:00:23 - INFO - TRAINING FOLD 5/5
+2025-09-02 16:00:23 - INFO - ================================================================================
+2025-09-02 16:00:23 - INFO - Fold 5 Data Split:
+2025-09-02 16:00:23 - INFO -   Training: 13426 samples (Real=6713, Fake=6713)
+2025-09-02 16:00:23 - INFO -   Validation: 3356 samples (Real=1678, Fake=1678)
+2025-09-02 16:00:23 - INFO -   Fold max sequence length: 139
+2025-09-02 16:00:23 - INFO -   Fold train max: 139
+2025-09-02 16:00:23 - INFO -   Fold val max: 139
+2025-09-02 16:00:26 - INFO - 
+============================================================
+2025-09-02 16:00:26 - INFO - TRAINING MODEL WITH 2 PYRAMID LAYER(S)
+2025-09-02 16:00:26 - INFO - ============================================================
+2025-09-02 16:00:26 - INFO - 
+🔄 CHECKPOINT FOUND: best_model_2layers_1756784887.keras
+2025-09-02 16:00:26 - INFO - ✅ Automatically resuming from latest checkpoint...
+2025-09-02 16:00:26 - INFO - ✅ Successfully loaded checkpoint: best_model_2layers_1756784887.keras
+2025-09-02 16:00:26 - INFO - 🚀 Resuming training from loaded checkpoint...
+2025-09-02 16:00:26 - INFO - 
+============================================================
+2025-09-02 16:00:26 - INFO - MODEL SUMMARY: Pyramidal BiLSTM (2 layers)
+2025-09-02 16:00:26 - INFO - ============================================================
+2025-09-02 16:00:26 - INFO - Model: "functional"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                  ┃ Output Shape              ┃         Param # ┃ Connected to               ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ input_layer (InputLayer)      │ (None, 139, 80)           │               0 │ -                          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ not_equal_1 (NotEqual)        │ (None, 139, 80)           │               0 │ input_layer[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ masking (Masking)             │ (None, 139, 80)           │               0 │ input_layer[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ any_1 (Any)                   │ (None, 139)               │               0 │ not_equal_1[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional (Bidirectional) │ (None, 139, 256)          │         214,016 │ masking[0][0], any_1[0][0] │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization           │ (None, 139, 256)          │             512 │ bidirectional[0][0]        │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout (Dropout)             │ (None, 139, 256)          │               0 │ layer_normalization[0][0]  │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ pyramid_downsample_layer_1    │ (None, 69, 512)           │               0 │ dropout[0][0]              │
+│ (PyramidalDownsample)         │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional_1               │ (None, 69, 256)           │         656,384 │ pyramid_downsample_layer_… │
+│ (Bidirectional)               │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_1         │ (None, 69, 256)           │             512 │ bidirectional_1[0][0]      │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_1 (Dropout)           │ (None, 69, 256)           │               0 │ layer_normalization_1[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ pyramid_downsample_layer_2    │ (None, 34, 512)           │               0 │ dropout_1[0][0]            │
+│ (PyramidalDownsample)         │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional_2               │ (None, 34, 256)           │         656,384 │ pyramid_downsample_layer_… │
+│ (Bidirectional)               │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_2         │ (None, 34, 256)           │             512 │ bidirectional_2[0][0]      │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_2 (Dropout)           │ (None, 34, 256)           │               0 │ layer_normalization_2[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ attention_pooling             │ (None, 256)               │          33,025 │ dropout_2[0][0]            │
+│ (AttentionPooling)            │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_3 (Dropout)           │ (None, 256)               │               0 │ attention_pooling[0][0]    │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dense (Dense)                 │ (None, 64)                │          16,448 │ dropout_3[0][0]            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_3         │ (None, 64)                │             128 │ dense[0][0]                │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_4 (Dropout)           │ (None, 64)                │               0 │ layer_normalization_3[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ classification_output (Dense) │ (None, 1)                 │              65 │ dropout_4[0][0]            │
+└───────────────────────────────┴───────────────────────────┴─────────────────┴────────────────────────────┘
+ Total params: 1,577,986 (6.02 MB)
+ Trainable params: 1,577,986 (6.02 MB)
+ Non-trainable params: 0 (0.00 B)
+
+2025-09-02 16:00:26 - INFO - 
+Model Parameters:
+2025-09-02 16:00:26 - INFO -   Total parameters: 1,577,986
+2025-09-02 16:00:26 - INFO -   Trainable parameters: 1,577,986
+2025-09-02 16:00:26 - INFO -   Non-trainable parameters: 0
+2025-09-02 16:00:26 - INFO - ============================================================
+2025-09-02 16:00:26 - INFO - 
+Model Architecture Summary:
+2025-09-02 16:00:27 - INFO - Total Parameters: 1,577,986
+2025-09-02 16:00:27 - INFO - 
+================================================================================
+2025-09-02 16:00:27 - INFO - ENHANCED TRAINING PIPELINE
+2025-09-02 16:00:27 - INFO - ================================================================================
+2025-09-02 16:00:27 - INFO - Optimizer: AdamW (weight_decay=1e-5, clipnorm=1.0)
+2025-09-02 16:00:27 - INFO - Learning Rate: OneCycle (Base: 1e-4, Peak: 5e-4, Min: 1e-6)
+2025-09-02 16:00:27 - INFO - Schedule: Warmup (5 epochs) → Peak (15 epochs) → Cosine Annealing
+2025-09-02 16:00:27 - INFO - Max Epochs: 100 (with early stopping)
+2025-09-02 16:00:27 - INFO - ENHANCED REGULARIZATION:
+2025-09-02 16:00:27 - INFO -   • Recurrent dropout: 0.2-0.25 in LSTM layers
+2025-09-02 16:00:27 - INFO -   • LayerNormalization after each BiLSTM and Dense layer
+2025-09-02 16:00:27 - INFO -   • Progressive dropout: 0.3 → 0.35 → 0.4 → 0.5
+2025-09-02 16:00:27 - INFO -   • L2 regularization (1e-4) on Dense layer kernels
+2025-09-02 16:00:27 - INFO -   • Weight decay (1e-5) via AdamW optimizer
+2025-09-02 16:00:27 - INFO - TRAINING CALLBACKS:
+2025-09-02 16:00:27 - INFO -   • Best model checkpointing: best_model_2layers_1756809026.keras
+2025-09-02 16:00:27 - INFO -   • Per-epoch checkpointing: epoch_XXX_model_2layers_1756809026.keras
+2025-09-02 16:00:27 - INFO -   • Early stopping: patience=7, min_delta=0.0005
+2025-09-02 16:00:27 - INFO -   • LR plateau reduction: factor=0.2, patience=3
+2025-09-02 16:00:27 - INFO -   • NaN termination for training stability
+2025-09-02 16:00:27 - INFO - ================================================================================
+2025-09-02 16:18:45 - INFO - 💾 Epoch 1 checkpoint saved: epoch_001_model_2layers_1756809026.keras
+2025-09-02 16:35:37 - INFO - 💾 Epoch 2 checkpoint saved: epoch_002_model_2layers_1756809026.keras
+2025-09-02 16:52:38 - INFO - 💾 Epoch 3 checkpoint saved: epoch_003_model_2layers_1756809026.keras
+2025-09-02 17:09:46 - INFO - 💾 Epoch 4 checkpoint saved: epoch_004_model_2layers_1756809026.keras
+2025-09-02 17:27:10 - INFO - 💾 Epoch 5 checkpoint saved: epoch_005_model_2layers_1756809026.keras
+2025-09-02 17:44:44 - INFO - 💾 Epoch 6 checkpoint saved: epoch_006_model_2layers_1756809026.keras
+2025-09-02 18:02:03 - INFO - 💾 Epoch 7 checkpoint saved: epoch_007_model_2layers_1756809026.keras
+2025-09-02 18:19:15 - INFO - 💾 Epoch 8 checkpoint saved: epoch_008_model_2layers_1756809026.keras
+2025-09-02 18:36:28 - INFO - 💾 Epoch 9 checkpoint saved: epoch_009_model_2layers_1756809026.keras
+2025-09-02 18:53:47 - INFO - 💾 Epoch 10 checkpoint saved: epoch_010_model_2layers_1756809026.keras
+2025-09-02 19:11:51 - INFO - 💾 Epoch 11 checkpoint saved: epoch_011_model_2layers_1756809026.keras
+2025-09-02 19:30:51 - INFO - 💾 Epoch 12 checkpoint saved: epoch_012_model_2layers_1756809026.keras
+2025-09-02 19:48:55 - INFO - 💾 Epoch 13 checkpoint saved: epoch_013_model_2layers_1756809026.keras
+2025-09-02 20:06:24 - INFO - 💾 Epoch 14 checkpoint saved: epoch_014_model_2layers_1756809026.keras
+2025-09-02 20:23:27 - INFO - 💾 Epoch 15 checkpoint saved: epoch_015_model_2layers_1756809026.keras
+2025-09-02 20:39:55 - INFO - 💾 Epoch 16 checkpoint saved: epoch_016_model_2layers_1756809026.keras
+2025-09-02 20:56:27 - INFO - 💾 Epoch 17 checkpoint saved: epoch_017_model_2layers_1756809026.keras
+2025-09-02 21:13:00 - INFO - 💾 Epoch 18 checkpoint saved: epoch_018_model_2layers_1756809026.keras
+2025-09-02 21:29:38 - INFO - 💾 Epoch 19 checkpoint saved: epoch_019_model_2layers_1756809026.keras
+2025-09-02 21:46:38 - INFO - 💾 Epoch 20 checkpoint saved: epoch_020_model_2layers_1756809026.keras
+2025-09-02 22:03:39 - INFO - 💾 Epoch 21 checkpoint saved: epoch_021_model_2layers_1756809026.keras
+2025-09-02 22:20:42 - INFO - 💾 Epoch 22 checkpoint saved: epoch_022_model_2layers_1756809026.keras
+2025-09-02 22:37:47 - INFO - 💾 Epoch 23 checkpoint saved: epoch_023_model_2layers_1756809026.keras
+2025-09-02 22:37:47 - INFO - 
+============================================================
+2025-09-02 22:37:47 - INFO - TRAINING COMPLETED
+2025-09-02 22:37:47 - INFO - ============================================================
+2025-09-02 22:37:47 - INFO - Epochs trained: 23
+2025-09-02 22:37:47 - INFO - Best model saved to: best_model_2layers_1756809026.keras
+2025-09-02 22:37:47 - INFO - Best validation loss: 0.2179
+2025-09-02 22:37:47 - INFO - Best validation accuracy: 0.9225
+2025-09-02 22:37:47 - INFO - ============================================================
+2025-09-02 22:37:47 - INFO - Loading best model from checkpoint for evaluation...
+2025-09-02 22:37:47 - INFO - 
+Generating predictions for comprehensive evaluation...
+2025-09-02 22:38:51 - INFO - 
+================================================================================
+2025-09-02 22:38:51 - INFO - COMPREHENSIVE EVALUATION METRICS - TEST SET
+2025-09-02 22:38:51 - INFO - ================================================================================
+2025-09-02 22:38:51 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-09-02 22:38:51 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-09-02 22:38:54 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-09-02 22:38:54 - INFO -   Accuracy: 0.9175
+2025-09-02 22:38:54 - INFO -   Balanced Accuracy: 0.9175
+2025-09-02 22:38:54 - INFO -   AUC-ROC: 0.9750 [0.9705, 0.9788]
+2025-09-02 22:38:54 - INFO -   AUC-PR: 0.9752 [0.9701, 0.9797]
+2025-09-02 22:38:54 - INFO -   F1-Score: 0.9175 [0.9080, 0.9269]
+2025-09-02 22:38:54 - INFO -   EER: 0.0825 @ threshold=0.5016
+2025-09-02 22:38:54 - INFO - 
+PER-CLASS METRICS:
+2025-09-02 22:38:54 - INFO -   Precision (Fake Detection): 0.9167
+2025-09-02 22:38:54 - INFO -   Recall/Sensitivity (Fake Detection): 0.9184
+2025-09-02 22:38:54 - INFO -   Specificity (Real Detection): 0.9166
+2025-09-02 22:38:54 - INFO - 
+CONFUSION MATRIX:
+2025-09-02 22:38:54 - INFO -   True Negatives (Real→Real): 1538
+2025-09-02 22:38:54 - INFO -   False Positives (Real→Fake): 140
+2025-09-02 22:38:54 - INFO -   False Negatives (Fake→Real): 137
+2025-09-02 22:38:54 - INFO -   True Positives (Fake→Fake): 1541
+2025-09-02 22:38:54 - INFO - 
+CALIBRATION ANALYSIS:
+2025-09-02 22:38:54 - INFO -   Brier Score: 0.0617 (lower is better)
+2025-09-02 22:38:54 - INFO -   Expected Calibration Error (ECE): 0.0172
+2025-09-02 22:38:54 - INFO -   Maximum Calibration Error (MCE): 0.0405
+2025-09-02 22:38:54 - INFO - 
+================================================================================
+2025-09-02 22:38:54 - INFO - COMPREHENSIVE EVALUATION METRICS - VALIDATION SET
+2025-09-02 22:38:54 - INFO - ================================================================================
+2025-09-02 22:38:54 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-09-02 22:38:54 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-09-02 22:38:56 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-09-02 22:38:56 - INFO -   Accuracy: 0.9175
+2025-09-02 22:38:56 - INFO -   Balanced Accuracy: 0.9175
+2025-09-02 22:38:56 - INFO -   AUC-ROC: 0.9750 [0.9705, 0.9788]
+2025-09-02 22:38:56 - INFO -   AUC-PR: 0.9752 [0.9701, 0.9797]
+2025-09-02 22:38:56 - INFO -   F1-Score: 0.9175 [0.9080, 0.9269]
+2025-09-02 22:38:56 - INFO -   EER: 0.0825 @ threshold=0.5016
+2025-09-02 22:38:56 - INFO - 
+PER-CLASS METRICS:
+2025-09-02 22:38:56 - INFO -   Precision (Fake Detection): 0.9167
+2025-09-02 22:38:56 - INFO -   Recall/Sensitivity (Fake Detection): 0.9184
+2025-09-02 22:38:56 - INFO -   Specificity (Real Detection): 0.9166
+2025-09-02 22:38:56 - INFO - 
+CONFUSION MATRIX:
+2025-09-02 22:38:56 - INFO -   True Negatives (Real→Real): 1538
+2025-09-02 22:38:56 - INFO -   False Positives (Real→Fake): 140
+2025-09-02 22:38:56 - INFO -   False Negatives (Fake→Real): 137
+2025-09-02 22:38:56 - INFO -   True Positives (Fake→Fake): 1541
+2025-09-02 22:38:56 - INFO - 
+CALIBRATION ANALYSIS:
+2025-09-02 22:38:56 - INFO -   Brier Score: 0.0617 (lower is better)
+2025-09-02 22:38:56 - INFO -   Expected Calibration Error (ECE): 0.0172
+2025-09-02 22:38:56 - INFO -   Maximum Calibration Error (MCE): 0.0405
+2025-09-02 22:40:00 - INFO - 
+======================================================================
+2025-09-02 22:40:00 - INFO - COMPREHENSIVE RESULTS FOR 2 PYRAMID LAYER(S)
+2025-09-02 22:40:00 - INFO - ======================================================================
+2025-09-02 22:40:00 - INFO - TRAINING SUMMARY:
+2025-09-02 22:40:00 - INFO -   Total Parameters: 1,577,986
+2025-09-02 22:40:00 - INFO -   Epochs Trained: 23
+2025-09-02 22:40:00 - INFO -   Best Epoch: 16 (1-indexed)
+2025-09-02 22:40:00 - INFO -   Best Validation Loss: 0.2179
+2025-09-02 22:40:00 - INFO -   Model Checkpoint: best_model_2layers_1756809026.keras
+2025-09-02 22:40:00 - INFO - 
+TRAINING CONVERGENCE:
+2025-09-02 22:40:00 - INFO -   Initial Val Loss: 0.6316
+2025-09-02 22:40:00 - INFO -   Final Val Loss: 0.2179
+2025-09-02 22:40:00 - INFO -   Loss Improvement: 65.5%
+2025-09-02 22:40:00 - INFO - 
+FINAL PERFORMANCE SUMMARY:
+2025-09-02 22:40:00 - INFO -   Test AUC-ROC: 0.9750 [0.9705, 0.9788]
+2025-09-02 22:40:00 - INFO -   Test AUC-PR: 0.9752 [0.9701, 0.9797]
+2025-09-02 22:40:00 - INFO -   Test F1-Score: 0.9175 [0.9080, 0.9269]
+2025-09-02 22:40:00 - INFO -   Test Balanced Accuracy: 0.9175
+2025-09-02 22:40:00 - INFO -   Test EER: 0.0825 @ threshold=0.5016
+2025-09-02 22:40:00 - INFO -   Validation AUC-ROC: 0.9750
+2025-09-02 22:40:00 - INFO -   Validation F1-Score: 0.9175
+2025-09-02 22:40:00 - INFO - 
+STANDARD CLASSIFICATION REPORT (Test Set):
+2025-09-02 22:40:00 - INFO -               precision    recall  f1-score   support
+
+        Real       0.92      0.92      0.92      1678
+        Fake       0.92      0.92      0.92      1678
+
+    accuracy                           0.92      3356
+   macro avg       0.92      0.92      0.92      3356
+weighted avg       0.92      0.92      0.92      3356
+
+2025-09-02 22:40:00 - INFO - 
+Fold 5 Completed Successfully
+2025-09-02 22:40:00 - INFO -   Validation AUC-ROC: 0.9750
+2025-09-02 22:40:00 - INFO -   Validation F1-Score: 0.9175
+2025-09-02 22:40:03 - INFO - 
+==========================================================================================
+2025-09-02 22:40:03 - INFO - CROSS-VALIDATION COMPLETED - STATISTICAL ANALYSIS
+2025-09-02 22:40:03 - INFO - ==========================================================================================
+2025-09-02 22:40:03 - INFO - Analyzing results from 5 successful folds (out of 5 total)
+2025-09-02 22:40:03 - INFO - 
+================================================================================
+2025-09-02 22:40:03 - INFO - CROSS-VALIDATION STATISTICS (n=5 folds)
+2025-09-02 22:40:03 - INFO - ================================================================================
+2025-09-02 22:40:03 - INFO - MODEL PERFORMANCE ACROSS FOLDS:
+2025-09-02 22:40:03 - INFO -   AUC-ROC:           0.9719 ± 0.0037 [0.9647, 0.9750]
+2025-09-02 22:40:03 - INFO -   AUC-PR:            0.9721 ± 0.0033 [0.9659, 0.9752]
+2025-09-02 22:40:03 - INFO -   F1-Score:          0.9098 ± 0.0064 [0.8986, 0.9175]
+2025-09-02 22:40:03 - INFO -   Balanced Accuracy: 0.9109 ± 0.0065
+2025-09-02 22:40:03 - INFO -   EER:               0.0883 ± 0.0056
+2025-09-02 22:40:03 - INFO -   Precision:         0.9214 ± 0.0111
+2025-09-02 22:40:03 - INFO -   Recall:            0.8987 ± 0.0100
+2025-09-02 22:40:03 - INFO - 
+TRAINING STATISTICS:
+2025-09-02 22:40:03 - INFO -   Successful Folds: 5/5 (100.0%)
+2025-09-02 22:40:03 - INFO -   Avg Training Epochs: 23.0
+2025-09-02 22:40:03 - INFO -   Model Parameters: 1,577,986
+2025-09-02 22:40:03 - INFO - 
+STATISTICAL ROBUSTNESS:
+2025-09-02 22:40:03 - INFO -   AUC-ROC Coefficient of Variation: 0.004 (Low variability)
+2025-09-02 22:40:03 - INFO -   Mean AUC-ROC 95% CI: [0.9673, 0.9764]
+2025-09-02 22:40:03 - INFO - 
+================================================================================
+2025-09-02 22:40:03 - INFO - FINAL HOLD-OUT TEST SET EVALUATION
+2025-09-02 22:40:03 - INFO - ================================================================================
+2025-09-02 22:40:03 - INFO - Using model from Fold 5 (best validation AUC: 0.9750)
+2025-09-02 22:40:03 - INFO - Padding test data to length 139 (same as best fold)
+2025-09-02 22:40:15 - INFO - 
+================================================================================
+2025-09-02 22:40:15 - INFO - COMPREHENSIVE EVALUATION METRICS - HOLD-OUT TEST SET
+2025-09-02 22:40:15 - INFO - ================================================================================
+2025-09-02 22:40:15 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-09-02 22:40:15 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-09-02 22:40:17 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-09-02 22:40:17 - INFO -   Accuracy: 0.8410
+2025-09-02 22:40:17 - INFO -   Balanced Accuracy: 0.8410
+2025-09-02 22:40:17 - INFO -   AUC-ROC: 0.9314 [0.9178, 0.9452]
+2025-09-02 22:40:17 - INFO -   AUC-PR: 0.9311 [0.9129, 0.9467]
+2025-09-02 22:40:17 - INFO -   F1-Score: 0.8357 [0.8109, 0.8596]
+2025-09-02 22:40:17 - INFO -   EER: 0.1636 @ threshold=0.3230
+2025-09-02 22:40:17 - INFO - 
+PER-CLASS METRICS:
+2025-09-02 22:40:17 - INFO -   Precision (Fake Detection): 0.8644
+2025-09-02 22:40:17 - INFO -   Recall/Sensitivity (Fake Detection): 0.8088
+2025-09-02 22:40:17 - INFO -   Specificity (Real Detection): 0.8732
+2025-09-02 22:40:17 - INFO - 
+CONFUSION MATRIX:
+2025-09-02 22:40:17 - INFO -   True Negatives (Real→Real): 475
+2025-09-02 22:40:17 - INFO -   False Positives (Real→Fake): 69
+2025-09-02 22:40:17 - INFO -   False Negatives (Fake→Real): 104
+2025-09-02 22:40:17 - INFO -   True Positives (Fake→Fake): 440
+2025-09-02 22:40:17 - INFO - 
+CALIBRATION ANALYSIS:
+2025-09-02 22:40:17 - INFO -   Brier Score: 0.1197 (lower is better)
+2025-09-02 22:40:17 - INFO -   Expected Calibration Error (ECE): 0.0734
+2025-09-02 22:40:17 - INFO -   Maximum Calibration Error (MCE): 0.4693
+2025-09-02 22:40:17 - INFO - 
+================================================================================
+2025-09-02 22:40:17 - INFO - EXPERIMENT RESULTS: 5-Fold Cross-Validation
+2025-09-02 22:40:17 - INFO - ================================================================================
+2025-09-02 22:40:17 - INFO -   cv_type: stratified_kfold
+2025-09-02 22:40:17 - INFO -   k_folds: 5.0000
+2025-09-02 22:40:17 - INFO -   successful_folds: 5.0000
+2025-09-02 22:40:17 - INFO -   fold_results: [{'pyramid_layers': 2, 'total_params': 1577986, 'epochs_trained': 20, 'best_epoch': np.int64(13), 'best_val_loss': 0.25876954197883606, 'best_val_acc': 0.9067620038986206, 'test_accuracy': 0.8990169763565063, 'val_accuracy': 0.8990169763565063, 'test_loss': 0.2587694227695465, 'val_loss': 0.2587694227695465, 'test_auc': 0.9646981822002284, 'val_auc': 0.9646981822002284, 'test_eer': np.float64(0.0988978342151275), 'val_eer': np.float64(0.0988978342151275), 'eer_threshold': np.float32(0.48922658), 'test_metrics': {'accuracy': np.float64(0.8990169794459338), 'balanced_accuracy': np.float64(0.8990158169237747), 'auc_roc': 0.9646981822002284, 'auc_roc_ci': {'mean': np.float64(0.9647174851170858), 'std': np.float64(0.002775045602894573), 'ci_lower': np.float64(0.9593453971781775), 'ci_upper': np.float64(0.9699046511343671), 'confidence': 0.95}, 'auc_pr': 0.9658549490997281, 'auc_pr_ci': {'mean': np.float64(0.9658992859091174), 'std': np.float64(0.0029281028478595436), 'ci_lower': np.float64(0.9602269760922733), 'ci_upper': np.float64(0.9716284433099331), 'confidence': 0.95}, 'f1_score': 0.898594077176189, 'f1_ci': {'mean': np.float64(0.8986977715134383), 'std': np.float64(0.005499779519468901), 'ci_lower': np.float64(0.8876583380109497), 'ci_upper': np.float64(0.9091457570738638), 'confidence': 0.95}, 'precision': 0.9021021021021021, 'recall': 0.8951132300357568, 'specificity': np.float64(0.9029184038117928), 'eer': np.float64(0.0988978342151275), 'eer_threshold': np.float32(0.48922658), 'confusion_matrix': array([[1516,  163],
+       [ 176, 1502]]), 'calibration': {'brier_score': 0.07441910072239369, 'ece': np.float64(0.027367873298210114), 'mce': np.float64(0.13842720031738276)}, 'bootstrap_confidence': 0.95}, 'val_metrics': {'accuracy': np.float64(0.8990169794459338), 'balanced_accuracy': np.float64(0.8990158169237747), 'auc_roc': 0.9646981822002284, 'auc_roc_ci': {'mean': np.float64(0.9647174851170858), 'std': np.float64(0.002775045602894573), 'ci_lower': np.float64(0.9593453971781775), 'ci_upper': np.float64(0.9699046511343671), 'confidence': 0.95}, 'auc_pr': 0.9658549490997281, 'auc_pr_ci': {'mean': np.float64(0.9658992859091174), 'std': np.float64(0.0029281028478595436), 'ci_lower': np.float64(0.9602269760922733), 'ci_upper': np.float64(0.9716284433099331), 'confidence': 0.95}, 'f1_score': 0.898594077176189, 'f1_ci': {'mean': np.float64(0.8986977715134383), 'std': np.float64(0.005499779519468901), 'ci_lower': np.float64(0.8876583380109497), 'ci_upper': np.float64(0.9091457570738638), 'confidence': 0.95}, 'precision': 0.9021021021021021, 'recall': 0.8951132300357568, 'specificity': np.float64(0.9029184038117928), 'eer': np.float64(0.0988978342151275), 'eer_threshold': np.float32(0.48922658), 'confusion_matrix': array([[1516,  163],
+       [ 176, 1502]]), 'calibration': {'brier_score': 0.07441910072239369, 'ece': np.float64(0.027367873298210114), 'mce': np.float64(0.13842720031738276)}, 'bootstrap_confidence': 0.95}, 'checkpoint_path': 'best_model_2layers_1756689398.keras', 'training_time': 20, 'history': {'accuracy': [0.561266303062439, 0.6526629328727722, 0.7211173176765442, 0.7600744962692261, 0.7810055613517761, 0.7994040846824646, 0.8282309174537659, 0.8480446934700012, 0.8600372672080994, 0.8768715262413025, 0.8863314986228943, 0.8946741223335266, 0.9007076621055603, 0.9070391058921814, 0.911582887172699, 0.9202979803085327, 0.9263314604759216, 0.9285660982131958, 0.9316946268081665, 0.9372066855430603], 'loss': [0.8350958228111267, 0.6559520959854126, 0.5663616061210632, 0.5121383666992188, 0.48156362771987915, 0.4439542591571808, 0.396146297454834, 0.35735756158828735, 0.32800617814064026, 0.30166178941726685, 0.28227031230926514, 0.26002955436706543, 0.24609079957008362, 0.23558638989925385, 0.2196546196937561, 0.20445355772972107, 0.19153159856796265, 0.18398717045783997, 0.1743527054786682, 0.15909259021282196], 'val_accuracy': [0.6684539914131165, 0.7399463653564453, 0.7813524007797241, 0.8004170656204224, 0.811438798904419, 0.8397378325462341, 0.8543342351913452, 0.8671432733535767, 0.8710157871246338, 0.875484049320221, 0.8826333284378052, 0.8936550617218018, 0.8990169763565063, 0.8888888955116272, 0.8936550617218018, 0.9046767950057983, 0.901995837688446, 0.9005063772201538, 0.9067620038986206, 0.9046767950057983], 'val_loss': [0.6251946091651917, 0.526176929473877, 0.4607069194316864, 0.43902069330215454, 0.4317973256111145, 0.38365527987480164, 0.3601163625717163, 0.35198506712913513, 0.31080982089042664, 0.3086676299571991, 0.30471059679985046, 0.2816369831562042, 0.25876954197883606, 0.27833375334739685, 0.2789531946182251, 0.29162153601646423, 0.29655396938323975, 0.2893504202365875, 0.2893846333026886, 0.29624316096305847], 'learning_rate': [9.999999747378752e-05, 0.00018000000272877514, 0.00026000000070780516, 0.00033999999868683517, 0.0004199999966658652, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.00010000000474974513, 0.0005000000237487257, 0.0005000000237487257, 0.00010000000474974513, 0.0005000000237487257]}, 'evaluation_type': 'comprehensive_with_bootstrap', 'fold_idx': 1, 'train_size': 13425, 'val_size': 3357, 'scaler': StandardScaler(), 'fold_max_T': 139}, {'pyramid_layers': 2, 'total_params': 1577986, 'epochs_trained': 24, 'best_epoch': np.int64(17), 'best_val_loss': 0.2305726259946823, 'best_val_acc': 0.9234435558319092, 'test_accuracy': 0.9121239185333252, 'val_accuracy': 0.9121239185333252, 'test_loss': 0.2305726706981659, 'val_loss': 0.2305726706981659, 'test_auc': 0.9724362719451742, 'val_auc': 0.9724362719451742, 'test_eer': np.float64(0.08579089233119494), 'val_eer': np.float64(0.08579089233119494), 'eer_threshold': np.float32(0.37364283), 'test_metrics': {'accuracy': np.float64(0.9121239201668156), 'balanced_accuracy': np.float64(0.9121302125889397), 'auc_roc': 0.9724362719451742, 'auc_roc_ci': {'mean': np.float64(0.9723764828048631), 'std': np.float64(0.0023031544030062408), 'ci_lower': np.float64(0.9679606116084792), 'ci_upper': np.float64(0.9768604239158232), 'confidence': 0.95}, 'auc_pr': 0.9727192148469841, 'auc_pr_ci': {'mean': np.float64(0.9726959520443293), 'std': np.float64(0.0027392422843281255), 'ci_lower': np.float64(0.9670031985325863), 'ci_upper': np.float64(0.9777768271288968), 'confidence': 0.95}, 'f1_score': 0.9102525098874353, 'f1_ci': {'mean': np.float64(0.9101533277593703), 'std': np.float64(0.005054190003288441), 'ci_lower': np.float64(0.9003037707390648), 'ci_upper': np.float64(0.9200376374103504), 'confidence': 0.95}, 'precision': 0.9303482587064676, 'recall': 0.8910065515187612, 'specificity': np.float64(0.933253873659118), 'eer': np.float64(0.08579089233119494), 'eer_threshold': np.float32(0.37364283), 'confusion_matrix': array([[1566,  112],
+       [ 183, 1496]]), 'calibration': {'brier_score': 0.06519110164025578, 'ece': np.float64(0.029878491278885366), 'mce': np.float64(0.15363290905952454)}, 'bootstrap_confidence': 0.95}, 'val_metrics': {'accuracy': np.float64(0.9121239201668156), 'balanced_accuracy': np.float64(0.9121302125889397), 'auc_roc': 0.9724362719451742, 'auc_roc_ci': {'mean': np.float64(0.9723764828048631), 'std': np.float64(0.0023031544030062408), 'ci_lower': np.float64(0.9679606116084792), 'ci_upper': np.float64(0.9768604239158232), 'confidence': 0.95}, 'auc_pr': 0.9727192148469841, 'auc_pr_ci': {'mean': np.float64(0.9726959520443293), 'std': np.float64(0.0027392422843281255), 'ci_lower': np.float64(0.9670031985325863), 'ci_upper': np.float64(0.9777768271288968), 'confidence': 0.95}, 'f1_score': 0.9102525098874353, 'f1_ci': {'mean': np.float64(0.9101533277593703), 'std': np.float64(0.005054190003288441), 'ci_lower': np.float64(0.9003037707390648), 'ci_upper': np.float64(0.9200376374103504), 'confidence': 0.95}, 'precision': 0.9303482587064676, 'recall': 0.8910065515187612, 'specificity': np.float64(0.933253873659118), 'eer': np.float64(0.08579089233119494), 'eer_threshold': np.float32(0.37364283), 'confusion_matrix': array([[1566,  112],
+       [ 183, 1496]]), 'calibration': {'brier_score': 0.06519110164025578, 'ece': np.float64(0.029878491278885366), 'mce': np.float64(0.15363290905952454)}, 'bootstrap_confidence': 0.95}, 'checkpoint_path': 'best_model_2layers_1756711203.keras', 'training_time': 24, 'history': {'accuracy': [0.5416759848594666, 0.6338174939155579, 0.7161266207695007, 0.7642458081245422, 0.7818994522094727, 0.7995530962944031, 0.8270391225814819, 0.847001850605011, 0.8638361096382141, 0.8689013123512268, 0.8858845233917236, 0.8945996165275574, 0.9021974205970764, 0.9145624041557312, 0.9135940670967102, 0.9231284856796265, 0.9270763397216797, 0.930577278137207, 0.9366108179092407, 0.9360893964767456, 0.9404841661453247, 0.9446554780006409, 0.9486778378486633, 0.9525511860847473], 'loss': [0.8783164024353027, 0.6694051623344421, 0.5766688585281372, 0.5122031569480896, 0.4803738296031952, 0.44284528493881226, 0.4003404974937439, 0.36067479848861694, 0.31989413499832153, 0.3058871328830719, 0.27464744448661804, 0.25901055335998535, 0.24342934787273407, 0.22144050896167755, 0.2156129777431488, 0.20106057822704315, 0.19310206174850464, 0.18113403022289276, 0.17045505344867706, 0.1604406237602234, 0.15356221795082092, 0.14689093828201294, 0.1373758614063263, 0.1284698247909546], 'val_accuracy': [0.644921064376831, 0.7324992418289185, 0.7277330756187439, 0.7920762300491333, 0.812034547328949, 0.8200774788856506, 0.8391420841217041, 0.8683348298072815, 0.8757819533348083, 0.8850163817405701, 0.8871015906333923, 0.8912719488143921, 0.8960381150245667, 0.901995837688446, 0.9031873941421509, 0.9142091274261475, 0.9121239185333252, 0.9043788909912109, 0.9121239185333252, 0.9136133193969727, 0.91331547498703, 0.9177837371826172, 0.9213583469390869, 0.9234435558319092], 'val_loss': [0.6393613219261169, 0.5408163070678711, 0.5790964961051941, 0.4455479085445404, 0.42035430669784546, 0.411549836397171, 0.37846311926841736, 0.3121260106563568, 0.3000467121601105, 0.279130220413208, 0.28285494446754456, 0.26928815245628357, 0.26801884174346924, 0.25255897641181946, 0.24498099088668823, 0.2434491068124771, 0.2305726259946823, 0.25247010588645935, 0.24160753190517426, 0.2384345531463623, 0.247000053524971, 0.26023977994918823, 0.24341817200183868, 0.234811469912529], 'learning_rate': [9.999999747378752e-05, 0.00018000000272877514, 0.00026000000070780516, 0.00033999999868683517, 0.0004199999966658652, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.00010000000474974513, 0.0005000000237487257, 0.0004986331914551556, 9.890956425806507e-05, 0.00048778860946185887]}, 'evaluation_type': 'comprehensive_with_bootstrap', 'fold_idx': 2, 'train_size': 13425, 'val_size': 3357, 'scaler': StandardScaler(), 'fold_max_T': 139}, {'pyramid_layers': 2, 'total_params': 1577986, 'epochs_trained': 25, 'best_epoch': np.int64(18), 'best_val_loss': 0.23683468997478485, 'best_val_acc': 0.921036958694458, 'test_accuracy': 0.910309910774231, 'val_accuracy': 0.910309910774231, 'test_loss': 0.23683474957942963, 'val_loss': 0.23683474957942963, 'test_auc': 0.9734497905304714, 'val_auc': 0.9734497905304714, 'test_eer': np.float64(0.08730631704410013), 'val_eer': np.float64(0.08730631704410013), 'eer_threshold': np.float32(0.3991019), 'test_metrics': {'accuracy': np.float64(0.9103098927294399), 'balanced_accuracy': np.float64(0.9103098927294397), 'auc_roc': 0.9734497905304714, 'auc_roc_ci': {'mean': np.float64(0.9734983887264594), 'std': np.float64(0.0021933891309830695), 'ci_lower': np.float64(0.9692050484345901), 'ci_upper': np.float64(0.9775066923317303), 'confidence': 0.95}, 'auc_pr': 0.9721333698267131, 'auc_pr_ci': {'mean': np.float64(0.9722474246965426), 'std': np.float64(0.002675143673953757), 'ci_lower': np.float64(0.9672942143418126), 'ci_upper': np.float64(0.9770928774372849), 'confidence': 0.95}, 'f1_score': 0.9087602303728403, 'f1_ci': {'mean': np.float64(0.9086970546088736), 'std': np.float64(0.005076246645159176), 'ci_lower': np.float64(0.8989104793192025), 'ci_upper': np.float64(0.9178377327212505), 'confidence': 0.95}, 'precision': 0.9247378161628624, 'recall': 0.8933253873659118, 'specificity': np.float64(0.9272943980929678), 'eer': np.float64(0.08730631704410013), 'eer_threshold': np.float32(0.3991019), 'confusion_matrix': array([[1556,  122],
+       [ 179, 1499]]), 'calibration': {'brier_score': 0.06725033523893442, 'ece': np.float64(0.037628957690366935), 'mce': np.float64(0.19878872654524193)}, 'bootstrap_confidence': 0.95}, 'val_metrics': {'accuracy': np.float64(0.9103098927294399), 'balanced_accuracy': np.float64(0.9103098927294397), 'auc_roc': 0.9734497905304714, 'auc_roc_ci': {'mean': np.float64(0.9734983887264594), 'std': np.float64(0.0021933891309830695), 'ci_lower': np.float64(0.9692050484345901), 'ci_upper': np.float64(0.9775066923317303), 'confidence': 0.95}, 'auc_pr': 0.9721333698267131, 'auc_pr_ci': {'mean': np.float64(0.9722474246965426), 'std': np.float64(0.002675143673953757), 'ci_lower': np.float64(0.9672942143418126), 'ci_upper': np.float64(0.9770928774372849), 'confidence': 0.95}, 'f1_score': 0.9087602303728403, 'f1_ci': {'mean': np.float64(0.9086970546088736), 'std': np.float64(0.005076246645159176), 'ci_lower': np.float64(0.8989104793192025), 'ci_upper': np.float64(0.9178377327212505), 'confidence': 0.95}, 'precision': 0.9247378161628624, 'recall': 0.8933253873659118, 'specificity': np.float64(0.9272943980929678), 'eer': np.float64(0.08730631704410013), 'eer_threshold': np.float32(0.3991019), 'confusion_matrix': array([[1556,  122],
+       [ 179, 1499]]), 'calibration': {'brier_score': 0.06725033523893442, 'ece': np.float64(0.037628957690366935), 'mce': np.float64(0.19878872654524193)}, 'bootstrap_confidence': 0.95}, 'checkpoint_path': 'best_model_2layers_1756754435.keras', 'training_time': 25, 'history': {'accuracy': [0.5588410496711731, 0.652539849281311, 0.7242663502693176, 0.7530165314674377, 0.7840011715888977, 0.8066438436508179, 0.8321167826652527, 0.846566379070282, 0.8613138794898987, 0.8745717406272888, 0.8885744214057922, 0.8934902548789978, 0.9044391512870789, 0.9130790829658508, 0.9185163378715515, 0.9235066175460815, 0.9271562695503235, 0.9335617423057556, 0.9375838041305542, 0.937285840511322, 0.9389989376068115, 0.9460747838020325, 0.9487561583518982, 0.9502457976341248, 0.954416811466217], 'loss': [0.8432956337928772, 0.6577515006065369, 0.5678902864456177, 0.5139485001564026, 0.47112351655960083, 0.4304431676864624, 0.38707512617111206, 0.3591556251049042, 0.3271005153656006, 0.2986038625240326, 0.2749202847480774, 0.259758859872818, 0.23719272017478943, 0.22266001999378204, 0.20626625418663025, 0.1968366652727127, 0.18995362520217896, 0.17295314371585846, 0.1655968278646469, 0.16562357544898987, 0.1542166769504547, 0.13991686701774597, 0.13450317084789276, 0.13180606067180634, 0.12447109818458557], 'val_accuracy': [0.6680572032928467, 0.7574493288993835, 0.7616209983825684, 0.7988677024841309, 0.7976757884025574, 0.8450536131858826, 0.8432657718658447, 0.8557807207107544, 0.8602502942085266, 0.8849821090698242, 0.8772348165512085, 0.8945173025131226, 0.8888557553291321, 0.9034565091133118, 0.9043503999710083, 0.8966031074523926, 0.9097139239311218, 0.910309910774231, 0.9112038016319275, 0.9162693619728088, 0.9183551669120789, 0.9120977520942688, 0.9126936793327332, 0.921036958694458, 0.9162693619728088], 'val_loss': [0.6191996932029724, 0.5108885765075684, 0.5193962454795837, 0.4355577826499939, 0.4240739643573761, 0.35459205508232117, 0.34173768758773804, 0.3383708894252777, 0.33355513215065, 0.2859185039997101, 0.28092968463897705, 0.293840616941452, 0.29437780380249023, 0.25055429339408875, 0.26959073543548584, 0.28307798504829407, 0.2568146884441376, 0.23683468997478485, 0.24617759883403778, 0.2514667510986328, 0.24923846125602722, 0.2681370675563812, 0.27924859523773193, 0.27085646986961365, 0.28719815611839294], 'learning_rate': [9.999999747378752e-05, 0.00018000000272877514, 0.00026000000070780516, 0.00033999999868683517, 0.0004199999966658652, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.00010000000474974513, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.00010000000474974513, 0.0004986331914551556, 0.000494547828566283, 9.755772043718025e-05, 0.00047842960339039564]}, 'evaluation_type': 'comprehensive_with_bootstrap', 'fold_idx': 3, 'train_size': 13426, 'val_size': 3356, 'scaler': StandardScaler(), 'fold_max_T': 139}, {'pyramid_layers': 2, 'total_params': 1577986, 'epochs_trained': 23, 'best_epoch': np.int64(16), 'best_val_loss': 0.23184476792812347, 'best_val_acc': 0.9299761652946472, 'test_accuracy': 0.9156734347343445, 'val_accuracy': 0.9156734347343445, 'test_loss': 0.23184478282928467, 'val_loss': 0.23184478282928467, 'test_auc': 0.973714735034187, 'val_auc': 0.973714735034187, 'test_eer': np.float64(0.08700834326579263), 'val_eer': np.float64(0.08700834326579263), 'eer_threshold': np.float32(0.39769536), 'test_metrics': {'accuracy': np.float64(0.915673420738975), 'balanced_accuracy': np.float64(0.915673420738975), 'auc_roc': 0.973714735034187, 'auc_roc_ci': {'mean': np.float64(0.9736961221534122), 'std': np.float64(0.002246814466501499), 'ci_lower': np.float64(0.9689674591563964), 'ci_upper': np.float64(0.9777692019363718), 'confidence': 0.95}, 'auc_pr': 0.9743570370465107, 'auc_pr_ci': {'mean': np.float64(0.9743887617899739), 'std': np.float64(0.0024758876205904588), 'ci_lower': np.float64(0.9693955933678002), 'ci_upper': np.float64(0.9787827628775613), 'confidence': 0.95}, 'f1_score': 0.9139556096077835, 'f1_ci': {'mean': np.float64(0.9140143562358563), 'std': np.float64(0.005056203362296899), 'ci_lower': np.float64(0.9035827068808207), 'ci_upper': np.float64(0.9235382760155143), 'confidence': 0.95}, 'precision': 0.9329608938547486, 'recall': 0.8957091775923719, 'specificity': np.float64(0.9356376638855781), 'eer': np.float64(0.08700834326579263), 'eer_threshold': np.float32(0.39769536), 'confusion_matrix': array([[1570,  108],
+       [ 175, 1503]]), 'calibration': {'brier_score': 0.06541636023068843, 'ece': np.float64(0.03163896583040668), 'mce': np.float64(0.14607818503128855)}, 'bootstrap_confidence': 0.95}, 'val_metrics': {'accuracy': np.float64(0.915673420738975), 'balanced_accuracy': np.float64(0.915673420738975), 'auc_roc': 0.973714735034187, 'auc_roc_ci': {'mean': np.float64(0.9736961221534122), 'std': np.float64(0.002246814466501499), 'ci_lower': np.float64(0.9689674591563964), 'ci_upper': np.float64(0.9777692019363718), 'confidence': 0.95}, 'auc_pr': 0.9743570370465107, 'auc_pr_ci': {'mean': np.float64(0.9743887617899739), 'std': np.float64(0.0024758876205904588), 'ci_lower': np.float64(0.9693955933678002), 'ci_upper': np.float64(0.9787827628775613), 'confidence': 0.95}, 'f1_score': 0.9139556096077835, 'f1_ci': {'mean': np.float64(0.9140143562358563), 'std': np.float64(0.005056203362296899), 'ci_lower': np.float64(0.9035827068808207), 'ci_upper': np.float64(0.9235382760155143), 'confidence': 0.95}, 'precision': 0.9329608938547486, 'recall': 0.8957091775923719, 'specificity': np.float64(0.9356376638855781), 'eer': np.float64(0.08700834326579263), 'eer_threshold': np.float32(0.39769536), 'confusion_matrix': array([[1570,  108],
+       [ 175, 1503]]), 'calibration': {'brier_score': 0.06541636023068843, 'ece': np.float64(0.03163896583040668), 'mce': np.float64(0.14607818503128855)}, 'bootstrap_confidence': 0.95}, 'checkpoint_path': 'best_model_2layers_1756784887.keras', 'training_time': 23, 'history': {'accuracy': [0.5398480296134949, 0.633844792842865, 0.7172650098800659, 0.7647847533226013, 0.7775212526321411, 0.8051542043685913, 0.8256368041038513, 0.8482794761657715, 0.8608669638633728, 0.8729330897331238, 0.880977213382721, 0.8905109763145447, 0.8993743658065796, 0.9029495120048523, 0.9103977084159851, 0.9182928800582886, 0.9219424724578857, 0.9241024851799011, 0.9310293197631836, 0.9321466088294983, 0.9348279237747192, 0.9390734434127808, 0.9439892768859863], 'loss': [0.8426229953765869, 0.6736680865287781, 0.5733189582824707, 0.5134226679801941, 0.47799816727638245, 0.4372554123401642, 0.3990568220615387, 0.35859283804893494, 0.3316015303134918, 0.30851122736930847, 0.28801393508911133, 0.2715364098548889, 0.2549804449081421, 0.238272026181221, 0.22319599986076355, 0.2105381041765213, 0.2029891461133957, 0.1922347992658615, 0.1781850904226303, 0.17459306120872498, 0.16625483334064484, 0.16316953301429749, 0.1462426334619522], 'val_accuracy': [0.6516686677932739, 0.7517878413200378, 0.7747318148612976, 0.7866507768630981, 0.8084028363227844, 0.8438617587089539, 0.8349225521087646, 0.8593564033508301, 0.878128707408905, 0.878128707408905, 0.8814064264297485, 0.8858760595321655, 0.9091179966926575, 0.905840277671814, 0.9106078743934631, 0.9156734347343445, 0.9097139239311218, 0.9150774478912354, 0.9162693619728088, 0.9168652892112732, 0.910309910774231, 0.9219308495521545, 0.9299761652946472], 'val_loss': [0.6447786688804626, 0.5547161102294922, 0.4979558289051056, 0.46366143226623535, 0.4532812237739563, 0.3774246275424957, 0.38137003779411316, 0.34805312752723694, 0.324992299079895, 0.2998112440109253, 0.2977561950683594, 0.2823486030101776, 0.2650715112686157, 0.26130035519599915, 0.24751189351081848, 0.23184476792812347, 0.2624223232269287, 0.25019487738609314, 0.2619810998439789, 0.2711432874202728, 0.25999629497528076, 0.23635587096214294, 0.25760823488235474], 'learning_rate': [9.999999747378752e-05, 0.00018000000272877514, 0.00026000000070780516, 0.00033999999868683517, 0.0004199999966658652, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.00010000000474974513, 0.0005000000237487257, 0.0005000000237487257, 9.972663974622265e-05, 0.000494547828566283]}, 'evaluation_type': 'comprehensive_with_bootstrap', 'fold_idx': 4, 'train_size': 13426, 'val_size': 3356, 'scaler': StandardScaler(), 'fold_max_T': 139}, {'pyramid_layers': 2, 'total_params': 1577986, 'epochs_trained': 23, 'best_epoch': np.int64(16), 'best_val_loss': 0.2179478257894516, 'best_val_acc': 0.9225268363952637, 'test_accuracy': 0.9174612760543823, 'val_accuracy': 0.9174612760543823, 'test_loss': 0.2179478257894516, 'val_loss': 0.2179478257894516, 'test_auc': 0.9750096246595853, 'val_auc': 0.9750096246595853, 'test_eer': np.float64(0.08253873659118), 'val_eer': np.float64(0.08253873659118), 'eer_threshold': np.float32(0.50156844), 'test_metrics': {'accuracy': np.float64(0.9174612634088201), 'balanced_accuracy': np.float64(0.91746126340882), 'auc_roc': 0.9750096246595853, 'auc_roc_ci': {'mean': np.float64(0.9749766469932905), 'std': np.float64(0.0021405615883872088), 'ci_lower': np.float64(0.9705211420003842), 'ci_upper': np.float64(0.978812006171484), 'confidence': 0.95}, 'auc_pr': 0.9752242643717971, 'auc_pr_ci': {'mean': np.float64(0.9752077958132965), 'std': np.float64(0.0024097300770155976), 'ci_lower': np.float64(0.9700914139410685), 'ci_upper': np.float64(0.9796795495543811), 'confidence': 0.95}, 'f1_score': 0.9175349806490026, 'f1_ci': {'mean': np.float64(0.9175809126354817), 'std': np.float64(0.004832864820973313), 'ci_lower': np.float64(0.9079586036478158), 'ci_upper': np.float64(0.9268606554806716), 'confidence': 0.95}, 'precision': 0.916716240333135, 'recall': 0.9183551847437426, 'specificity': np.float64(0.9165673420738975), 'eer': np.float64(0.08253873659118), 'eer_threshold': np.float32(0.50156844), 'confusion_matrix': array([[1538,  140],
+       [ 137, 1541]]), 'calibration': {'brier_score': 0.06165102338576677, 'ece': np.float64(0.017201493382098705), 'mce': np.float64(0.040504299966912516)}, 'bootstrap_confidence': 0.95}, 'val_metrics': {'accuracy': np.float64(0.9174612634088201), 'balanced_accuracy': np.float64(0.91746126340882), 'auc_roc': 0.9750096246595853, 'auc_roc_ci': {'mean': np.float64(0.9749766469932905), 'std': np.float64(0.0021405615883872088), 'ci_lower': np.float64(0.9705211420003842), 'ci_upper': np.float64(0.978812006171484), 'confidence': 0.95}, 'auc_pr': 0.9752242643717971, 'auc_pr_ci': {'mean': np.float64(0.9752077958132965), 'std': np.float64(0.0024097300770155976), 'ci_lower': np.float64(0.9700914139410685), 'ci_upper': np.float64(0.9796795495543811), 'confidence': 0.95}, 'f1_score': 0.9175349806490026, 'f1_ci': {'mean': np.float64(0.9175809126354817), 'std': np.float64(0.004832864820973313), 'ci_lower': np.float64(0.9079586036478158), 'ci_upper': np.float64(0.9268606554806716), 'confidence': 0.95}, 'precision': 0.916716240333135, 'recall': 0.9183551847437426, 'specificity': np.float64(0.9165673420738975), 'eer': np.float64(0.08253873659118), 'eer_threshold': np.float32(0.50156844), 'confusion_matrix': array([[1538,  140],
+       [ 137, 1541]]), 'calibration': {'brier_score': 0.06165102338576677, 'ece': np.float64(0.017201493382098705), 'mce': np.float64(0.040504299966912516)}, 'bootstrap_confidence': 0.95}, 'checkpoint_path': 'best_model_2layers_1756809026.keras', 'training_time': 23, 'history': {'accuracy': [0.5510203838348389, 0.6494860649108887, 0.727990448474884, 0.7563682198524475, 0.7855653166770935, 0.8131237626075745, 0.832638144493103, 0.850886344909668, 0.8688365817070007, 0.8800089359283447, 0.8925219774246216, 0.8946074843406677, 0.9021301865577698, 0.9112170338630676, 0.9164308309555054, 0.9256666302680969, 0.9255176782608032, 0.9319975972175598, 0.9330403804779053, 0.9390734434127808, 0.9430209994316101, 0.9420527219772339, 0.9468196034431458], 'loss': [0.8296871781349182, 0.6625964641571045, 0.5701373815536499, 0.5091161131858826, 0.46782389283180237, 0.426058292388916, 0.3901905119419098, 0.3520779609680176, 0.32056427001953125, 0.295583039522171, 0.27046898007392883, 0.26463785767555237, 0.24295607209205627, 0.22640462219715118, 0.21063977479934692, 0.19911377131938934, 0.1870928704738617, 0.18159371614456177, 0.1718805879354477, 0.1594105064868927, 0.15508395433425903, 0.15068164467811584, 0.14120644330978394], 'val_accuracy': [0.6525625586509705, 0.7508939504623413, 0.7923122644424438, 0.8131704330444336, 0.8358164429664612, 0.8408820033073425, 0.8599523305892944, 0.8685935735702515, 0.8858760595321655, 0.8921334743499756, 0.8933253884315491, 0.8998808264732361, 0.9117997884750366, 0.9094159603118896, 0.9073301553726196, 0.9174612760543823, 0.9064362049102783, 0.9168652892112732, 0.9168652892112732, 0.9174612760543823, 0.9115017652511597, 0.9225268363952637, 0.9174612760543823], 'val_loss': [0.6316231489181519, 0.5222132802009583, 0.45110467076301575, 0.4240749180316925, 0.386737585067749, 0.3775326907634735, 0.32770028710365295, 0.3215935528278351, 0.28297463059425354, 0.28465285897254944, 0.2720752954483032, 0.24865898489952087, 0.23363251984119415, 0.22479017078876495, 0.23120848834514618, 0.2179478257894516, 0.24969303607940674, 0.2229541391134262, 0.2222505360841751, 0.21926696598529816, 0.2408381551504135, 0.2368200570344925, 0.2371923178434372], 'learning_rate': [9.999999747378752e-05, 0.00018000000272877514, 0.00026000000070780516, 0.00033999999868683517, 0.0004199999966658652, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.00010000000474974513, 0.0005000000237487257, 0.0005000000237487257, 9.972663974622265e-05, 0.000494547828566283]}, 'evaluation_type': 'comprehensive_with_bootstrap', 'fold_idx': 5, 'train_size': 13426, 'val_size': 3356, 'scaler': StandardScaler(), 'fold_max_T': 139}]
+2025-09-02 22:40:17 - INFO -   cv_statistics: {'auc_roc': {'mean': np.float64(0.9718617208739293), 'std': np.float64(0.003674542698594478), 'min': np.float64(0.9646981822002284), 'max': np.float64(0.9750096246595853), 'values': [0.9646981822002284, 0.9724362719451742, 0.9734497905304714, 0.973714735034187, 0.9750096246595853]}, 'auc_pr': {'mean': np.float64(0.9720577670383467), 'std': np.float64(0.0032933729609019103), 'min': np.float64(0.9658549490997281), 'max': np.float64(0.9752242643717971), 'values': [0.9658549490997281, 0.9727192148469841, 0.9721333698267131, 0.9743570370465107, 0.9752242643717971]}, 'f1_score': {'mean': np.float64(0.9098194815386501), 'std': np.float64(0.006386794369791564), 'min': np.float64(0.898594077176189), 'max': np.float64(0.9175349806490026), 'values': [0.898594077176189, 0.9102525098874353, 0.9087602303728403, 0.9139556096077835, 0.9175349806490026]}, 'balanced_accuracy': {'mean': np.float64(0.9109181212779898), 'std': np.float64(0.006464202010482164), 'min': np.float64(0.8990158169237747), 'max': np.float64(0.91746126340882), 'values': [0.8990158169237747, 0.9121302125889397, 0.9103098927294397, 0.915673420738975, 0.91746126340882]}, 'eer': {'mean': np.float64(0.08830842468947905), 'std': np.float64(0.005558008554683897), 'min': np.float64(0.08253873659118), 'max': np.float64(0.0988978342151275), 'values': [0.0988978342151275, 0.08579089233119494, 0.08730631704410013, 0.08700834326579263, 0.08253873659118]}, 'precision': {'mean': np.float64(0.9213730622318632), 'std': np.float64(0.011128427175603804), 'min': np.float64(0.9021021021021021), 'max': np.float64(0.9329608938547486), 'values': [0.9021021021021021, 0.9303482587064676, 0.9247378161628624, 0.9329608938547486, 0.916716240333135]}, 'recall': {'mean': np.float64(0.8987019062513089), 'std': np.float64(0.009962046146169204), 'min': np.float64(0.8910065515187612), 'max': np.float64(0.9183551847437426), 'values': [0.8951132300357568, 0.8910065515187612, 0.8933253873659118, 0.8957091775923719, 0.9183551847437426]}, 'summary': {'successful_folds': 5, 'total_folds': 5, 'completion_rate': 1.0, 'avg_training_epochs': np.float64(23.0), 'total_parameters': 1577986}}
+2025-09-02 22:40:17 - INFO -   best_fold_idx: 5
+2025-09-02 22:40:17 - INFO -   best_fold_result: {'pyramid_layers': 2, 'total_params': 1577986, 'epochs_trained': 23, 'best_epoch': np.int64(16), 'best_val_loss': 0.2179478257894516, 'best_val_acc': 0.9225268363952637, 'test_accuracy': 0.9174612760543823, 'val_accuracy': 0.9174612760543823, 'test_loss': 0.2179478257894516, 'val_loss': 0.2179478257894516, 'test_auc': 0.9750096246595853, 'val_auc': 0.9750096246595853, 'test_eer': np.float64(0.08253873659118), 'val_eer': np.float64(0.08253873659118), 'eer_threshold': np.float32(0.50156844), 'test_metrics': {'accuracy': np.float64(0.9174612634088201), 'balanced_accuracy': np.float64(0.91746126340882), 'auc_roc': 0.9750096246595853, 'auc_roc_ci': {'mean': np.float64(0.9749766469932905), 'std': np.float64(0.0021405615883872088), 'ci_lower': np.float64(0.9705211420003842), 'ci_upper': np.float64(0.978812006171484), 'confidence': 0.95}, 'auc_pr': 0.9752242643717971, 'auc_pr_ci': {'mean': np.float64(0.9752077958132965), 'std': np.float64(0.0024097300770155976), 'ci_lower': np.float64(0.9700914139410685), 'ci_upper': np.float64(0.9796795495543811), 'confidence': 0.95}, 'f1_score': 0.9175349806490026, 'f1_ci': {'mean': np.float64(0.9175809126354817), 'std': np.float64(0.004832864820973313), 'ci_lower': np.float64(0.9079586036478158), 'ci_upper': np.float64(0.9268606554806716), 'confidence': 0.95}, 'precision': 0.916716240333135, 'recall': 0.9183551847437426, 'specificity': np.float64(0.9165673420738975), 'eer': np.float64(0.08253873659118), 'eer_threshold': np.float32(0.50156844), 'confusion_matrix': array([[1538,  140],
+       [ 137, 1541]]), 'calibration': {'brier_score': 0.06165102338576677, 'ece': np.float64(0.017201493382098705), 'mce': np.float64(0.040504299966912516)}, 'bootstrap_confidence': 0.95}, 'val_metrics': {'accuracy': np.float64(0.9174612634088201), 'balanced_accuracy': np.float64(0.91746126340882), 'auc_roc': 0.9750096246595853, 'auc_roc_ci': {'mean': np.float64(0.9749766469932905), 'std': np.float64(0.0021405615883872088), 'ci_lower': np.float64(0.9705211420003842), 'ci_upper': np.float64(0.978812006171484), 'confidence': 0.95}, 'auc_pr': 0.9752242643717971, 'auc_pr_ci': {'mean': np.float64(0.9752077958132965), 'std': np.float64(0.0024097300770155976), 'ci_lower': np.float64(0.9700914139410685), 'ci_upper': np.float64(0.9796795495543811), 'confidence': 0.95}, 'f1_score': 0.9175349806490026, 'f1_ci': {'mean': np.float64(0.9175809126354817), 'std': np.float64(0.004832864820973313), 'ci_lower': np.float64(0.9079586036478158), 'ci_upper': np.float64(0.9268606554806716), 'confidence': 0.95}, 'precision': 0.916716240333135, 'recall': 0.9183551847437426, 'specificity': np.float64(0.9165673420738975), 'eer': np.float64(0.08253873659118), 'eer_threshold': np.float32(0.50156844), 'confusion_matrix': array([[1538,  140],
+       [ 137, 1541]]), 'calibration': {'brier_score': 0.06165102338576677, 'ece': np.float64(0.017201493382098705), 'mce': np.float64(0.040504299966912516)}, 'bootstrap_confidence': 0.95}, 'checkpoint_path': 'best_model_2layers_1756809026.keras', 'training_time': 23, 'history': {'accuracy': [0.5510203838348389, 0.6494860649108887, 0.727990448474884, 0.7563682198524475, 0.7855653166770935, 0.8131237626075745, 0.832638144493103, 0.850886344909668, 0.8688365817070007, 0.8800089359283447, 0.8925219774246216, 0.8946074843406677, 0.9021301865577698, 0.9112170338630676, 0.9164308309555054, 0.9256666302680969, 0.9255176782608032, 0.9319975972175598, 0.9330403804779053, 0.9390734434127808, 0.9430209994316101, 0.9420527219772339, 0.9468196034431458], 'loss': [0.8296871781349182, 0.6625964641571045, 0.5701373815536499, 0.5091161131858826, 0.46782389283180237, 0.426058292388916, 0.3901905119419098, 0.3520779609680176, 0.32056427001953125, 0.295583039522171, 0.27046898007392883, 0.26463785767555237, 0.24295607209205627, 0.22640462219715118, 0.21063977479934692, 0.19911377131938934, 0.1870928704738617, 0.18159371614456177, 0.1718805879354477, 0.1594105064868927, 0.15508395433425903, 0.15068164467811584, 0.14120644330978394], 'val_accuracy': [0.6525625586509705, 0.7508939504623413, 0.7923122644424438, 0.8131704330444336, 0.8358164429664612, 0.8408820033073425, 0.8599523305892944, 0.8685935735702515, 0.8858760595321655, 0.8921334743499756, 0.8933253884315491, 0.8998808264732361, 0.9117997884750366, 0.9094159603118896, 0.9073301553726196, 0.9174612760543823, 0.9064362049102783, 0.9168652892112732, 0.9168652892112732, 0.9174612760543823, 0.9115017652511597, 0.9225268363952637, 0.9174612760543823], 'val_loss': [0.6316231489181519, 0.5222132802009583, 0.45110467076301575, 0.4240749180316925, 0.386737585067749, 0.3775326907634735, 0.32770028710365295, 0.3215935528278351, 0.28297463059425354, 0.28465285897254944, 0.2720752954483032, 0.24865898489952087, 0.23363251984119415, 0.22479017078876495, 0.23120848834514618, 0.2179478257894516, 0.24969303607940674, 0.2229541391134262, 0.2222505360841751, 0.21926696598529816, 0.2408381551504135, 0.2368200570344925, 0.2371923178434372], 'learning_rate': [9.999999747378752e-05, 0.00018000000272877514, 0.00026000000070780516, 0.00033999999868683517, 0.0004199999966658652, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.0005000000237487257, 0.00010000000474974513, 0.0005000000237487257, 0.0005000000237487257, 9.972663974622265e-05, 0.000494547828566283]}, 'evaluation_type': 'comprehensive_with_bootstrap', 'fold_idx': 5, 'train_size': 13426, 'val_size': 3356, 'scaler': StandardScaler(), 'fold_max_T': 139}
+2025-09-02 22:40:17 - INFO -   holdout_test_metrics: {'accuracy': np.float64(0.8409926470588235), 'balanced_accuracy': np.float64(0.8409926470588236), 'auc_roc': 0.9314344993512111, 'auc_roc_ci': {'mean': np.float64(0.9315592786945843), 'std': np.float64(0.007081823418008065), 'ci_lower': np.float64(0.9177584625460099), 'ci_upper': np.float64(0.9451617708506488), 'confidence': 0.95}, 'auc_pr': 0.9311478672070136, 'auc_pr_ci': {'mean': np.float64(0.9311513363134382), 'std': np.float64(0.008686161091624995), 'ci_lower': np.float64(0.9129446854144758), 'ci_upper': np.float64(0.9466724216644058), 'confidence': 0.95}, 'f1_score': 0.835707502374169, 'f1_ci': {'mean': np.float64(0.8355799448937928), 'std': np.float64(0.012263838166725985), 'ci_lower': np.float64(0.8109135451240714), 'ci_upper': np.float64(0.8596495532255566), 'confidence': 0.95}, 'precision': 0.8644400785854617, 'recall': 0.8088235294117647, 'specificity': np.float64(0.8731617647058824), 'eer': np.float64(0.16360294117647056), 'eer_threshold': np.float32(0.32301655), 'confusion_matrix': array([[475,  69],
+       [104, 440]]), 'calibration': {'brier_score': 0.11969455957465733, 'ece': np.float64(0.07338860930501731), 'mce': np.float64(0.4692846242247558)}, 'bootstrap_confidence': 0.95}
+2025-09-02 22:40:17 - INFO -   model_config: {'pyramid_layers': 2, 'random_state': 42}
+2025-09-02 22:40:17 - INFO - ================================================================================
+2025-09-02 22:40:17 - INFO - 
+==========================================================================================
+2025-09-02 22:40:17 - INFO - APPROACH 3: AUTOMATED HYPERPARAMETER OPTIMIZATION
+2025-09-02 22:40:17 - INFO - ==========================================================================================
+2025-09-02 22:40:17 - INFO - Running Optuna hyperparameter optimization to find optimal pyramidal BiLSTM configuration...
+2025-09-02 22:40:17 - INFO - 
+==========================================================================================
+2025-09-02 22:40:17 - INFO - AUTOMATED HYPERPARAMETER OPTIMIZATION FOR PYRAMIDAL BiLSTM
+2025-09-02 22:40:17 - INFO - ==========================================================================================
+2025-09-02 22:40:17 - INFO - Optimization Study: pyramidal_bilstm_deepfake_detection
+2025-09-02 22:40:17 - INFO - Number of Trials: 25
+2025-09-02 22:40:17 - INFO - Training Data: 13956 samples
+2025-09-02 22:40:17 - INFO - Validation Data: 2826 samples
+2025-09-02 22:40:17 - INFO - Objective: Maximize Validation AUC-ROC
+2025-09-02 22:40:17 - INFO - ==========================================================================================
+2025-09-02 22:40:17 - INFO - Starting hyperparameter search...
+2025-09-02 22:40:20 - INFO - 
+Trial 0: Testing configuration...
+2025-09-02 22:40:20 - INFO -   Base Units: 256
+2025-09-02 22:40:20 - INFO -   Pyramid Layers: 3
+2025-09-02 22:40:20 - INFO -   Dropout: 0.427
+2025-09-02 22:40:20 - INFO -   Learning Rate: 4.93e-05
+2025-09-02 22:40:20 - INFO -   Batch Size: 32
+2025-09-03 03:02:50 - INFO -   Validation AUC: 0.7124
+2025-09-03 03:02:53 - INFO - 
+Trial 1: Testing configuration...
+2025-09-03 03:02:53 - INFO -   Base Units: 64
+2025-09-03 03:02:53 - INFO -   Pyramid Layers: 2
+2025-09-03 03:02:53 - INFO -   Dropout: 0.446
+2025-09-03 03:02:53 - INFO -   Learning Rate: 3.59e-04
+2025-09-03 03:02:53 - INFO -   Batch Size: 16
+2025-09-03 06:35:50 - INFO -   Validation AUC: 0.9626
+2025-09-03 06:35:52 - INFO - 
+Trial 2: Testing configuration...
+2025-09-03 06:35:52 - INFO -   Base Units: 128
+2025-09-03 06:35:52 - INFO -   Pyramid Layers: 1
+2025-09-03 06:35:52 - INFO -   Dropout: 0.223
+2025-09-03 06:35:52 - INFO -   Learning Rate: 9.48e-05
+2025-09-03 06:35:52 - INFO -   Batch Size: 4
+2025-09-04 03:51:12 - INFO -   Validation AUC: 0.9899
+2025-09-04 03:51:15 - INFO - 
+Trial 3: Testing configuration...
+2025-09-04 03:51:15 - INFO -   Base Units: 192
+2025-09-04 03:51:15 - INFO -   Pyramid Layers: 3
+2025-09-04 03:51:15 - INFO -   Dropout: 0.243
+2025-09-04 03:51:15 - INFO -   Learning Rate: 1.98e-05
+2025-09-04 03:51:15 - INFO -   Batch Size: 4
+2025-09-05 14:19:37 - INFO -   Validation AUC: 0.9632
+2025-09-05 14:19:40 - INFO - 
+Trial 4: Testing configuration...
+2025-09-05 14:19:40 - INFO -   Base Units: 128
+2025-09-05 14:19:40 - INFO -   Pyramid Layers: 2
+2025-09-05 14:19:40 - INFO -   Dropout: 0.379
+2025-09-05 14:19:40 - INFO -   Learning Rate: 1.24e-04
+2025-09-05 14:19:40 - INFO -   Batch Size: 16
+2025-09-05 22:48:31 - INFO -   Validation AUC: 0.9863
+2025-09-05 22:48:34 - INFO - 
+Trial 5: Testing configuration...
+2025-09-05 22:48:34 - INFO -   Base Units: 128
+2025-09-05 22:48:34 - INFO -   Pyramid Layers: 3
+2025-09-05 22:48:34 - INFO -   Dropout: 0.243
+2025-09-05 22:48:34 - INFO -   Learning Rate: 3.23e-05
+2025-09-05 22:48:34 - INFO -   Batch Size: 32
+2025-09-06 00:13:00 - INFO -   Validation AUC: 0.7827
+2025-09-06 00:13:05 - INFO - 
+Trial 6: Testing configuration...
+2025-09-06 00:13:05 - INFO -   Base Units: 192
+2025-09-06 00:13:05 - INFO -   Pyramid Layers: 2
+2025-09-06 00:13:05 - INFO -   Dropout: 0.365
+2025-09-06 00:13:05 - INFO -   Learning Rate: 7.49e-04
+2025-09-06 00:13:05 - INFO -   Batch Size: 32
+2025-09-06 11:12:18 - INFO -   Validation AUC: 0.9955
+2025-09-06 11:12:22 - INFO - 
+Trial 7: Testing configuration...
+2025-09-06 11:12:22 - INFO -   Base Units: 128
+2025-09-06 11:12:22 - INFO -   Pyramid Layers: 3
+2025-09-06 11:12:22 - INFO -   Dropout: 0.270
+2025-09-06 11:12:22 - INFO -   Learning Rate: 6.77e-04
+2025-09-06 11:12:22 - INFO -   Batch Size: 8
+2025-09-07 05:01:49 - INFO -   Validation AUC: 0.9953
+2025-09-07 05:01:52 - INFO - 
+Trial 8: Testing configuration...
+2025-09-07 05:01:52 - INFO -   Base Units: 192
+2025-09-07 05:01:52 - INFO -   Pyramid Layers: 1
+2025-09-07 05:01:52 - INFO -   Dropout: 0.353
+2025-09-07 05:01:52 - INFO -   Learning Rate: 7.56e-05
+2025-09-07 05:01:52 - INFO -   Batch Size: 32
+2025-09-07 17:12:11 - INFO -   Validation AUC: 0.9258
+2025-09-07 17:12:16 - INFO - 
+Trial 9: Testing configuration...
+2025-09-07 17:12:16 - INFO -   Base Units: 128
+2025-09-07 17:12:16 - INFO -   Pyramid Layers: 1
+2025-09-07 17:12:16 - INFO -   Dropout: 0.324
+2025-09-07 17:12:16 - INFO -   Learning Rate: 9.52e-05
+2025-09-07 17:12:16 - INFO -   Batch Size: 8
+2025-09-08 19:49:02 - INFO -   Validation AUC: 0.9864
+2025-09-08 19:49:13 - INFO - 
+Trial 10: Testing configuration...
+2025-09-08 19:49:13 - INFO -   Base Units: 192
+2025-09-08 19:49:13 - INFO -   Pyramid Layers: 2
+2025-09-08 19:49:13 - INFO -   Dropout: 0.499
+2025-09-08 19:49:13 - INFO -   Learning Rate: 9.88e-04
+2025-09-08 19:49:13 - INFO -   Batch Size: 32
+2025-09-09 07:23:06 - INFO -   Validation AUC: 0.9881
+2025-09-09 07:23:11 - INFO - 
+Trial 11: Testing configuration...
+2025-09-09 07:23:11 - INFO -   Base Units: 64
+2025-09-09 07:23:11 - INFO -   Pyramid Layers: 2
+2025-09-09 07:23:11 - INFO -   Dropout: 0.301
+2025-09-09 07:23:11 - INFO -   Learning Rate: 9.92e-04
+2025-09-09 07:23:11 - INFO -   Batch Size: 8
+2025-09-09 15:36:04 - INFO -   Validation AUC: 0.9913
+2025-09-09 15:36:08 - INFO - 
+Trial 12: Testing configuration...
+2025-09-09 15:36:08 - INFO -   Base Units: 256
+2025-09-09 15:36:08 - INFO -   Pyramid Layers: 3
+2025-09-09 15:36:08 - INFO -   Dropout: 0.315
+2025-09-09 15:36:08 - INFO -   Learning Rate: 3.18e-04
+2025-09-09 15:36:08 - INFO -   Batch Size: 8
+2025-09-10 09:03:15 - INFO -   Validation AUC: 0.9924
+2025-09-10 09:03:21 - INFO - 
+Trial 13: Testing configuration...
+2025-09-10 09:03:21 - INFO -   Base Units: 192
+2025-09-10 09:03:21 - INFO -   Pyramid Layers: 2
+2025-09-10 09:03:21 - INFO -   Dropout: 0.275
+2025-09-10 09:03:21 - INFO -   Learning Rate: 3.97e-04
+2025-09-10 09:03:21 - INFO -   Batch Size: 8
+2025-09-11 02:02:15 - INFO -   Validation AUC: 0.9915
+2025-09-11 02:02:21 - INFO - 
+Trial 14: Testing configuration...
+2025-09-11 02:02:21 - INFO -   Base Units: 128
+2025-09-11 02:02:21 - INFO -   Pyramid Layers: 3
+2025-09-11 02:02:21 - INFO -   Dropout: 0.380
+2025-09-11 02:02:21 - INFO -   Learning Rate: 2.05e-04
+2025-09-11 02:02:21 - INFO -   Batch Size: 32
+2025-09-11 06:19:37 - INFO -   Validation AUC: 0.9579
+2025-09-11 06:19:41 - INFO - 
+Trial 15: Testing configuration...
+2025-09-11 06:19:41 - INFO -   Base Units: 192
+2025-09-11 06:19:41 - INFO -   Pyramid Layers: 2
+2025-09-11 06:19:41 - INFO -   Dropout: 0.268
+2025-09-11 06:19:41 - INFO -   Learning Rate: 6.05e-04
+2025-09-11 06:19:41 - INFO -   Batch Size: 8
+2025-09-12 00:26:01 - INFO -   Validation AUC: 0.9911
+2025-09-12 00:26:05 - INFO - 
+Trial 16: Testing configuration...
+2025-09-12 00:26:05 - INFO -   Base Units: 256
+2025-09-12 00:26:05 - INFO -   Pyramid Layers: 2
+2025-09-12 00:26:05 - INFO -   Dropout: 0.204
+2025-09-12 00:26:05 - INFO -   Learning Rate: 1.98e-04
+2025-09-12 00:26:05 - INFO -   Batch Size: 16
+2025-09-12 05:45:54 - INFO -   Validation AUC: 0.9937
+2025-09-12 05:45:59 - INFO - 
+Trial 17: Testing configuration...
+2025-09-12 05:45:59 - INFO -   Base Units: 64
+2025-09-12 05:45:59 - INFO -   Pyramid Layers: 3
+2025-09-12 05:45:59 - INFO -   Dropout: 0.411
+2025-09-12 05:45:59 - INFO -   Learning Rate: 1.11e-05
+2025-09-12 05:45:59 - INFO -   Batch Size: 4
+2025-09-13 09:37:28 - INFO -   Validation AUC: 0.6277
+2025-09-13 09:37:36 - INFO - 
+Trial 18: Testing configuration...
+2025-09-13 09:37:36 - INFO -   Base Units: 192
+2025-09-13 09:37:36 - INFO -   Pyramid Layers: 1
+2025-09-13 09:37:36 - INFO -   Dropout: 0.342
+2025-09-13 09:37:36 - INFO -   Learning Rate: 6.07e-04
+2025-09-13 09:37:36 - INFO -   Batch Size: 8
+2025-09-14 07:13:38 - INFO -   Validation AUC: 0.9914
+2025-09-14 07:13:42 - INFO - 
+Trial 19: Testing configuration...
+2025-09-14 07:13:42 - INFO -   Base Units: 128
+2025-09-14 07:13:42 - INFO -   Pyramid Layers: 2
+2025-09-14 07:13:42 - INFO -   Dropout: 0.273
+2025-09-14 07:13:42 - INFO -   Learning Rate: 6.22e-04
+2025-09-14 07:13:42 - INFO -   Batch Size: 32
+2025-09-14 11:33:03 - INFO -   Validation AUC: 0.9965
+2025-09-14 11:33:07 - INFO - 
+Trial 20: Testing configuration...
+2025-09-14 11:33:07 - INFO -   Base Units: 128
+2025-09-14 11:33:07 - INFO -   Pyramid Layers: 2
+2025-09-14 11:33:07 - INFO -   Dropout: 0.379
+2025-09-14 11:33:07 - INFO -   Learning Rate: 1.99e-04
+2025-09-14 11:33:07 - INFO -   Batch Size: 32
+2025-09-14 16:12:18 - INFO -   Validation AUC: 0.9867
+2025-09-14 16:12:22 - INFO - 
+Trial 21: Testing configuration...
+2025-09-14 16:12:22 - INFO -   Base Units: 128
+2025-09-14 16:12:22 - INFO -   Pyramid Layers: 2
+2025-09-14 16:12:22 - INFO -   Dropout: 0.282
+2025-09-14 16:12:22 - INFO -   Learning Rate: 6.06e-04
+2025-09-14 16:12:22 - INFO -   Batch Size: 32
+2025-09-14 19:52:13 - INFO -   Validation AUC: 0.9951
+2025-09-14 19:52:17 - INFO - 
+Trial 22: Testing configuration...
+2025-09-14 19:52:17 - INFO -   Base Units: 128
+2025-09-14 19:52:17 - INFO -   Pyramid Layers: 2
+2025-09-14 19:52:17 - INFO -   Dropout: 0.297
+2025-09-14 19:52:17 - INFO -   Learning Rate: 5.08e-04
+2025-09-14 19:52:17 - INFO -   Batch Size: 32
+2025-09-15 00:29:35 - INFO -   Validation AUC: 0.9973
+2025-09-15 00:29:40 - INFO - 
+Trial 23: Testing configuration...
+2025-09-15 00:29:40 - INFO -   Base Units: 128
+2025-09-15 00:29:40 - INFO -   Pyramid Layers: 2
+2025-09-15 00:29:40 - INFO -   Dropout: 0.348
+2025-09-15 00:29:40 - INFO -   Learning Rate: 4.22e-04
+2025-09-15 00:29:40 - INFO -   Batch Size: 32
+2025-09-15 05:07:27 - INFO -   Validation AUC: 0.9942
+2025-09-15 05:07:32 - INFO - 
+Trial 24: Testing configuration...
+2025-09-15 05:07:32 - INFO -   Base Units: 128
+2025-09-15 05:07:32 - INFO -   Pyramid Layers: 2
+2025-09-15 05:07:32 - INFO -   Dropout: 0.303
+2025-09-15 05:07:32 - INFO -   Learning Rate: 3.09e-04
+2025-09-15 05:07:32 - INFO -   Batch Size: 32
+2025-09-15 09:50:10 - INFO -   Validation AUC: 0.9940
+2025-09-15 09:50:12 - INFO - 
+================================================================================
+2025-09-15 09:50:12 - INFO - HYPERPARAMETER OPTIMIZATION COMPLETED
+2025-09-15 09:50:12 - INFO - ================================================================================
+2025-09-15 09:50:12 - INFO - Best Trial: 22
+2025-09-15 09:50:12 - INFO - Best Validation AUC: 0.9973
+2025-09-15 09:50:12 - INFO - 
+Best Hyperparameters:
+2025-09-15 09:50:12 - INFO -   batch_size: 32
+2025-09-15 09:50:12 - INFO -   base_units: 128
+2025-09-15 09:50:12 - INFO -   num_pyramid_layers: 2
+2025-09-15 09:50:12 - INFO -   dropout_rate: 0.29701730944021143
+2025-09-15 09:50:12 - INFO -   recurrent_dropout: 0.23046952239751523
+2025-09-15 09:50:12 - INFO -   attention_units: 256
+2025-09-15 09:50:12 - INFO -   dense_units: 128
+2025-09-15 09:50:12 - INFO -   learning_rate: 0.0005079013828414682
+2025-09-15 09:50:12 - INFO -   l2_reg: 8.996114660695928e-06
+2025-09-15 09:50:12 - INFO - 
+Optimization Statistics:
+2025-09-15 09:50:12 - INFO -   Completed Trials: 25
+2025-09-15 09:50:12 - INFO -   Pruned Trials: 0
+2025-09-15 09:50:12 - INFO -   Failed Trials: 0
+2025-09-15 09:50:12 - INFO -   AUC Range: [0.6277, 0.9973]
+2025-09-15 09:50:12 - INFO -   AUC Improvement: 0.3696
+2025-09-15 09:50:12 - INFO - 
+==========================================================================================
+2025-09-15 09:50:12 - INFO - TRAINING FINAL MODEL WITH OPTIMIZED HYPERPARAMETERS
+2025-09-15 09:50:12 - INFO - ==========================================================================================
+2025-09-15 09:50:12 - INFO - Optimized Configuration:
+2025-09-15 09:50:12 - INFO -   batch_size: 32
+2025-09-15 09:50:12 - INFO -   base_units: 128
+2025-09-15 09:50:12 - INFO -   num_pyramid_layers: 2
+2025-09-15 09:50:12 - INFO -   dropout_rate: 0.29701730944021143
+2025-09-15 09:50:12 - INFO -   recurrent_dropout: 0.23046952239751523
+2025-09-15 09:50:12 - INFO -   attention_units: 256
+2025-09-15 09:50:12 - INFO -   dense_units: 128
+2025-09-15 09:50:12 - INFO -   learning_rate: 0.0005079013828414682
+2025-09-15 09:50:12 - INFO -   l2_reg: 8.996114660695928e-06
+2025-09-15 09:50:13 - INFO - 
+============================================================
+2025-09-15 09:50:13 - INFO - MODEL SUMMARY: Optimized Pyramidal BiLSTM
+2025-09-15 09:50:13 - INFO - ============================================================
+2025-09-15 09:50:13 - INFO - Model: "functional"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                  ┃ Output Shape              ┃         Param # ┃ Connected to               ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ input_layer (InputLayer)      │ (None, 139, 80)           │               0 │ -                          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ not_equal (NotEqual)          │ (None, 139, 80)           │               0 │ input_layer[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ masking (Masking)             │ (None, 139, 80)           │               0 │ input_layer[0][0]          │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ any (Any)                     │ (None, 139)               │               0 │ not_equal[0][0]            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional (Bidirectional) │ (None, 139, 256)          │         214,016 │ masking[0][0], any[0][0]   │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization           │ (None, 139, 256)          │             512 │ bidirectional[0][0]        │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout (Dropout)             │ (None, 139, 256)          │               0 │ layer_normalization[0][0]  │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ pyramid_downsample_opt_layer… │ (None, 69, 512)           │               0 │ dropout[0][0]              │
+│ (PyramidalDownsample)         │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional_1               │ (None, 69, 256)           │         656,384 │ pyramid_downsample_opt_la… │
+│ (Bidirectional)               │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_1         │ (None, 69, 256)           │             512 │ bidirectional_1[0][0]      │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_1 (Dropout)           │ (None, 69, 256)           │               0 │ layer_normalization_1[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ pyramid_downsample_opt_layer… │ (None, 34, 512)           │               0 │ dropout_1[0][0]            │
+│ (PyramidalDownsample)         │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ bidirectional_2               │ (None, 34, 256)           │         656,384 │ pyramid_downsample_opt_la… │
+│ (Bidirectional)               │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_2         │ (None, 34, 256)           │             512 │ bidirectional_2[0][0]      │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_2 (Dropout)           │ (None, 34, 256)           │               0 │ layer_normalization_2[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ attention_pooling             │ (None, 256)               │          66,049 │ dropout_2[0][0]            │
+│ (AttentionPooling)            │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_3 (Dropout)           │ (None, 256)               │               0 │ attention_pooling[0][0]    │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dense (Dense)                 │ (None, 128)               │          32,896 │ dropout_3[0][0]            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ layer_normalization_3         │ (None, 128)               │             256 │ dense[0][0]                │
+│ (LayerNormalization)          │                           │                 │                            │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ dropout_4 (Dropout)           │ (None, 128)               │               0 │ layer_normalization_3[0][… │
+├───────────────────────────────┼───────────────────────────┼─────────────────┼────────────────────────────┤
+│ classification_output (Dense) │ (None, 1)                 │             129 │ dropout_4[0][0]            │
+└───────────────────────────────┴───────────────────────────┴─────────────────┴────────────────────────────┘
+ Total params: 1,627,650 (6.21 MB)
+ Trainable params: 1,627,650 (6.21 MB)
+ Non-trainable params: 0 (0.00 B)
+
+2025-09-15 09:50:13 - INFO - 
+Model Parameters:
+2025-09-15 09:50:13 - INFO -   Total parameters: 1,627,650
+2025-09-15 09:50:13 - INFO -   Trainable parameters: 1,627,650
+2025-09-15 09:50:13 - INFO -   Non-trainable parameters: 0
+2025-09-15 09:50:13 - INFO - ============================================================
+2025-09-15 09:50:13 - INFO - 
+Training OPTIMIZED Pyramidal BiLSTM...
+2025-09-15 15:11:03 - INFO - 
+================================================================================
+2025-09-15 15:11:03 - INFO - COMPREHENSIVE EVALUATION METRICS - TEST SET
+2025-09-15 15:11:03 - INFO - ================================================================================
+2025-09-15 15:11:03 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-09-15 15:11:03 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-09-15 15:11:05 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-09-15 15:11:05 - INFO -   Accuracy: 0.8529
+2025-09-15 15:11:05 - INFO -   Balanced Accuracy: 0.8529
+2025-09-15 15:11:05 - INFO -   AUC-ROC: 0.9309 [0.9161, 0.9440]
+2025-09-15 15:11:05 - INFO -   AUC-PR: 0.9255 [0.9043, 0.9448]
+2025-09-15 15:11:05 - INFO -   F1-Score: 0.8614 [0.8385, 0.8803]
+2025-09-15 15:11:05 - INFO -   EER: 0.1425 @ threshold=0.7470
+2025-09-15 15:11:05 - INFO - 
+PER-CLASS METRICS:
+2025-09-15 15:11:05 - INFO -   Precision (Fake Detection): 0.8148
+2025-09-15 15:11:05 - INFO -   Recall/Sensitivity (Fake Detection): 0.9136
+2025-09-15 15:11:05 - INFO -   Specificity (Real Detection): 0.7923
+2025-09-15 15:11:05 - INFO - 
+CONFUSION MATRIX:
+2025-09-15 15:11:05 - INFO -   True Negatives (Real→Real): 431
+2025-09-15 15:11:05 - INFO -   False Positives (Real→Fake): 113
+2025-09-15 15:11:05 - INFO -   False Negatives (Fake→Real): 47
+2025-09-15 15:11:05 - INFO -   True Positives (Fake→Fake): 497
+2025-09-15 15:11:05 - INFO - 
+CALIBRATION ANALYSIS:
+2025-09-15 15:11:05 - INFO -   Brier Score: 0.1156 (lower is better)
+2025-09-15 15:11:05 - INFO -   Expected Calibration Error (ECE): 0.0832
+2025-09-15 15:11:05 - INFO -   Maximum Calibration Error (MCE): 0.3415
+2025-09-15 15:11:05 - INFO - 
+================================================================================
+2025-09-15 15:11:05 - INFO - COMPREHENSIVE EVALUATION METRICS - VALIDATION SET
+2025-09-15 15:11:05 - INFO - ================================================================================
+2025-09-15 15:11:05 - INFO - BOOTSTRAP CONFIDENCE INTERVALS (95% CI):
+2025-09-15 15:11:05 - INFO - Computing bootstrap estimates with 1000 samples...
+2025-09-15 15:11:09 - INFO - 
+CORE PERFORMANCE METRICS:
+2025-09-15 15:11:09 - INFO -   Accuracy: 0.9742
+2025-09-15 15:11:09 - INFO -   Balanced Accuracy: 0.9742
+2025-09-15 15:11:09 - INFO -   AUC-ROC: 0.9954 [0.9935, 0.9970]
+2025-09-15 15:11:09 - INFO -   AUC-PR: 0.9950 [0.9927, 0.9970]
+2025-09-15 15:11:09 - INFO -   F1-Score: 0.9745 [0.9684, 0.9801]
+2025-09-15 15:11:09 - INFO -   EER: 0.0272 @ threshold=0.7106
+2025-09-15 15:11:09 - INFO - 
+PER-CLASS METRICS:
+2025-09-15 15:11:09 - INFO -   Precision (Fake Detection): 0.9627
+2025-09-15 15:11:09 - INFO -   Recall/Sensitivity (Fake Detection): 0.9866
+2025-09-15 15:11:09 - INFO -   Specificity (Real Detection): 0.9618
+2025-09-15 15:11:09 - INFO - 
+CONFUSION MATRIX:
+2025-09-15 15:11:09 - INFO -   True Negatives (Real→Real): 1359
+2025-09-15 15:11:09 - INFO -   False Positives (Real→Fake): 54
+2025-09-15 15:11:09 - INFO -   False Negatives (Fake→Real): 19
+2025-09-15 15:11:09 - INFO -   True Positives (Fake→Fake): 1394
+2025-09-15 15:11:09 - INFO - 
+CALIBRATION ANALYSIS:
+2025-09-15 15:11:09 - INFO -   Brier Score: 0.0214 (lower is better)
+2025-09-15 15:11:09 - INFO -   Expected Calibration Error (ECE): 0.0126
+2025-09-15 15:11:09 - INFO -   Maximum Calibration Error (MCE): 0.2679
+2025-09-15 15:11:09 - INFO - 
+OPTIMIZED Model Results:
+2025-09-15 15:11:09 - INFO -   Test AUC-ROC: 0.9309
+2025-09-15 15:11:09 - INFO -   Test F1-Score: 0.8614
+2025-09-15 15:11:09 - INFO -   Epochs Trained: 33
+2025-09-15 15:11:09 - INFO -   Model Saved: optimized_model_1757910013.keras
